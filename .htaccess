@@ -1,5 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ index.php?_url=/$1 [QSA,L]
+   RewriteCond %{Request_Filename} !-F
+   RewriteCond %{Request_Filename} !-d
+   RewriteRule ^ index.php [QSA,L]
 </IfModule>
