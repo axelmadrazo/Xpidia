@@ -121,36 +121,6 @@ $app->POST('//supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}/c
             });
 
 
-/**
- * GET supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdGet
- * Summary: Get the current status of a sale
- * Notes: This endpoint returns the most current status of a sale so that customer redemption status may be updated. Additionally, this endpoint is used during error recovery to check the current status of a booking or cancellation request so that the operation may be resumed from the current state. ##### Potential &#x60;errorType&#x60; Values:    * &#x60;UnableToProcessRequest&#x60;: An unanticipated error occurred in processing.   * &#x60;SaleNotFound&#x60;: The specified sale could not be found.   * &#x60;SaleServiceUnavailable&#x60;: The sale service is temporarily unavailable. 
- * Output-Formats: [application/vnd.localexpert.v2.1+json]
- */
-$app->GET('//supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', function($request, $response, $args) {
-            $headers = $request->getHeaders();
-            
-            
-            
-            $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdGet as a GET method ?');
-            return $response;
-            });
-
-
-/**
- * GET supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdGet
- * Summary: Get the current status of a sale
- * Notes: This endpoint returns the most current status of a sale so that customer redemption status may be updated. Additionally, this endpoint is used during error recovery to check the current status of a booking or cancellation request so that the operation may be resumed from the current state. ##### Potential &#x60;errorType&#x60; Values:    * &#x60;UnableToProcessRequest&#x60;: An unanticipated error occurred in processing.   * &#x60;SaleNotFound&#x60;: The specified sale could not be found.   * &#x60;SaleServiceUnavailable&#x60;: The sale service is temporarily unavailable. 
- * Output-Formats: [application/vnd.localexpert.v2.1+json]
- */
-$app->GET('//supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', function($request, $response, $args) {
-            $headers = $request->getHeaders();
-            
-            
-            
-            $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdGet as a GET method ?');
-            return $response;
-            });
 
 
 /**
