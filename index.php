@@ -157,7 +157,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             $data = array(
                 'ResponseHeader' => array(
                     'requestIdentifier' => '101010101',
-                    'processingMilliseconds' => '101'
+                    'processingMilliseconds' => '100'
                 ),
                 'partnerSupplierBranchId' => 1,
                 'partnerActivityId' => 1,
@@ -167,9 +167,14 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             $data["availability"][]= array("localDate" => "2018-01-02", "accuracy" => "Exact", "status" => "Available",  "availableCapacity" => 10, "maximumCapacity" => 20, "availabilityType" => "limited");
             //$response->write('How about implementing supplierBranchesPartnerSupplierBranchIdActivitiesPartnerActivityIdOffersPartnerOfferIdAvailabilityGet as a GET method ?');
             //$response = $response->withJson($data);
-            $response = $response->withHeader('Content-type', 'application/vnd.localexpert.v2.1+json');
-            $response = $response->withJson($data);
-	return $response;
+            //$response = $response->withHeader('Content-type', 'application/vnd.localexpert.v2.1+json');
+            //$response = $response->withJson($data);
+            //return $response;
+            return $response->withStatus(200)
+                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+                ->withJson($data);
+
+
             });
 
 $app->get('/hello/{name}', function (Request $request, Response $response) {
