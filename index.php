@@ -166,6 +166,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
            
             //$response->write('How about implementing supplierBranchesPartnerSupplierBranchIdActivitiesPartnerActivityIdOffersPartnerOfferIdAvailabilityGet as a GET method ?');
             //$response = $response->withJson($data);
+            $response = $response->withHeader('Content-type', 'application/vnd.localexpert.v2.1+json');
             $response = $response->withJson($data);
 	return $response;
             });
