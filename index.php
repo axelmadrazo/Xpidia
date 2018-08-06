@@ -152,12 +152,11 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             
             $ResponseHeader->requestIdentifier = '101010101';
             $ResponseHeader->processingMilliseconds = '100';
-            //$response = $response->withJson($ResponseHeader);
+            $response = $response->withJson($ResponseHeader);
 
-
-            $resultado = [];
-            $resultado["eventos"]=array("valido"=>"0", "error"=>$errors['errorSearch']);
-            $response = $resultado["eventos"];
+            $response['set_attributes'] = new \stdClass();
+            $response['set_attributes']->apikey = 'some_api_key';
+           
             //$response->write('How about implementing supplierBranchesPartnerSupplierBranchIdActivitiesPartnerActivityIdOffersPartnerOfferIdAvailabilityGet as a GET method ?');
             //$response = $response->withJson($data);
 	return $response;
