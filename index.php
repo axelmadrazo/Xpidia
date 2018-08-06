@@ -8,7 +8,7 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 require 'vendor/autoload.php';
-require 'lib/Person.php';
+//require 'lib/Person.php';
 
 $app = new Slim\App();
 
@@ -139,6 +139,19 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             
             $id = $request->getAttribute('partnerSupplierBranchId');
 			
+	class Person
+{
+    protected $id;
+    protected $name;
+
+    public function __construct(array $data) 
+    {
+        $this->id = $data['id'];
+        $this->name = $data['name'];
+    }
+}
+
+	
 			$person = new Person(array('id' => 1, 'name' => 'Amir'));
 			//echo json_encode($person);
 
