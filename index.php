@@ -8,6 +8,8 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 require 'vendor/autoload.php';
+require 'lib/Person.php';
+
 $app = new Slim\App();
 
 /**
@@ -136,8 +138,12 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             $localDateRangeStart = $queryParams['localDateRangeStart'];    $localDateRangeEnd = $queryParams['localDateRangeEnd'];    $minimumAccuracy = $queryParams['minimumAccuracy'];    
             
             $id = $request->getAttribute('partnerSupplierBranchId');
-            
-            $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdActivitiesPartnerActivityIdOffersPartnerOfferIdAvailabilityGet as a GET method ?');
+			
+			$person = new Person(array('id' => 1, 'name' => 'Amir'));
+			//echo json_encode($person);
+
+            $response-> json_encode($person);
+            //$response->write('How about implementing supplierBranchesPartnerSupplierBranchIdActivitiesPartnerActivityIdOffersPartnerOfferIdAvailabilityGet as a GET method ?');
             return $response;
             });
 
