@@ -157,7 +157,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
 
             $resultado = [];
             $resultado["eventos"]=array("valido"=>"0", "error"=>$errors['errorSearch']);
-            $response = $resultado;
+            $response = $resultado["eventos"];
             //$response->write('How about implementing supplierBranchesPartnerSupplierBranchIdActivitiesPartnerActivityIdOffersPartnerOfferIdAvailabilityGet as a GET method ?');
             //$response = $response->withJson($data);
 	return $response;
