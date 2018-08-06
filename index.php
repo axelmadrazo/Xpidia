@@ -139,26 +139,9 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             
             $id = $request->getAttribute('partnerSupplierBranchId');
 			
-	class Person
-{
-    protected $id;
-    protected $name;
-
-    public function __construct(array $data) 
-    {
-        $this->id = $data['id'];
-        $this->name = $data['name'];
-    }
-}
-
-	
-			$person = new Person(array('id' => 1, 'name' => 'Amir'));
-			//echo json_encode($person);
-
-            
-	    //echo json_encode($person);
+$data = array('name' => 'Bob', 'age' => 40);
             //$response->write('How about implementing supplierBranchesPartnerSupplierBranchIdActivitiesPartnerActivityIdOffersPartnerOfferIdAvailabilityGet as a GET method ?');
-            $response-> $person;
+           $response = $response->withJson($data);
 	return $response;
             });
 
