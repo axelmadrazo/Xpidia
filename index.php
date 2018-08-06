@@ -156,9 +156,10 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
 			//echo json_encode($person);
 
             
-	    echo json_encode($person);
+	    //echo json_encode($person);
             //$response->write('How about implementing supplierBranchesPartnerSupplierBranchIdActivitiesPartnerActivityIdOffersPartnerOfferIdAvailabilityGet as a GET method ?');
-            //return $response;
+            $response-> $person;
+	return $response;
             });
 
 $app->get('/hello/{name}', function (Request $request, Response $response) {
