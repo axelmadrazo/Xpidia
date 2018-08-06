@@ -142,9 +142,10 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
 			$person = new Person(array('id' => 1, 'name' => 'Amir'));
 			//echo json_encode($person);
 
-            $response-> json_encode($person);
+            
+	    echo json_encode($person);
             //$response->write('How about implementing supplierBranchesPartnerSupplierBranchIdActivitiesPartnerActivityIdOffersPartnerOfferIdAvailabilityGet as a GET method ?');
-            return $response;
+            //return $response;
             });
 
 $app->get('/hello/{name}', function (Request $request, Response $response) {
