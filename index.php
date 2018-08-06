@@ -139,7 +139,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             
             $id = $request->getAttribute('partnerSupplierBranchId');
 			
-$data = array('name' => 'Bob', 'age' => 40);
+$data = array('name' => 'Bob', 'age' => $id);
             //$response->write('How about implementing supplierBranchesPartnerSupplierBranchIdActivitiesPartnerActivityIdOffersPartnerOfferIdAvailabilityGet as a GET method ?');
            $response = $response->withJson($data);
 	return $response;
