@@ -149,9 +149,9 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             }
             
             $ResponseHeader = new ResponseHeader();
-
-            $ResponseHeader->requestIdentifier("101010101");
-            $ResponseHeader->processingMilliseconds("100");
+            
+            $ResponseHeader->requestIdentifier = '101010101';
+            $ResponseHeader->processingMilliseconds = '100';
             $response = $response->withJson($ResponseHeader);
 
 
