@@ -129,7 +129,7 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
 
         
                 $stmt->execute();
-            }
+            //}
                 //echo '{"notice": {"text": "Customer Added"}';
         
             } catch(PDOException $e){
