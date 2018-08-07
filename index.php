@@ -98,43 +98,43 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
             // $sql = "INSERT INTO Sales (referenceId, partnerActivityId, partnerOfferId, localDate, partnerTicketTypeId, travelerCount, voucherCount, firstName, lastName, emailAddress, phoneNumber, holdDurationSeconds) VALUES
             // (:referenceId,:partnerActivityId,:partnerOfferId,:localDate,:partnerTicketTypeId,:travelerCount,:voucherCount, :firstName, :lastName, :emailAddress, :phoneNumber, :holdDurationSeconds)";
         
-            $sql = "INSERT INTO Sales (referenceId) VALUES
-            ("1")";
+            // $sql = "INSERT INTO Sales (referenceId) VALUES
+            // ("1")";
         
 
-            try{
-                // Get DB Object
-                $db = new db();
-                // Connect
-                $db = $db->connect();
+            // try{
+            //     // Get DB Object
+            //     $db = new db();
+            //     // Connect
+            //     $db = $db->connect();
         
-                $stmt = $db->prepare($sql);
+            //     $stmt = $db->prepare($sql);
         
-                //$referenceId = $body['referenceId'];
-                //$stmt->bindParam(':referenceId', $referenceId);
+            //     //$referenceId = $body['referenceId'];
+            //     //$stmt->bindParam(':referenceId', $referenceId);
 
-                // foreach ($body as $row){
-                // $stmt->bindParam(':referenceId', $row['referenceId']);
-                // $stmt->bindParam(':partnerActivityId',  $row['partnerActivityId']);
-                // $stmt->bindParam(':partnerOfferId',      $row['partnerOfferId']);
-                // $stmt->bindParam(':localDate',      $row['localDate']);
-                // $stmt->bindParam(':partnerTicketTypeId',    $row['partnerTicketTypeId']);
-                // $stmt->bindParam(':travelerCount',       $row['travelerCount']);
-                // $stmt->bindParam(':voucherCount',      $row['voucherCount']);
-                // $stmt->bindParam(':firstName',      $row['firstName']);
-                // $stmt->bindParam(':lastName',      $row['lastName']);
-                // $stmt->bindParam(':emailAddress',      $row['emailAddress']);
-                // $stmt->bindParam(':phoneNumber',      $row['phoneNumber']);
-                // $stmt->bindParam(':holdDurationSeconds',      $row['holdDurationSeconds']);
+            //     // foreach ($body as $row){
+            //     // $stmt->bindParam(':referenceId', $row['referenceId']);
+            //     // $stmt->bindParam(':partnerActivityId',  $row['partnerActivityId']);
+            //     // $stmt->bindParam(':partnerOfferId',      $row['partnerOfferId']);
+            //     // $stmt->bindParam(':localDate',      $row['localDate']);
+            //     // $stmt->bindParam(':partnerTicketTypeId',    $row['partnerTicketTypeId']);
+            //     // $stmt->bindParam(':travelerCount',       $row['travelerCount']);
+            //     // $stmt->bindParam(':voucherCount',      $row['voucherCount']);
+            //     // $stmt->bindParam(':firstName',      $row['firstName']);
+            //     // $stmt->bindParam(':lastName',      $row['lastName']);
+            //     // $stmt->bindParam(':emailAddress',      $row['emailAddress']);
+            //     // $stmt->bindParam(':phoneNumber',      $row['phoneNumber']);
+            //     // $stmt->bindParam(':holdDurationSeconds',      $row['holdDurationSeconds']);
 
         
-                $stmt->execute();
-            //}
-                //echo '{"notice": {"text": "Customer Added"}';
+            //     $stmt->execute();
+            // //}
+            //     //echo '{"notice": {"text": "Customer Added"}';
         
-            } catch(PDOException $e){
-                echo '{"error": {"text": '.$e->getMessage().'}';
-            }
+            // } catch(PDOException $e){
+            //     echo '{"error": {"text": '.$e->getMessage().'}';
+            // }
 
 
 
@@ -150,7 +150,7 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
                 'partnerOfferId' => 1
             );
 
-            //$data["additionalCriteria"][]= array();
+            $data["additionalCriteria"][]= array();
 
            
             //$response = $response->withJson($data);
