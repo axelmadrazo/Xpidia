@@ -38,7 +38,7 @@ $app->DELETE('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}'
 $app->GET('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', function($request, $response, $args) {
             $headers = $request->getHeaders();
             
-            $sql = "SELECT * FROM sales";
+            $sql = "SELECT * FROM Sales";
 
             try{
                 // Get DB Object
