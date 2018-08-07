@@ -90,11 +90,76 @@ $app->PUT('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
  */
 $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($request, $response, $args) {
             $headers = $request->getHeaders();
-            
-            
             $body = $request->getParsedBody();
-            $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPost as a POST method ?');
-            return $response;
+
+
+         
+        
+            $sql = "INSERT INTO Sales (referenceId, partnerActivityId, partnerOfferId, localDate, partnerTicketTypeId, travelerCount, voucherCount, firstName, lastName, emailAddress, phoneNumber, holdDurationSeconds) VALUES
+            (:referenceId,:partnerActivityId,:partnerOfferId,:localDate,:partnerTicketTypeId,:travelerCount,:voucherCount, :firstName, :lastName, :emailAddress, :phoneNumber, :holdDurationSeconds)";
+        
+            try{
+                // Get DB Object
+                $db = new db();
+                // Connect
+                $db = $db->connect();
+        
+                $stmt = $db->prepare($sql);
+        
+
+                foreach ($body as $row){
+                $stmt->bindParam(':referenceId', $row['referenceId']);
+                $stmt->bindParam(':partnerActivityId',  $row['partnerActivityId']);
+                $stmt->bindParam(':partnerOfferId',      $row['partnerOfferId']);
+                $stmt->bindParam(':localDate',      $row['localDate']);
+                $stmt->bindParam(':partnerTicketTypeId',    $row['partnerTicketTypeId']);
+                $stmt->bindParam(':travelerCount',       $row['travelerCount']);
+                $stmt->bindParam(':voucherCount',      $row['voucherCount']);
+                $stmt->bindParam(':firstName',      $row['firstName']);
+                $stmt->bindParam(':lastName',      $row['lastName']);
+                $stmt->bindParam(':emailAddress',      $row['emailAddress']);
+                $stmt->bindParam(':phoneNumber',      $row['phoneNumber']);
+                $stmt->bindParam(':holdDurationSeconds',      $row['holdDurationSeconds']);
+
+        
+                $stmt->execute();
+            }
+                //echo '{"notice": {"text": "Customer Added"}';
+        
+            } catch(PDOException $e){
+                echo '{"error": {"text": '.$e->getMessage().'}';
+            }
+
+
+
+            $data = array(
+                'ResponseHeader' => array(
+                    'requestIdentifier' => '101010101',
+                    'processingMilliseconds' => '100'
+                ),
+                'partnerSupplierBranchId' => 1,
+                'referenceId' => 1,
+                'partnerSaleId' => 1,
+                'utcHoldExpiration' => 1,
+                'partnerOfferId' => 1
+            );
+
+            $data["additionalCriteria"][]= array();
+
+           
+            //$response = $response->withJson($data);
+            //$response = $response->withHeader('Content-type', 'application/vnd.localexpert.v2.1+json');
+            //$response = $response->withJson($data);
+           //$response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPost as a POST method ?');
+           // return $response;
+            return $response->withStatus(200)
+                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+                ->withJson($data);
+
+
+
+
+
             });
 
 
