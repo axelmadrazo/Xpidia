@@ -131,6 +131,7 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
                 $stmt->bindParam(':travelerCount', $travelerCount);
                 $stmt->bindParam(':voucherCount', $voucherCount);
                 $stmt->bindParam(':firstName', $firstName);
+                $stmt->bindParam(':lastName', $lastName);
                 $stmt->bindParam(':emailAddress', $emailAddress);
                 $stmt->bindParam(':phoneNumber', $phoneNumber);
                 $stmt->bindParam(':holdDurationSeconds', $holdDurationSeconds);
