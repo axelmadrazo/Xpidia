@@ -8,7 +8,8 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 require 'vendor/autoload.php';
-//require 'lib/Person.php';
+require '../lib/db.php';
+//require 'lib/Person.php':
 
 $app = new Slim\App();
 
@@ -37,11 +38,32 @@ $app->DELETE('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}'
 $app->GET('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', function($request, $response, $args) {
             $headers = $request->getHeaders();
             
+            $sql = "SELECT * FROM sales";
+
+            try{
+                // Get DB Object
+                $db = new db();
+                // Connect
+                $db = $db->connect();
+
+                $stmt = $db->query($sql);
+                $sales = $stmt->fetchAll(PDO::FETCH_OBJ);
+                $db = null;
+                //echo json_encode($sales);
+
+                return $response->withStatus(200)
+                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+                ->withJson($sales);
+
+
+            } catch(PDOException $e){
+                echo '{"error": {"text": '.$e->getMessage().'}';
+            }
             
             
-            $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdGet as a GET method ?');
-            return $response;
-            });
+            // $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdGet as a GET method ?');
+            // return $response;
+             });
 
 
 /**
