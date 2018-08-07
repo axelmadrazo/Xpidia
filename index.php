@@ -150,7 +150,7 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
                 'partnerOfferId' => 1
             );
 
-            $data["additionalCriteria"][]= array();
+            //$data["additionalCriteria"][]= array();
 
            
             //$response = $response->withJson($data);
