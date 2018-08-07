@@ -98,17 +98,17 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
             // $sql = "INSERT INTO Sales (referenceId, partnerActivityId, partnerOfferId, localDate, partnerTicketTypeId, travelerCount, voucherCount, firstName, lastName, emailAddress, phoneNumber, holdDurationSeconds) VALUES
             // (:referenceId,:partnerActivityId,:partnerOfferId,:localDate,:partnerTicketTypeId,:travelerCount,:voucherCount, :firstName, :lastName, :emailAddress, :phoneNumber, :holdDurationSeconds)";
         
-            // $sql = "INSERT INTO Sales (referenceId) VALUES
-            // ("1")";
+             $sql = "INSERT INTO Sales (referenceId) VALUES
+             ('1')";
         
 
-            // try{
-            //     // Get DB Object
-            //     $db = new db();
+             try{
+                 // Get DB Object
+                 $db = new db();
             //     // Connect
-            //     $db = $db->connect();
+                 $db = $db->connect();
         
-            //     $stmt = $db->prepare($sql);
+                 $stmt = $db->prepare($sql);
         
             //     //$referenceId = $body['referenceId'];
             //     //$stmt->bindParam(':referenceId', $referenceId);
@@ -128,13 +128,13 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
             //     // $stmt->bindParam(':holdDurationSeconds',      $row['holdDurationSeconds']);
 
         
-            //     $stmt->execute();
+                $stmt->execute();
             // //}
             //     //echo '{"notice": {"text": "Customer Added"}';
         
-            // } catch(PDOException $e){
-            //     echo '{"error": {"text": '.$e->getMessage().'}';
-            // }
+            } catch(PDOException $e){
+                 echo '{"error": {"text": '.$e->getMessage().'}';
+            }
 
 
 
