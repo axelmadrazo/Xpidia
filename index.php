@@ -95,11 +95,11 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
 
          
         
-            // $sql = "INSERT INTO Sales (referenceId, partnerActivityId, partnerOfferId, localDate, partnerTicketTypeId, travelerCount, voucherCount, firstName, lastName, emailAddress, phoneNumber, holdDurationSeconds) VALUES
-            // (:referenceId,:partnerActivityId,:partnerOfferId,:localDate,:partnerTicketTypeId,:travelerCount,:voucherCount, :firstName, :lastName, :emailAddress, :phoneNumber, :holdDurationSeconds)";
+             $sql = "INSERT INTO Sales (referenceId, partnerActivityId, partnerOfferId, localDate, partnerTicketTypeId, travelerCount, voucherCount, firstName, lastName, emailAddress, phoneNumber, holdDurationSeconds) VALUES
+             (:referenceId,:partnerActivityId,:partnerOfferId,:localDate,:partnerTicketTypeId,:travelerCount,:voucherCount, :firstName, :lastName, :emailAddress, :phoneNumber, :holdDurationSeconds)";
         
-             $sql = "INSERT INTO Sales (referenceId) VALUES
-             (:referenceId)";
+             //$sql = "INSERT INTO Sales (referenceId) VALUES
+             //(:referenceId)";
         
 
              try{
@@ -111,7 +111,29 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
                  $stmt = $db->prepare($sql);
         
                 $referenceId = $body['referenceId'];
+                $partnerActivityId = $body['partnerActivityId'];
+                $partnerOfferId = $body['partnerOfferId'];
+                $localDate = $body['localDate'];
+                $partnerTicketTypeId = $body['ticketTypes']['partnerTicketTypeId'];
+                $travelerCount = $body['ticketTypes']['travelerCount'];
+                $voucherCount = $body['ticketTypes']['voucherCount'];
+                $firstName = $body['guests']['firstName'];
+                $lastName = $body['guests']['lastName'];
+                $emailAddress = $body['guests']['emailAddress'];
+                $phoneNumber = $body['guests']['phoneNumber'];
+                $holdDurationSeconds = $body['holdDurationSeconds'];
+
                 $stmt->bindParam(':referenceId', $referenceId);
+                $stmt->bindParam(':partnerActivityId', $partnerActivityId);
+                $stmt->bindParam(':partnerOfferId', $partnerOfferId);
+                $stmt->bindParam(':localDate', $localDate);
+                $stmt->bindParam(':partnerTicketTypeId', $partnerTicketTypeId);
+                $stmt->bindParam(':travelerCount', $travelerCount);
+                $stmt->bindParam(':voucherCount', $voucherCount);
+                $stmt->bindParam(':firstName', $firstName);
+                $stmt->bindParam(':emailAddress', $emailAddress);
+                $stmt->bindParam(':phoneNumber', $phoneNumber);
+                $stmt->bindParam(':holdDurationSeconds', $holdDurationSeconds);
 
             //     // foreach ($body as $row){
             //     // $stmt->bindParam(':referenceId', $row['referenceId']);
