@@ -98,6 +98,10 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
             $sql = "INSERT INTO Sales (referenceId, partnerActivityId, partnerOfferId, localDate, partnerTicketTypeId, travelerCount, voucherCount, firstName, lastName, emailAddress, phoneNumber, holdDurationSeconds) VALUES
             (:referenceId,:partnerActivityId,:partnerOfferId,:localDate,:partnerTicketTypeId,:travelerCount,:voucherCount, :firstName, :lastName, :emailAddress, :phoneNumber, :holdDurationSeconds)";
         
+            $sql = "INSERT INTO Sales (referenceId) VALUES
+            (:referenceId)";
+        
+
             try{
                 // Get DB Object
                 $db = new db();
@@ -106,20 +110,22 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
         
                 $stmt = $db->prepare($sql);
         
+                $referenceId = $body['referenceId'];
+                $stmt->bindParam(':referenceId', $referenceId);
 
-                foreach ($body as $row){
-                $stmt->bindParam(':referenceId', $row['referenceId']);
-                $stmt->bindParam(':partnerActivityId',  $row['partnerActivityId']);
-                $stmt->bindParam(':partnerOfferId',      $row['partnerOfferId']);
-                $stmt->bindParam(':localDate',      $row['localDate']);
-                $stmt->bindParam(':partnerTicketTypeId',    $row['partnerTicketTypeId']);
-                $stmt->bindParam(':travelerCount',       $row['travelerCount']);
-                $stmt->bindParam(':voucherCount',      $row['voucherCount']);
-                $stmt->bindParam(':firstName',      $row['firstName']);
-                $stmt->bindParam(':lastName',      $row['lastName']);
-                $stmt->bindParam(':emailAddress',      $row['emailAddress']);
-                $stmt->bindParam(':phoneNumber',      $row['phoneNumber']);
-                $stmt->bindParam(':holdDurationSeconds',      $row['holdDurationSeconds']);
+                // foreach ($body as $row){
+                // $stmt->bindParam(':referenceId', $row['referenceId']);
+                // $stmt->bindParam(':partnerActivityId',  $row['partnerActivityId']);
+                // $stmt->bindParam(':partnerOfferId',      $row['partnerOfferId']);
+                // $stmt->bindParam(':localDate',      $row['localDate']);
+                // $stmt->bindParam(':partnerTicketTypeId',    $row['partnerTicketTypeId']);
+                // $stmt->bindParam(':travelerCount',       $row['travelerCount']);
+                // $stmt->bindParam(':voucherCount',      $row['voucherCount']);
+                // $stmt->bindParam(':firstName',      $row['firstName']);
+                // $stmt->bindParam(':lastName',      $row['lastName']);
+                // $stmt->bindParam(':emailAddress',      $row['emailAddress']);
+                // $stmt->bindParam(':phoneNumber',      $row['phoneNumber']);
+                // $stmt->bindParam(':holdDurationSeconds',      $row['holdDurationSeconds']);
 
         
                 $stmt->execute();
@@ -155,11 +161,6 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
             return $response->withStatus(200)
                 ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
                 ->withJson($data);
-
-
-
-
-
             });
 
 
