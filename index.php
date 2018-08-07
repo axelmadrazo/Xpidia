@@ -118,7 +118,7 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
                 $partnerActivityId = $body['partnerActivityId'];
                 $partnerOfferId = $body['partnerOfferId'];
                 $localDate = $body['localDate'];
-                $partnerTicketTypeId = $body['ticketTypes']->partnerTicketTypeId;
+                $partnerTicketTypeId = $body->partnerTicketTypeId;
                 // $travelerCount = $body['ticketTypes']['travelerCount'];
                 // $voucherCount = $body['ticketTypes']['voucherCount'];
                 // $firstName = $body['guests']['firstName'];
