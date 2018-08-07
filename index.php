@@ -99,7 +99,7 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
             // (:referenceId,:partnerActivityId,:partnerOfferId,:localDate,:partnerTicketTypeId,:travelerCount,:voucherCount, :firstName, :lastName, :emailAddress, :phoneNumber, :holdDurationSeconds)";
         
             $sql = "INSERT INTO Sales (referenceId) VALUES
-            (:referenceId)";
+            ("1")";
         
 
             try{
@@ -110,8 +110,8 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
         
                 $stmt = $db->prepare($sql);
         
-                $referenceId = $body['referenceId'];
-                $stmt->bindParam(':referenceId', $referenceId);
+                //$referenceId = $body['referenceId'];
+                //$stmt->bindParam(':referenceId', $referenceId);
 
                 // foreach ($body as $row){
                 // $stmt->bindParam(':referenceId', $row['referenceId']);
