@@ -52,7 +52,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
             // return $response;
             return $response->withStatus(200)
             ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
-            ->withJson($sales);
+            >write(json_encode($sales));
              });
 
 
@@ -148,7 +148,7 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
            // return $response;
             return $response->withStatus(200)
                 ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
-                ->withJson($data);
+                >write(json_encode($data));
             });
 
 
@@ -228,11 +228,10 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             if ( empty($requestIdentifier)) {
                 return $response->withStatus(400)
                 ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
-                ->write('The x-request-identifier header was not found3.');
+                ->write('The x-request-identifier header was not found.');
             }
             else{
                 return $response->withStatus(200)
-                
                 ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
                 ->write(json_encode($data));
 
