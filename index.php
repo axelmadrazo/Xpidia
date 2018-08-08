@@ -232,9 +232,9 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             }
             else{
                 return $response->withStatus(200)
-                ->withJson($data);
-                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
                 
+                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+                ->withJson($data);
 
             }
             
