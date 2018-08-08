@@ -252,7 +252,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             
            // $start = microtime(true);
 
-            $requestIdentifier = $headers['HTTP_X_REQUEST_IDENTIFIER'];
+            $requestIdentifier = $headers['HTTP_X_REQUEST_IDENTIFIER'][0];
             //$requestIdentifier = $app->request()->headers()->get('HTTP_X_REQUEST_IDENTIFIER');
             //$requestIdentifier = $headers->get('HTTP_X_REQUEST_IDENTIFIER');
             $partnerSupplierBranchId = $request->getAttribute('partnerSupplierBranchId');
