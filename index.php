@@ -116,6 +116,7 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
                 $stmt->bindParam(':holdDurationSeconds', $holdDurationSeconds);
 
                 $stmt->execute();
+                $partnerSaleId = $db->lastInsertId();
   
         
             } catch(PDOException $e){
@@ -131,10 +132,10 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
                     'processingMilliseconds' => $time_elapsed_secs
                 ),
                 'partnerSupplierBranchId' => $partnerSupplierBranchId,
-                'referenceId' => 1,
-                'partnerSaleId' => 1,
-                'utcHoldExpiration' => 1,
-                'partnerOfferId' => 1
+                'referenceId' => $referenceId,
+                'partnerSaleId' => $partnerSaleId,
+                'utcHoldExpiration' => 1
+                
             );
 
             $data["additionalCriteria"][]= array();
