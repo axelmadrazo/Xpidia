@@ -268,7 +268,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
                 ),
                 'partnerSupplierBranchId' => $partnerSupplierBranchId,
                 'partnerActivityId' => $partnerActivityId,
-                'partnerOfferId' => partnerOfferId
+                'partnerOfferId' => $partnerOfferId
             );
            
             $data["availability"][]= array("localDate" => "2018-01-02", "accuracy" => "Exact", "status" => "Available",  "availableCapacity" => 10, "maximumCapacity" => 20, "availabilityType" => "limited");
