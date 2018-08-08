@@ -204,15 +204,19 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             $errorText ='';
             if (empty($requestIdentifier)) {
                $error = 400;
+               $errorText ='The x-request-identifier header was not found.';
             }
             if (empty($xrequestauthentication)) {
                 $error = 401;
+                $errorText ='The x-request-authentication header was not found.';
             }
             if ($xrequestauthentication = 0) {
                 $error = 403;
+                $errorText ='The x-request-authentication header was determined to be invalid.';
             }
             if (empty($Accept)) {
                 $error = 406;
+                $errorText ='The Accept header is missing or does not list any API version that is supported.';
             }
 
 
@@ -238,15 +242,15 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             
             
              
-            if ( empty($error)) {
+            if (empty($error)) {
                 return $response->withStatus(200)
                 ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
                 ->write(json_encode($data));
             }
             else{
-                return $response->withStatus(400)
+                return $response->withStatus($error)
                 ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
-                ->write('The x-request-identifier header was not found.');
+                ->write($errorText);
             }
 
 
