@@ -225,9 +225,22 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             //$response = $response->withHeader('Content-type', 'application/vnd.localexpert.v2.1+json');
             //$response = $response->withJson($data);
             //return $response;
-            return $response->withStatus(200)
+            if ( empty($requestIdentifier)) {
+                return $response->withStatus(400)
+                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+                ->write('The x-request-identifier header was not found.');;
+            }
+            else{
+                return $response->withStatus(200)
                 ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
                 ->withJson($data);
+
+            }
+            
+
+            // return $response->withStatus(200)
+            //     ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+            //     ->withJson($data);
             });
 
 
