@@ -22,8 +22,6 @@ $app = new Slim\App();
 $app->DELETE('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', function($request, $response, $args) {
             $headers = $request->getHeaders();
             
-            
-            
             $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdDelete as a DELETE method ?');
             return $response;
             });
@@ -74,8 +72,6 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
  */
 $app->PUT('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', function($request, $response, $args) {
             $headers = $request->getHeaders();
-            
-            
             $body = $request->getParsedBody();
             $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdPut as a PUT method ?');
             return $response;
@@ -199,9 +195,6 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
  */
 $app->DELETE('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}/cancellation/{cancellationCode}', function($request, $response, $args) {
             $headers = $request->getHeaders();
-            
-            
-            
             $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdCancellationCancellationCodeDelete as a DELETE method ?');
             return $response;
             });
@@ -217,6 +210,12 @@ $app->PUT('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}/can
             $headers = $request->getHeaders();
             
             
+
+
+
+
+
+
             
             $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdCancellationCancellationCodePut as a PUT method ?');
             return $response;
@@ -231,8 +230,6 @@ $app->PUT('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}/can
  */
 $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}/cancellation', function($request, $response, $args) {
             $headers = $request->getHeaders();
-            
-            
             $body = $request->getParsedBody();
             $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdCancellationPost as a POST method ?');
             return $response;
@@ -252,6 +249,8 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             $queryParams = $request->getQueryParams();
             $localDateRangeStart = $queryParams['localDateRangeStart'];    $localDateRangeEnd = $queryParams['localDateRangeEnd'];    $minimumAccuracy = $queryParams['minimumAccuracy'];    
             
+            $start = microtime(true);
+
             $id = $request->getAttribute('partnerSupplierBranchId');
 			
             //$data = array('name' => 'Bob', 'age' => $id);
@@ -269,10 +268,12 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             // $ResponseHeader->processingMilliseconds = '100';
             // $response = $response->withJson($ResponseHeader);
 
+            $time_elapsed_secs = microtime(true) - $start;
+
             $data = array(
                 'ResponseHeader' => array(
                     'requestIdentifier' => '101010101',
-                    'processingMilliseconds' => '100'
+                    'processingMilliseconds' => $time_elapsed_secs
                 ),
                 'partnerSupplierBranchId' => 1,
                 'partnerActivityId' => 1,
