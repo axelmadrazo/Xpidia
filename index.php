@@ -13,18 +13,7 @@ include 'lib/db.php';
 
 $app = new Slim\App();
 
-/**
- * DELETE supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdDelete
- * Summary: Release a created sale
- * Notes: This endpoint specifies that a previously-created Sale should be  released, as it will not be paid and completed. ##### Potential &#x60;errorType&#x60; Values:   * &#x60;UnableToProcessRequest&#x60;: An unanticipated error occurred in processing.   * &#x60;SaleNotFound&#x60;: The specified sale could not be found.   * &#x60;SaleServiceUnavailable&#x60;: The sale service is temporarily unavailable. 
- * Output-Formats: [application/vnd.localexpert.v2.1+json]
- */
-$app->DELETE('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', function($request, $response, $args) {
-            $headers = $request->getHeaders();
-            
-            $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdDelete as a DELETE method ?');
-            return $response;
-            });
+
 
 
 /**
@@ -49,33 +38,23 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
                 $db = null;
                 //echo json_encode($sales);
 
-                return $response->withStatus(200)
-                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
-                ->withJson($sales);
+                
 
 
             } catch(PDOException $e){
                 echo '{"error": {"text": '.$e->getMessage().'}';
             }
             
+
+
             
             // $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdGet as a GET method ?');
             // return $response;
+            return $response->withStatus(200)
+            ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+            ->withJson($sales);
              });
 
-
-/**
- * PUT supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdPut
- * Summary: Commit the sale
- * Notes: This endpoint specifies that a previously-created Sale should be committed as paid and complete (e.g. the 2nd step of the 2-phase commit).  The &#x60;saleId&#x60; and &#x60;ticketId&#x60; fields in the request can be recorded as Expedia sale reference and ticket references respectively. ##### Potential &#x60;errorType&#x60; Values:   * &#x60;UnableToProcessRequest&#x60;: An unanticipated error occurred in processing.   * &#x60;SaleNotFound&#x60;: The specified sale could not be found.   * &#x60;SaleExpired&#x60;: The specified sale has already exceeded the maximum &#x60;holdDurationSeconds&#x60; requested and cannot be committed.   * &#x60;SaleServiceUnavailable&#x60;: The sale service is temporarily unavailable. 
- * Output-Formats: [application/vnd.localexpert.v2.1+json]
- */
-$app->PUT('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', function($request, $response, $args) {
-            $headers = $request->getHeaders();
-            $body = $request->getParsedBody();
-            $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdPut as a PUT method ?');
-            return $response;
-            });
 
 
 /**
@@ -95,17 +74,11 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
             $body = $request->getParsedBody();
 
 
-         
-        
-             //$sql = "INSERT INTO Sales (referenceId, partnerActivityId, partnerOfferId, localDate, partnerTicketTypeId) VALUES
-             //(:referenceId,:partnerActivityId,:partnerOfferId,:localDate,:partnerTicketTypeId)";
         
 
             $sql = "INSERT INTO Sales (referenceId, partnerActivityId, partnerOfferId, localDate, partnerTicketTypeId, travelerCount, voucherCount, firstName, lastName, emailAddress, phoneNumber, holdDurationSeconds) VALUES
             (:referenceId,:partnerActivityId,:partnerOfferId,:localDate,:partnerTicketTypeId,:travelerCount,:voucherCount, :firstName, :lastName, :emailAddress, :phoneNumber, :holdDurationSeconds)";
     
-             //$sql = "INSERT INTO Sales (referenceId) VALUES
-             //(:referenceId)";
         
 
              try{
@@ -142,24 +115,8 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
                 $stmt->bindParam(':phoneNumber', $phoneNumber);
                 $stmt->bindParam(':holdDurationSeconds', $holdDurationSeconds);
 
-            //     // foreach ($body as $row){
-            //     // $stmt->bindParam(':referenceId', $row['referenceId']);
-            //     // $stmt->bindParam(':partnerActivityId',  $row['partnerActivityId']);
-            //     // $stmt->bindParam(':partnerOfferId',      $row['partnerOfferId']);
-            //     // $stmt->bindParam(':localDate',      $row['localDate']);
-            //     // $stmt->bindParam(':partnerTicketTypeId',    $row['partnerTicketTypeId']);
-            //     // $stmt->bindParam(':travelerCount',       $row['travelerCount']);
-            //     // $stmt->bindParam(':voucherCount',      $row['voucherCount']);
-            //     // $stmt->bindParam(':firstName',      $row['firstName']);
-            //     // $stmt->bindParam(':lastName',      $row['lastName']);
-            //     // $stmt->bindParam(':emailAddress',      $row['emailAddress']);
-            //     // $stmt->bindParam(':phoneNumber',      $row['phoneNumber']);
-            //     // $stmt->bindParam(':holdDurationSeconds',      $row['holdDurationSeconds']);
-
-        
                 $stmt->execute();
-            // //}
-            //     //echo '{"notice": {"text": "Customer Added"}';
+  
         
             } catch(PDOException $e){
                  echo '{"error": {"text": '.$e->getMessage().'}';
@@ -194,18 +151,6 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
             });
 
 
-/**
- * DELETE supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdCancellationCancellationCodeDelete
- * Summary: Release a sale cancellation
- * Notes: This endpoint specifies that a previously-prepared Sale cancellation should be discarded and the sale not cancelled. ##### Potential &#x60;errorType&#x60; Values:   * &#x60;UnableToProcessRequest&#x60;: An unanticipated error occurred in processing.   * &#x60;SaleNotFound&#x60;: The specified sale could not be found.   * &#x60;CancellationNotCreated&#x60;: The specified Cancellation Code could not be found.   * &#x60;SaleServiceUnavailable&#x60;: The sale service is temporarily unavailable. 
- * Output-Formats: [application/vnd.localexpert.v2.1+json]
- */
-$app->DELETE('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}/cancellation/{cancellationCode}', function($request, $response, $args) {
-            $headers = $request->getHeaders();
-            $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdCancellationCancellationCodeDelete as a DELETE method ?');
-            return $response;
-            });
-
 
 /**
  * PUT supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdCancellationCancellationCodePut
@@ -228,19 +173,6 @@ $app->PUT('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}/can
             return $response;
             });
 
-
-/**
- * POST supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdCancellationPost
- * Summary: Create a sale cancellation
- * Notes: This endpoint specifies that a previously-committed Sale should be cancelled. This is a **hold**, and the actual cancellation of the Sale **must not** occur until a &#x60;CommitSaleCancellation&#x60; request is received.  The &#x60;holdDurationSeconds&#x60; parameter specifies how long the cancellation request must be held before being released. ##### Potential &#x60;errorType&#x60; Values:   * &#x60;UnableToProcessRequest&#x60;: An unanticipated error occurred in processing.   * &#x60;SaleNotFound&#x60;: The specified sale could not be found.   * &#x60;SaleNotCancellable&#x60;: The specified sale is not allowed to be cancelled due to the cancellation policy in effect.   * &#x60;SaleNotCommitted&#x60;: The specified sale was never committed and therefore cannot be cancelled.   * &#x60;SaleServiceUnavailable&#x60;: The sale service is temporarily unavailable. 
- * Output-Formats: [application/vnd.localexpert.v2.1+json]
- */
-$app->POST('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}/cancellation', function($request, $response, $args) {
-            $headers = $request->getHeaders();
-            $body = $request->getParsedBody();
-            $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdCancellationPost as a POST method ?');
-            return $response;
-            });
 
 
 
@@ -272,11 +204,6 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             $time_elapsed_secs = 100;
 
 
-
-
-
-
-
             //////////////////////////RESPUESTA
 
             $data = array(
@@ -292,9 +219,6 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             $data["availability"][]= array("localDate" => "2018-01-02", "accuracy" => "Exact", "status" => "Available",  "availableCapacity" => 10, "maximumCapacity" => 20, "availabilityType" => "limited");
             
             
-            
-            
-            
             //$response->write('How about implementing supplierBranchesPartnerSupplierBranchIdActivitiesPartnerActivityIdOffersPartnerOfferIdAvailabilityGet as a GET method ?');
             //$response = $response->withJson($data);
             //$response = $response->withHeader('Content-type', 'application/vnd.localexpert.v2.1+json');
@@ -303,9 +227,17 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             return $response->withStatus(200)
                 ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
                 ->withJson($data);
-
-
             });
+
+
+
+
+
+
+
+
+
+
 
 $app->get('/hello/{name}', function (Request $request, Response $response) {
     $name = $request->getAttribute('name');
@@ -313,6 +245,69 @@ $app->get('/hello/{name}', function (Request $request, Response $response) {
 
     return $response;
 });
+
+
+
+
+
+
+
+
+/**
+ * DELETE supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdDelete
+ * Summary: Release a created sale
+ * Notes: This endpoint specifies that a previously-created Sale should be  released, as it will not be paid and completed. ##### Potential &#x60;errorType&#x60; Values:   * &#x60;UnableToProcessRequest&#x60;: An unanticipated error occurred in processing.   * &#x60;SaleNotFound&#x60;: The specified sale could not be found.   * &#x60;SaleServiceUnavailable&#x60;: The sale service is temporarily unavailable. 
+ * Output-Formats: [application/vnd.localexpert.v2.1+json]
+ */
+$app->DELETE('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', function($request, $response, $args) {
+    $headers = $request->getHeaders();
+    
+    $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdDelete as a DELETE method ?');
+    return $response;
+    });
+
+
+
+/**
+ * POST supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdCancellationPost
+ * Summary: Create a sale cancellation
+ * Notes: This endpoint specifies that a previously-committed Sale should be cancelled. This is a **hold**, and the actual cancellation of the Sale **must not** occur until a &#x60;CommitSaleCancellation&#x60; request is received.  The &#x60;holdDurationSeconds&#x60; parameter specifies how long the cancellation request must be held before being released. ##### Potential &#x60;errorType&#x60; Values:   * &#x60;UnableToProcessRequest&#x60;: An unanticipated error occurred in processing.   * &#x60;SaleNotFound&#x60;: The specified sale could not be found.   * &#x60;SaleNotCancellable&#x60;: The specified sale is not allowed to be cancelled due to the cancellation policy in effect.   * &#x60;SaleNotCommitted&#x60;: The specified sale was never committed and therefore cannot be cancelled.   * &#x60;SaleServiceUnavailable&#x60;: The sale service is temporarily unavailable. 
+ * Output-Formats: [application/vnd.localexpert.v2.1+json]
+ */
+$app->POST('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}/cancellation', function($request, $response, $args) {
+    $headers = $request->getHeaders();
+    $body = $request->getParsedBody();
+    $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdCancellationPost as a POST method ?');
+    return $response;
+    });
+
+
+/**
+ * DELETE supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdCancellationCancellationCodeDelete
+ * Summary: Release a sale cancellation
+ * Notes: This endpoint specifies that a previously-prepared Sale cancellation should be discarded and the sale not cancelled. ##### Potential &#x60;errorType&#x60; Values:   * &#x60;UnableToProcessRequest&#x60;: An unanticipated error occurred in processing.   * &#x60;SaleNotFound&#x60;: The specified sale could not be found.   * &#x60;CancellationNotCreated&#x60;: The specified Cancellation Code could not be found.   * &#x60;SaleServiceUnavailable&#x60;: The sale service is temporarily unavailable. 
+ * Output-Formats: [application/vnd.localexpert.v2.1+json]
+ */
+$app->DELETE('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}/cancellation/{cancellationCode}', function($request, $response, $args) {
+    $headers = $request->getHeaders();
+    $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdCancellationCancellationCodeDelete as a DELETE method ?');
+    return $response;
+    });
+
+
+/**
+ * PUT supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdPut
+ * Summary: Commit the sale
+ * Notes: This endpoint specifies that a previously-created Sale should be committed as paid and complete (e.g. the 2nd step of the 2-phase commit).  The &#x60;saleId&#x60; and &#x60;ticketId&#x60; fields in the request can be recorded as Expedia sale reference and ticket references respectively. ##### Potential &#x60;errorType&#x60; Values:   * &#x60;UnableToProcessRequest&#x60;: An unanticipated error occurred in processing.   * &#x60;SaleNotFound&#x60;: The specified sale could not be found.   * &#x60;SaleExpired&#x60;: The specified sale has already exceeded the maximum &#x60;holdDurationSeconds&#x60; requested and cannot be committed.   * &#x60;SaleServiceUnavailable&#x60;: The sale service is temporarily unavailable. 
+ * Output-Formats: [application/vnd.localexpert.v2.1+json]
+ */
+$app->PUT('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', function($request, $response, $args) {
+    $headers = $request->getHeaders();
+    $body = $request->getParsedBody();
+    $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdPut as a PUT method ?');
+    return $response;
+    });
+
 
 
 $app->run();
