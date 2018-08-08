@@ -268,7 +268,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             // $ResponseHeader->processingMilliseconds = '100';
             // $response = $response->withJson($ResponseHeader);
 
-            $time_elapsed_secs = microtime(true) - $start;
+            $time_elapsed_secs = round(microtime(true) * 1000) - $start;
 
             $data = array(
                 'ResponseHeader' => array(
