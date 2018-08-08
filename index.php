@@ -24,14 +24,7 @@ $app = new Slim\App();
  */
 $app->GET('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', function($request, $response, $args) {
             $headers = $request->getHeaders();
-            $requestIdentifier = $headers['HTTP_X_REQUEST_IDENTIFIER'][0];
-            $xrequestauthentication = $headers['HTTP_X_REQUEST_AUTHENTICATION'][0];
-            $Accept = $headers['HTTP_ACCEPT'][0];
-
-            $partnerSupplierBranchId = $request->getAttribute('partnerSupplierBranchId');
-			$partnerSaleId = $request->getAttribute('partnerSaleId');
-
-
+            
             $sql = "SELECT * FROM Sales";
 
             try{
@@ -79,6 +72,9 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
             $partnerSupplierBranchId = $request->getAttribute('partnerSupplierBranchId');
 
             $body = $request->getParsedBody();
+
+
+        
 
             $sql = "INSERT INTO Sales (referenceId, partnerActivityId, partnerOfferId, localDate, partnerTicketTypeId, travelerCount, voucherCount, firstName, lastName, emailAddress, phoneNumber, holdDurationSeconds) VALUES
             (:referenceId,:partnerActivityId,:partnerOfferId,:localDate,:partnerTicketTypeId,:travelerCount,:voucherCount, :firstName, :lastName, :emailAddress, :phoneNumber, :holdDurationSeconds)";
@@ -165,13 +161,9 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
  */
 $app->PUT('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}/cancellation/{cancellationCode}', function($request, $response, $args) {
             $headers = $request->getHeaders();
-            $requestIdentifier = $headers['HTTP_X_REQUEST_IDENTIFIER'][0];
-            $xrequestauthentication = $headers['HTTP_X_REQUEST_AUTHENTICATION'][0];
-            $Accept = $headers['HTTP_ACCEPT'][0];
             
-            $partnerSupplierBranchId = $request->getAttribute('partnerSupplierBranchId');
-			$partnerSaleId = $request->getAttribute('partnerSaleId');
-            $cancellationCode: = $request->getAttribute('cancellationCode:');
+            
+
 
 
 
