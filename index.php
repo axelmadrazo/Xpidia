@@ -250,7 +250,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             $localDateRangeStart = $queryParams['localDateRangeStart'];    $localDateRangeEnd = $queryParams['localDateRangeEnd'];    $minimumAccuracy = $queryParams['minimumAccuracy'];    
             
             
-            $start = microtime(true);
+           // $start = microtime(true);
 
 
             $requestIdentifier = $headers->get('x-request-identifier');
@@ -258,13 +258,13 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
 			$partnerActivityId = $request->getAttribute('partnerActivityId');
             $partnerOfferId = $request->getAttribute('partnerOfferId');
             
-            $time_elapsed_secs = microtime(true) - $start;
-            $time_elapsed_secs = round($time_elapsed_secs * 1000) 
+            //$time_elapsed_secs = microtime(true) - $start;
+            //$time_elapsed_secs = round($time_elapsed_secs * 1000) 
 
             $data = array(
                 'ResponseHeader' => array(
                     'requestIdentifier' => $requestIdentifier,
-                    'processingMilliseconds' => $time_elapsed_secs
+                    'processingMilliseconds' => 100
                 ),
                 'partnerSupplierBranchId' => $partnerSupplierBranchId,
                 'partnerActivityId' => $partnerActivityId,
