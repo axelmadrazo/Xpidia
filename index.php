@@ -200,12 +200,29 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
 			$partnerActivityId = $request->getAttribute('partnerActivityId');
             $partnerOfferId = $request->getAttribute('partnerOfferId');
             
+            $error = 0;
+            $errorText ='';
+            if (empty($requestIdentifier)) {
+               $error = 400;
+            }
+            if (empty($xrequestauthentication)) {
+                $error = 401;
+            }
+            if ($xrequestauthentication = 0) {
+                $error = 403;
+            }
+            if (empty($Accept)) {
+                $error = 406;
+            }
+
+
+
+            //////////////////////////////////////////////////////////////////////////////////////////////RESPUESTA
+
             //$time_elapsed_secs = microtime(true) - $start;
             //$time_elapsed_secs = round($time_elapsed_secs * 1000) 
             $time_elapsed_secs = 100;
 
-
-            //////////////////////////RESPUESTA
 
             $data = array(
                 'ResponseHeader' => array(
@@ -220,27 +237,36 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             $data["availability"][]= array("localDate" => "2018-01-02", "accuracy" => "Exact", "status" => "Available",  "availableCapacity" => 10, "maximumCapacity" => 20, "availabilityType" => "limited");
             
             
-            //$response->write('How about implementing supplierBranchesPartnerSupplierBranchIdActivitiesPartnerActivityIdOffersPartnerOfferIdAvailabilityGet as a GET method ?');
-            //$response = $response->withJson($data);
-            //$response = $response->withHeader('Content-type', 'application/vnd.localexpert.v2.1+json');
-            //$response = $response->withJson($data);
-            //return $response;
-            if ( empty($requestIdentifier)) {
+             
+            if ( empty($error)) {
+                return $response->withStatus(200)
+                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+                ->write(json_encode($data));
+            }
+            else{
                 return $response->withStatus(400)
                 ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
                 ->write('The x-request-identifier header was not found.');
             }
-            else{
-                return $response->withStatus(200)
-                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
-                ->write(json_encode($data));
 
-            }
+
+
+
+          
+            // if ( empty($requestIdentifier)) {
+            //     return $response->withStatus(400)
+            //     ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+            //     ->write('The x-request-identifier header was not found.');
+            // }
+            // else{
+            //     return $response->withStatus(200)
+            //     ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+            //     ->write(json_encode($data));
+
+            // }
             
 
-            // return $response->withStatus(200)
-            //     ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
-            //     ->withJson($data);
+         
             });
 
 
