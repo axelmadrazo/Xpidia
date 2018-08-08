@@ -245,16 +245,17 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}/ca
  * Output-Formats: [application/vnd.localexpert.v2.1+json]
  */
 $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivityId}/offers/{partnerOfferId}/availability', function($request, $response, $args) {
+            // $start = microtime(true);
             $headers = $request->getHeaders();
             $queryParams = $request->getQueryParams();
-            $localDateRangeStart = $queryParams['localDateRangeStart'];    $localDateRangeEnd = $queryParams['localDateRangeEnd'];    $minimumAccuracy = $queryParams['minimumAccuracy'];    
-            
-            
-           // $start = microtime(true);
+            $localDateRangeStart = $queryParams['localDateRangeStart'];    
+            $localDateRangeEnd = $queryParams['localDateRangeEnd'];    
+            $minimumAccuracy = $queryParams['minimumAccuracy'];
 
             $requestIdentifier = $headers['HTTP_X_REQUEST_IDENTIFIER'][0];
-            //$requestIdentifier = $app->request()->headers()->get('HTTP_X_REQUEST_IDENTIFIER');
-            //$requestIdentifier = $headers->get('HTTP_X_REQUEST_IDENTIFIER');
+            $xrequestauthentication = $headers['HTTP_X_REQUEST_AUTHENTICATION'][0];
+            $Accept = $headers['HTTP_ACCEPT'][0];
+
             $partnerSupplierBranchId = $request->getAttribute('partnerSupplierBranchId');
 			$partnerActivityId = $request->getAttribute('partnerActivityId');
             $partnerOfferId = $request->getAttribute('partnerOfferId');
@@ -265,7 +266,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             $data = array(
                 'ResponseHeader' => array(
                     'requestIdentifier' => $requestIdentifier,
-                    'processingMilliseconds' => 100
+                    'processingMilliseconds' => $xrequestauthentication
                 ),
                 'partnerSupplierBranchId' => $partnerSupplierBranchId,
                 'partnerActivityId' => $partnerActivityId,
