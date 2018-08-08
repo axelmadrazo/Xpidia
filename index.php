@@ -249,7 +249,8 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             $queryParams = $request->getQueryParams();
             $localDateRangeStart = $queryParams['localDateRangeStart'];    $localDateRangeEnd = $queryParams['localDateRangeEnd'];    $minimumAccuracy = $queryParams['minimumAccuracy'];    
             
-            $start = microtime(false);
+            $start = 0;
+            $start = microtime(true);
 
             $id = $request->getAttribute('partnerSupplierBranchId');
 			
@@ -267,8 +268,8 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             // $ResponseHeader->requestIdentifier = '101010101';
             // $ResponseHeader->processingMilliseconds = '100';
             // $response = $response->withJson($ResponseHeader);
-
-            $time_elapsed_secs = microtime(false) - $start;
+            $time_elapsed_secs = 0;
+            $time_elapsed_secs = round(microtime(true) * 1000) - $start;
 
             $data = array(
                 'ResponseHeader' => array(
