@@ -228,13 +228,13 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             if ( empty($requestIdentifier)) {
                 return $response->withStatus(400)
                 ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
-                ->write('The x-request-identifier header was not found.');
+                ->write('The x-request-identifier header was not found2.');
             }
             else{
                 return $response->withStatus(200)
                 
                 ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
-                ->withJson($data);
+                ->write($data);
 
             }
             
