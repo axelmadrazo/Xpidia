@@ -86,6 +86,12 @@ $app->PUT('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
  */
 $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($request, $response, $args) {
             $headers = $request->getHeaders();
+            $requestIdentifier = $headers['HTTP_X_REQUEST_IDENTIFIER'][0];
+            $xrequestauthentication = $headers['HTTP_X_REQUEST_AUTHENTICATION'][0];
+            $Accept = $headers['HTTP_ACCEPT'][0];
+
+            $partnerSupplierBranchId = $request->getAttribute('partnerSupplierBranchId');
+
             $body = $request->getParsedBody();
 
 
@@ -160,13 +166,14 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
             }
 
 
+            $time_elapsed_secs = 100;
 
             $data = array(
                 'ResponseHeader' => array(
-                    'requestIdentifier' => '101010101',
-                    'processingMilliseconds' => '100'
+                    'requestIdentifier' => $requestIdentifier,
+                    'processingMilliseconds' => $time_elapsed_secs
                 ),
-                'partnerSupplierBranchId' => 1,
+                'partnerSupplierBranchId' => $partnerSupplierBranchId,
                 'referenceId' => 1,
                 'partnerSaleId' => 1,
                 'utcHoldExpiration' => 1,
@@ -247,14 +254,14 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}/ca
 $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivityId}/offers/{partnerOfferId}/availability', function($request, $response, $args) {
             //$start = microtime(true);
             $headers = $request->getHeaders();
+            $requestIdentifier = $headers['HTTP_X_REQUEST_IDENTIFIER'][0];
+            $xrequestauthentication = $headers['HTTP_X_REQUEST_AUTHENTICATION'][0];
+            $Accept = $headers['HTTP_ACCEPT'][0];
+
             $queryParams = $request->getQueryParams();
             $localDateRangeStart = $queryParams['localDateRangeStart'];    
             $localDateRangeEnd = $queryParams['localDateRangeEnd'];    
             $minimumAccuracy = $queryParams['minimumAccuracy'];
-
-            $requestIdentifier = $headers['HTTP_X_REQUEST_IDENTIFIER'][0];
-            $xrequestauthentication = $headers['HTTP_X_REQUEST_AUTHENTICATION'][0];
-            $Accept = $headers['HTTP_ACCEPT'][0];
 
             $partnerSupplierBranchId = $request->getAttribute('partnerSupplierBranchId');
 			$partnerActivityId = $request->getAttribute('partnerActivityId');
@@ -263,6 +270,14 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             //$time_elapsed_secs = microtime(true) - $start;
             //$time_elapsed_secs = round($time_elapsed_secs * 1000) 
             $time_elapsed_secs = 100;
+
+
+
+
+
+
+
+            //////////////////////////RESPUESTA
 
             $data = array(
                 'ResponseHeader' => array(
