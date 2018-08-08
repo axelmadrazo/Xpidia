@@ -245,7 +245,7 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}/ca
  * Output-Formats: [application/vnd.localexpert.v2.1+json]
  */
 $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivityId}/offers/{partnerOfferId}/availability', function($request, $response, $args) {
-            // $start = microtime(true);
+            $start = microtime(true);
             $headers = $request->getHeaders();
             $queryParams = $request->getQueryParams();
             $localDateRangeStart = $queryParams['localDateRangeStart'];    
@@ -260,13 +260,13 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
 			$partnerActivityId = $request->getAttribute('partnerActivityId');
             $partnerOfferId = $request->getAttribute('partnerOfferId');
             
-            //$time_elapsed_secs = microtime(true) - $start;
-            //$time_elapsed_secs = round($time_elapsed_secs * 1000) 
+            $time_elapsed_secs = microtime(true) - $start;
+            $time_elapsed_secs = round($time_elapsed_secs * 1000) 
 
             $data = array(
                 'ResponseHeader' => array(
                     'requestIdentifier' => $requestIdentifier,
-                    'processingMilliseconds' => $xrequestauthentication
+                    'processingMilliseconds' => $time_elapsed_secs
                 ),
                 'partnerSupplierBranchId' => $partnerSupplierBranchId,
                 'partnerActivityId' => $partnerActivityId,
