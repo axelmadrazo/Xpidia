@@ -25,7 +25,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
             $headers = $request->getHeaders();
             
             $sql = "SELECT * FROM Sales";
-
+//
             try{
                 // Get DB Object
                 $db = new db();
