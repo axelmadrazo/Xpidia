@@ -15,7 +15,6 @@ $app = new Slim\App();
 
 
 
-
 /**
  * GET supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdGet
  * Summary: Get the current status of a sale
