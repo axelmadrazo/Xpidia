@@ -51,7 +51,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
             // return $response;
             return $response->withStatus(200)
             ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
-            >write(json_encode($sales));
+            ->write(json_encode($sales));
              });
 
 
@@ -147,7 +147,7 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
            // return $response;
             return $response->withStatus(200)
                 ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
-                >write(json_encode($data));
+                ->write(json_encode($data));
             });
 
 
