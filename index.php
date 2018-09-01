@@ -236,8 +236,24 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
                 'partnerActivityId' => $partnerActivityId,
                 'partnerOfferId' => $partnerOfferId
             );
+
+            $fechaInicio = "2015-03-14";
+            $fechaFinal = "2015-03-30";
+
+            $fechaInicioDate = new DateTime("2015-03-14");
+            $fechaFinalDate = new DateTime("2015-03-30");
+            $diasDiferencia = $fechaInicioDate->diff($fechaFinalDate);
+            $contador = 0;
+
+            while($contador <= $diasDiferencia->days)
+            {
+                $nuevafecha = strtotime ( '+'.$contador.' day' , strtotime ( $fechaInicio ) ) ;
+                $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
+                $data["availability"][]= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "Available",  "availableCapacity" => 0, "maximumCapacity" => 0, "availabilityType" => "limited");
+                $contador++;
+            }
            
-            $data["availability"][]= array("localDate" => "2018-01-02", "accuracy" => "Exact", "status" => "Available",  "availableCapacity" => 10, "maximumCapacity" => 20, "availabilityType" => "limited");
+            
             
             
              
