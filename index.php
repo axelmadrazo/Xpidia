@@ -268,27 +268,27 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
                  '5'=> array('1'),
                  '6'=> array('1'));
             $pos = array_search($partnerActivityId,$tours);
-            $posOffert = $toursOffert[$partnerActivityId][0]
+            $posOffert = $toursOffert[$partnerActivityId][0];
             if($pos=='')
             {
                 $data = array(
-                                    "responseHeader"=> {
+                                    "responseHeader"=> array(
                                     "requestIdentifier" => "",
                                     "processingMilliseconds"=> 0,
                                     "errorType"=> "PartnerActivityIdUnrecognized",
                                     "errorMessage"=> "The Activity ID specified could not be found in the system or belongs to an inactive Activity."
-                        }
+                        )
                 );
             }
             else if($posOffert != $partnerOfferId)
             {
                 $data = array(
-                                    "responseHeader"=> {
+                                    "responseHeader"=> array(
                                     "requestIdentifier" => "",
                                     "processingMilliseconds"=> 0,
                                     "errorType"=> "PartnerActivityIdUnrecognized",
                                     "errorMessage"=> "The Activity ID specified could not be found in the system or belongs to an inactive Activity."
-                        }
+                        )
                 );
             }
             
