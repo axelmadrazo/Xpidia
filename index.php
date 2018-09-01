@@ -259,9 +259,8 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
                 $contador++;
             }
            
-            $tours = array('a','1','2','3','4','5','6','7');
+            $tours = array('','1','2','3','4','5','6','7');
             $toursOffert = array('1' => array('1'),
-                 '1'=> array('2'),
                  '2'=> array('1'),
                  '3'=> array('1'),
                  '4'=> array('1'),
@@ -269,7 +268,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
                  '6'=> array('1'));
             $pos = array_search($partnerActivityId,$tours);
             $posOffert = $toursOffert[$partnerActivityId][0];
-            if($pos=='')
+            if($pos==null)
             {
                 $data = array(
                                     "responseHeader"=> array(
