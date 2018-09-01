@@ -268,7 +268,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             else{
                 return $response->withStatus($error)
                 ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
-                ->write($headers);
+                ->write($request->getHeaders());
             }
 
 
