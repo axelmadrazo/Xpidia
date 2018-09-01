@@ -249,7 +249,8 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             {
                 $nuevafecha = strtotime ( '+'.$contador.' day' , strtotime ( $fechaInicio ) ) ;
                 $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
-                $data["availability"][]= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "Available",  "availableCapacity" => 0, "maximumCapacity" => 0, "availabilityType" => "limited");
+                $elementos= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "Available",  "availableCapacity" => 0, "maximumCapacity" => 0, "availabilityType" => "limited");
+                array_push($data["availability"][],$elementos);
                 $contador++;
             }
            
