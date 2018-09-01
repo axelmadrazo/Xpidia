@@ -237,11 +237,11 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
                 'partnerOfferId' => $partnerOfferId
             );
 
-            $fechaInicio = "2015-03-14";
-            $fechaFinal = "2015-03-30";
+            $fechaInicio = $localDateRangeStart;
+            $fechaFinal = $localDateRangeEnd;
 
-            $fechaInicioDate = new DateTime("2015-03-14");
-            $fechaFinalDate = new DateTime("2015-03-30");
+            $fechaInicioDate = new DateTime($localDateRangeStart);
+            $fechaFinalDate = new DateTime($localDateRangeEnd);
             $diasDiferencia = $fechaInicioDate->diff($fechaFinalDate);
             $contador = 0;
 
