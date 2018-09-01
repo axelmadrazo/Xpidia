@@ -51,7 +51,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
             // return $response;
             return $response->withStatus(200)
             ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
-            >write(json_encode($sales));
+            ->write(json_encode($sales));
              });
 
 
@@ -147,7 +147,7 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
            // return $response;
             return $response->withStatus(200)
                 ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
-                >write(json_encode($data));
+                ->write(json_encode($data));
             });
 
 
@@ -234,10 +234,29 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
                 ),
                 'partnerSupplierBranchId' => $partnerSupplierBranchId,
                 'partnerActivityId' => $partnerActivityId,
-                'partnerOfferId' => $partnerOfferId
+                'partnerOfferId' => $partnerOfferId,
+                "availability" => array()
             );
+
+            $fechaInicio = $localDateRangeStart;
+            $fechaFinal = $localDateRangeEnd;
+
+            $fechaInicioDate = new DateTime($localDateRangeStart);
+            $fechaFinalDate = new DateTime($localDateRangeEnd);
+            $diasDiferencia = $fechaInicioDate->diff($fechaFinalDate);
+            $contador = 0;
+
+            while($contador <= $diasDiferencia->days)
+            {
+                $nuevafecha = strtotime ( '+'.$contador.' day' , strtotime ( $fechaInicio ) ) ;
+                $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
+                $elementos= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "Available",  "availableCapacity" => 0, "maximumCapacity" => 0, "availabilityType" => "limited");
+                array_push($data["availability"],$elementos);
+                $contador++;
+            }
            
-            $data["availability"][]= array("localDate" => "2018-01-02", "accuracy" => "Exact", "status" => "Available",  "availableCapacity" => 10, "maximumCapacity" => 20, "availabilityType" => "limited");
+
+            
             
             
              
