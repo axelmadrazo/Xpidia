@@ -198,9 +198,11 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             $partnerSupplierBranchId = $request->getAttribute('partnerSupplierBranchId');
 			$partnerActivityId = $request->getAttribute('partnerActivityId');
             $partnerOfferId = $request->getAttribute('partnerOfferId');
+
             
             $error = 0;
             $errorText ='';
+            
             if (empty($requestIdentifier)) {
                $error = 400;
                $errorText ='The x-request-identifier header was not found.';
@@ -217,6 +219,8 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
                 $error = 406;
                 $errorText ='The Accept header is missing or does not list any API version that is supported.';
             }
+
+            
 
 
 
@@ -255,7 +259,38 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
                 $contador++;
             }
            
-
+            $tours = array('1','2','3','4','5','6','7');
+            $toursOffert = array('1' => array('1'),
+                 '1'=> array('2'),
+                 '2'=> array('1'),
+                 '3'=> array('1'),
+                 '4'=> array('1'),
+                 '5'=> array('1'),
+                 '6'=> array('1'));
+            $pos = array_search($partnerActivityId,$tours);
+            $posOffert = $toursOffert[$partnerActivityId][0]
+            if($pos=='')
+            {
+                $data = array(
+                                    "responseHeader"=> {
+                                    "requestIdentifier" => "",
+                                    "processingMilliseconds"=> 0,
+                                    "errorType"=> "PartnerActivityIdUnrecognized",
+                                    "errorMessage"=> "The Activity ID specified could not be found in the system or belongs to an inactive Activity."
+                        }
+                );
+            }
+            else if($posOffert != $partnerOfferId)
+            {
+                $data = array(
+                                    "responseHeader"=> {
+                                    "requestIdentifier" => "",
+                                    "processingMilliseconds"=> 0,
+                                    "errorType"=> "PartnerActivityIdUnrecognized",
+                                    "errorMessage"=> "The Activity ID specified could not be found in the system or belongs to an inactive Activity."
+                        }
+                );
+            }
             
             
             
