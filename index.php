@@ -259,7 +259,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
                 $contador++;
             }
            
-            $tours = array('1','2','3','4','5','6','7');
+            $tours = array('a','1','2','3','4','5','6','7');
             $toursOffert = array('1' => array('1'),
                  '1'=> array('2'),
                  '2'=> array('1'),
