@@ -264,17 +264,28 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
                  '2'=> array('1'),
                  '3'=> array('1'),
                  '4'=> array('1'),
-                 '5'=> array('1'),
+                 '5'=> array('5'),
                  '6'=> array('1'));
-            $bandera_offert=false;
+            $bandera_offert=true;
             foreach ($toursOffert as $key => $value) {
+                
                 if($key==$partnerActivityId)
                 {
-                    if($value==$partnerOfferId)
+                    
+                    foreach ($value as $valores)
                     {
-                        $bandera_offert=true;
-                        break;
+                        if($valores==$partnerOfferId)
+                        {
+                            $bandera_offert=false;
+                            break;
+                        }
+                        if(!$bandera_offert)
+                        {
+                            break;
+                        }
                     }
+                    
+                    
                 }    
             }
 
@@ -293,6 +304,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             }
             else if($bandera_offert)
             {
+                echo'hola amigos';
                 $data = array(
                                     "responseHeader"=> array(
                                     "requestIdentifier" => "",
