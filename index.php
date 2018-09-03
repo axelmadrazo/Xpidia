@@ -304,7 +304,6 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             }
             else if($bandera_offert)
             {
-                echo'hola amigos';
                 $data = array(
                                     "responseHeader"=> array(
                                     "requestIdentifier" => "",
