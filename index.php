@@ -225,14 +225,14 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
 
 
             //////////////////////////////////////////////////////////////////////////////////////////////RESPUESTA
-
+// java -jar apiVerificationTool.jar inputFile=avt.conf outputFile=avtOutput.log testcase=freesell
             //$time_elapsed_secs = microtime(true) - $start;
             //$time_elapsed_secs = round($time_elapsed_secs * 1000) 
             $time_elapsed_secs = 100;
 
 
             $data = array(
-                'ResponseHeader' => array(
+                'responseHeader' => array(
                     'requestIdentifier' => $requestIdentifier,
                     'processingMilliseconds' => $time_elapsed_secs
                 ),
@@ -254,65 +254,66 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             {
                 $nuevafecha = strtotime ( '+'.$contador.' day' , strtotime ( $fechaInicio ) ) ;
                 $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
-                $elementos= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "Available",  "availableCapacity" => 0, "maximumCapacity" => 0, "availabilityType" => "limited");
+                // $elementos= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "Available",  "availableCapacity" => 0, "maximumCapacity" => 0, "availabilityType" => "limited");
+                $elementos= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "Available",  "availabilityType" => "freesell");
                 array_push($data["availability"],$elementos);
                 $contador++;
             }
            
-            $tours = array('','1','2','3','4','5','6','7');
-            $toursOffert = array('1' => array('1'),
-                 '2'=> array('1'),
-                 '3'=> array('1'),
-                 '4'=> array('1'),
-                 '5'=> array('5'),
-                 '6'=> array('1'));
-            $bandera_offert=true;
-            foreach ($toursOffert as $key => $value) {
+            // $tours = array('','1','2','3','4','5','6','7');
+            // $toursOffert = array('1' => array('1'),
+            //      '2'=> array('1'),
+            //      '3'=> array('1'),
+            //      '4'=> array('1'),
+            //      '5'=> array('5'),
+            //      '6'=> array('1'));
+            // $bandera_offert=true;
+            // foreach ($toursOffert as $key => $value) {
                 
-                if($key==$partnerActivityId)
-                {
+            //     if($key==$partnerActivityId)
+            //     {
                     
-                    foreach ($value as $valores)
-                    {
-                        if($valores==$partnerOfferId)
-                        {
-                            $bandera_offert=false;
-                            break;
-                        }
-                        if(!$bandera_offert)
-                        {
-                            break;
-                        }
-                    }
+            //         foreach ($value as $valores)
+            //         {
+            //             if($valores==$partnerOfferId)
+            //             {
+            //                 $bandera_offert=false;
+            //                 break;
+            //             }
+            //             if(!$bandera_offert)
+            //             {
+            //                 break;
+            //             }
+            //         }
                     
                     
-                }    
-            }
+            //     }    
+            // }
 
-            $pos = array_search($partnerActivityId,$tours);
-            $posOffert = $toursOffert[$partnerActivityId][0];
-            if($pos==null)
-            {
-                $data = array(
-                                    "responseHeader"=> array(
-                                    "requestIdentifier" => "",
-                                    "processingMilliseconds"=> 0,
-                                    "errorType"=> "PartnerActivityIdUnrecognized",
-                                    "errorMessage"=> "The Activity ID specified could not be found in the system or belongs to an inactive Activity."
-                        )
-                );
-            }
-            else if($bandera_offert)
-            {
-                $data = array(
-                                    "responseHeader"=> array(
-                                    "requestIdentifier" => "",
-                                    "processingMilliseconds"=> 0,
-                                    "errorType"=> "PartnerOfferIdUnrecognized",
-                                    "errorMessage"=> "The Offer ID specified could not be found in the system or belongs to an inactive Offer."
-                        )
-                );
-            }
+            // $pos = array_search($partnerActivityId,$tours);
+            // $posOffert = $toursOffert[$partnerActivityId][0];
+            // if($pos==null)
+            // {
+            //     $data = array(
+            //                         "responseHeader"=> array(
+            //                         "requestIdentifier" => "",
+            //                         "processingMilliseconds"=> 0,
+            //                         "errorType"=> "PartnerActivityIdUnrecognized",
+            //                         "errorMessage"=> "The Activity ID specified could not be found in the system or belongs to an inactive Activity."
+            //             )
+            //     );
+            // }
+            // else if($bandera_offert)
+            // {
+            //     $data = array(
+            //                         "responseHeader"=> array(
+            //                         "requestIdentifier" => "",
+            //                         "processingMilliseconds"=> 0,
+            //                         "errorType"=> "PartnerOfferIdUnrecognized",
+            //                         "errorMessage"=> "The Offer ID specified could not be found in the system or belongs to an inactive Offer."
+            //             )
+            //     );
+            // }
             
             
             

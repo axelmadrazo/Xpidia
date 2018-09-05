@@ -1,0 +1,245 @@
+Run starting. Expected test count is: 67
+AvailabilityTestSuite:
+CheckAvailability
+  BaseTest
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[GET]URL:[http://localhost:81/Xpidia/supplierBranches/woi/activities/291957W3/offers/391472W3025/availability?localDateRangeStart=2017-03-21&localDateRangeEnd=2017-03-21&minimumAccuracy=Exact]
+	RequestHeaders:["x-request-identifier=cfb2fe41-24a4-4a62-9ba7-f8d8eb2db7e0"; "x-request-authentication=mkO8S6ZwHDUerezEQHCZnpBWEqmN559YtdzuqR/BB7U="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Date=Tue, 04 Sep 2018 00:25:41 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=316"; "Keep-Alive=timeout=5, max=100"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseContentType:[application/vnd.localexpert.v2.1+json]
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"cfb2fe41-24a4-4a62-9ba7-f8d8eb2db7e0","processingMilliseconds":100},"partnerSupplierBranchId":"woi","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","availability":[{"localDate":"2017-03-21","accuracy":"Exact","status":"Available","availabilityType":"freesell"}]}]] 
+  + Test Response Mapping 
+  - Http StatusCode should be 200
+  - Response time should be within the maximum allowed response time. Availability calls are required to be within 500 milliseconds
+  - Response Body should map to the valid Json Model of type: Availability'
+    + Response Body Json keys match. 
+    + Response Body completely maps to the correct JsonBody of: Availability 
+    Response Body Tests
+    + Test Request Identifier 
+    - RequestIdentifier in ResponseBody should match RequestIdentifier from Request
+    + Test Availability 
+    - Should match the request partnerIds
+    - Should match the correct 'status': Available
+    - Dates in the response should be within the date range of the request
+    - Availability response 'availability' set should match the number of dates requested
+    - Should have an availabilityType of 'limited' *** FAILED ***
+      availabilityType was not 'limited' for dates: Set(2017-03-21) (AvailabilityTests.scala:120)
+    - Should have the correct 'availableCapacity' *** FAILED ***
+      availableCapacity was missing for some dates: Set(2017-03-21) (AvailabilityTests.scala:140)
+    - Should have a maximumCapacity greater than or equal to the availableCapacity *** FAILED ***
+      maximumCapacity was missing for dates: Set(2017-03-21) (AvailabilityTests.scala:182)
+  SoldOut
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[GET]URL:[http://localhost:81/Xpidia/supplierBranches/woi/activities/291957W3/offers/391472W3025/availability?localDateRangeStart=2016-12-03&localDateRangeEnd=2016-12-03&minimumAccuracy=Exact]
+	RequestHeaders:["x-request-identifier=6f5ebc12-61da-4dca-b04e-08ddad2b2351"; "x-request-authentication=nKbf0++4nlryzL5wS0U0d/Zru7Xf8rhLDlEUygZIQmw="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Date=Tue, 04 Sep 2018 00:25:43 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=315"; "Keep-Alive=timeout=5, max=99"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseContentType:[application/vnd.localexpert.v2.1+json]
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"6f5ebc12-61da-4dca-b04e-08ddad2b2351","processingMilliseconds":100},"partnerSupplierBranchId":"woi","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","availability":[{"localDate":"2016-12-3","accuracy":"Exact","status":"Available","availabilityType":"freesell"}]}]] 
+  + Test Response Mapping 
+  - Http StatusCode should be 200
+  - Response time should be within the maximum allowed response time. Availability calls are required to be within 500 milliseconds
+  - Response Body should map to the valid Json Model of type: Availability'
+    + Response Body Json keys match. 
+    + Response Body completely maps to the correct JsonBody of: Availability 
+    Response Body Tests
+    + Test Request Identifier 
+    - RequestIdentifier in ResponseBody should match RequestIdentifier from Request
+    + Test Availability 
+    - Should match the request partnerIds
+    - Should match the correct 'status': SoldOut *** FAILED ***
+      availability status was not equal to SoldOut for dates: Set(2016-12-03) (AvailabilityTests.scala:229)
+    - Dates in the response should be within the date range of the request
+    - Availability response 'availability' set should match the number of dates requested
+    - Should have an availabilityType of 'limited' *** FAILED ***
+      availabilityType was not 'limited' for dates: Set(2016-12-03) (AvailabilityTests.scala:120)
+    - Should have the correct 'availableCapacity' *** FAILED ***
+      availableCapacity was missing for some dates: Set(2016-12-03) (AvailabilityTests.scala:140)
+    - Should have a maximumCapacity greater than or equal to the availableCapacity *** FAILED ***
+      maximumCapacity was missing for dates: Set(2016-12-03) (AvailabilityTests.scala:182)
+  NotAvailable
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[GET]URL:[http://localhost:81/Xpidia/supplierBranches/woi/activities/291957W3/offers/391472W3025/availability?localDateRangeStart=2017-03-20&localDateRangeEnd=2017-03-20&minimumAccuracy=Exact]
+	RequestHeaders:["x-request-identifier=050c5e80-a95b-44eb-8633-584ae055da03"; "x-request-authentication=WSMBPS9LTI4CdBIbQrjqZxElX+gX6Ippp41lfSrAbI0="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Date=Tue, 04 Sep 2018 00:25:43 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=316"; "Keep-Alive=timeout=5, max=98"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseContentType:[application/vnd.localexpert.v2.1+json]
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"050c5e80-a95b-44eb-8633-584ae055da03","processingMilliseconds":100},"partnerSupplierBranchId":"woi","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","availability":[{"localDate":"2017-03-20","accuracy":"Exact","status":"Available","availabilityType":"freesell"}]}]] 
+  + Test Response Mapping 
+  - Http StatusCode should be 200
+  - Response time should be within the maximum allowed response time. Availability calls are required to be within 500 milliseconds
+  - Response Body should map to the valid Json Model of type: Availability'
+    + Response Body Json keys match. 
+    + Response Body completely maps to the correct JsonBody of: Availability 
+    Response Body Tests
+    + Test Request Identifier 
+    - RequestIdentifier in ResponseBody should match RequestIdentifier from Request
+    + Test Availability 
+    - Should match the request partnerIds
+    - Should match the correct 'status': Unavailable !!! CANCELED !!!
+      Test is Optional and failed. Please consult with Expedia Local Expert to see if you can ignore this test result
+      failure result: Failed(org.scalatest.exceptions.TestFailedException: availability status was not equal to Unavailable for dates: Set(2017-03-20)) (AvailabilityTestSuite.scala:16)
+    - Dates in the response should be within the date range of the request
+    - Availability response 'availability' set should match the number of dates requested
+    - Should have an availabilityType of 'limited' !!! CANCELED !!!
+      Test is Optional and failed. Please consult with Expedia Local Expert to see if you can ignore this test result
+      failure result: Failed(org.scalatest.exceptions.TestFailedException: availabilityType was not 'limited' for dates: Set(2017-03-20)) (AvailabilityTestSuite.scala:16)
+    - Should have the correct 'availableCapacity' !!! CANCELED !!!
+      Test is Optional and failed. Please consult with Expedia Local Expert to see if you can ignore this test result
+      failure result: Failed(org.scalatest.exceptions.TestFailedException: availableCapacity was missing for some dates: Set(2017-03-20)) (AvailabilityTestSuite.scala:16)
+    - Should have a maximumCapacity greater than or equal to the availableCapacity !!! CANCELED !!!
+      Test is Optional and failed. Please consult with Expedia Local Expert to see if you can ignore this test result
+      failure result: Failed(org.scalatest.exceptions.TestFailedException: maximumCapacity was missing for dates: Set(2017-03-20)) (AvailabilityTestSuite.scala:16)
+  DateSpan
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[GET]URL:[http://localhost:81/Xpidia/supplierBranches/woi/activities/291957W3/offers/391472W3025/availability?localDateRangeStart=2018-09-03&localDateRangeEnd=2018-10-03&minimumAccuracy=Exact]
+	RequestHeaders:["x-request-identifier=ede6cea3-ace0-46eb-abeb-3b56b8785bf0"; "x-request-authentication=Dq43GIcc3X2E9ClNWZoszLzqmLRg+cShWaJlsv+KP4Y="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Date=Tue, 04 Sep 2018 00:25:44 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=3216"; "Keep-Alive=timeout=5, max=97"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseContentType:[application/vnd.localexpert.v2.1+json]
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"ede6cea3-ace0-46eb-abeb-3b56b8785bf0","processingMilliseconds":100},"partnerSupplierBranchId":"woi","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","availability":[{"localDate":"2018-09-3","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-4","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-5","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-6","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-7","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-8","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-9","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-10","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-11","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-12","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-13","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-14","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-15","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-16","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-17","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-18","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-19","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-20","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-21","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-22","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-23","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-24","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-25","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-26","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-27","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-28","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-29","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-09-30","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-10-1","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-10-2","accuracy":"Exact","status":"Available","availabilityType":"freesell"},{"localDate":"2018-10-3","accuracy":"Exact","status":"Available","availabilityType":"freesell"}]}]] 
+  + Test Response Mapping 
+  - Http StatusCode should be 200
+  - Response time should be within the maximum allowed response time. Availability calls are required to be within 500 milliseconds
+  - Response Body should map to the valid Json Model of type: Availability'
+    + Response Body Json keys match. 
+    + Response Body completely maps to the correct JsonBody of: Availability 
+    Response Body Tests
+    + Test Request Identifier 
+    - RequestIdentifier in ResponseBody should match RequestIdentifier from Request
+    + Test Availability 
+    - Should match the request partnerIds
+    - Dates in the response should be within the date range of the request
+    - Availability response 'availability' set should match the number of dates requested
+    - Should have an availabilityType of 'limited' *** FAILED ***
+      availabilityType was not 'limited' for dates: Set(2018-09-25, 2018-09-21, 2018-09-07, 2018-09-30, 2018-09-16, 2018-09-20, 2018-09-06, 2018-09-03, 2018-09-11, 2018-09-08, 2018-10-01, 2018-09-27, 2018-10-03, 2018-09-14, 2018-09-05, 2018-09-18, 2018-09-26, 2018-09-17, 2018-10-02, 2018-09-12, 2018-09-22, 2018-09-13, 2018-09-09, 2018-09-19, 2018-09-23, 2018-09-29, 2018-09-28, 2018-09-10, 2018-09-04, 2018-09-24, 2018-09-15) (AvailabilityTests.scala:120)
+    - Should have the correct 'availableCapacity' *** FAILED ***
+      availableCapacity was missing for some dates: Set(2018-09-25, 2018-09-21, 2018-09-07, 2018-09-30, 2018-09-16, 2018-09-20, 2018-09-06, 2018-09-03, 2018-09-11, 2018-09-08, 2018-10-01, 2018-09-27, 2018-10-03, 2018-09-14, 2018-09-05, 2018-09-18, 2018-09-26, 2018-09-17, 2018-10-02, 2018-09-12, 2018-09-22, 2018-09-13, 2018-09-09, 2018-09-19, 2018-09-23, 2018-09-29, 2018-09-28, 2018-09-10, 2018-09-04, 2018-09-24, 2018-09-15) (AvailabilityTests.scala:140)
+    - Should have a maximumCapacity greater than or equal to the availableCapacity *** FAILED ***
+      maximumCapacity was missing for dates: Set(2018-09-25, 2018-09-21, 2018-09-07, 2018-09-30, 2018-09-16, 2018-09-20, 2018-09-06, 2018-09-03, 2018-09-11, 2018-09-08, 2018-10-01, 2018-09-27, 2018-10-03, 2018-09-14, 2018-09-05, 2018-09-18, 2018-09-26, 2018-09-17, 2018-10-02, 2018-09-12, 2018-09-22, 2018-09-13, 2018-09-09, 2018-09-19, 2018-09-23, 2018-09-29, 2018-09-28, 2018-09-10, 2018-09-04, 2018-09-24, 2018-09-15) (AvailabilityTests.scala:182)
+  PartnerSupplierBranchIdUnrecognized
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[GET]URL:[http://localhost:81/Xpidia/supplierBranches/UnrecognizedPartnerSupplierBranchId/activities/291957W3/offers/391472W3025/availability?localDateRangeStart=2017-03-21&localDateRangeEnd=2017-03-21&minimumAccuracy=Exact]
+	RequestHeaders:["x-request-identifier=be9a6984-6b3e-44b6-93ab-fa97a62bd576"; "x-request-authentication=CmnDJzYE9faMaN4xliGXFCxlBT+aihN41g3FRfLjys8="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Date=Tue, 04 Sep 2018 00:25:44 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=348"; "Keep-Alive=timeout=5, max=96"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseContentType:[application/vnd.localexpert.v2.1+json]
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"be9a6984-6b3e-44b6-93ab-fa97a62bd576","processingMilliseconds":100},"partnerSupplierBranchId":"UnrecognizedPartnerSupplierBranchId","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","availability":[{"localDate":"2017-03-21","accuracy":"Exact","status":"Available","availabilityType":"freesell"}]}]] 
+  + Test Response Mapping 
+  - Http StatusCode should be 200
+  - Response time should be within the maximum allowed response time. Availability calls are required to be within 500 milliseconds
+  - Response Body should map to an Error Type Response Model *** FAILED ***
+    Response Body could not be mapped to a valid Error Response Type. Keys may be incorrect. No constructor for type Manifest[AvailabilityResponseBasic], JObject(List((responseHeader,JObject(List((requestIdentifier,JString(be9a6984-6b3e-44b6-93ab-fa97a62bd576)), (processingMilliseconds,JInt(100))))), (partnerSupplierBranchId,JString(UnrecognizedPartnerSupplierBranchId)), (partnerActivityId,JString(291957W3)), (partnerOfferId,JString(391472W3025)), (availability,JArray(List(JObject(List((localDate,JString(2017-03-21)), (accuracy,JString(Exact)), (status,JString(Available)), (availabilityType,JString(freesell))))))))) (SharedHttpTests.scala:182)
+    Response Body Tests
+    - Json Mapping Failure *** FAILED ***
+      Response Body tests were skipped due to a Json mapping exception. No usable value for responseHeader
+      No usable value for errorType
+      Did not find value which can be converted into java.lang.String (SharedHttpTests.scala:89)
+  PartnerActivityIdUnrecognized
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[GET]URL:[http://localhost:81/Xpidia/supplierBranches/woi/activities/UnrecognizedPartnerActivityId/offers/391472W3025/availability?localDateRangeStart=2017-03-21&localDateRangeEnd=2017-03-21&minimumAccuracy=Exact]
+	RequestHeaders:["x-request-identifier=0c6cbd63-48e9-4efd-b6c5-8147803f9a82"; "x-request-authentication=qkD6MnrvRUB3+sl5AAznqpYgmfcA4dz2xsB6iOQ4WwQ="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Date=Tue, 04 Sep 2018 00:25:44 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=337"; "Keep-Alive=timeout=5, max=95"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseContentType:[application/vnd.localexpert.v2.1+json]
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"0c6cbd63-48e9-4efd-b6c5-8147803f9a82","processingMilliseconds":100},"partnerSupplierBranchId":"woi","partnerActivityId":"UnrecognizedPartnerActivityId","partnerOfferId":"391472W3025","availability":[{"localDate":"2017-03-21","accuracy":"Exact","status":"Available","availabilityType":"freesell"}]}]] 
+  + Test Response Mapping 
+  - Http StatusCode should be 200
+  - Response time should be within the maximum allowed response time. Availability calls are required to be within 500 milliseconds
+  - Response Body should map to an Error Type Response Model *** FAILED ***
+    Response Body could not be mapped to a valid Error Response Type. Keys may be incorrect. No constructor for type Manifest[AvailabilityResponseBasic], JObject(List((responseHeader,JObject(List((requestIdentifier,JString(0c6cbd63-48e9-4efd-b6c5-8147803f9a82)), (processingMilliseconds,JInt(100))))), (partnerSupplierBranchId,JString(woi)), (partnerActivityId,JString(UnrecognizedPartnerActivityId)), (partnerOfferId,JString(391472W3025)), (availability,JArray(List(JObject(List((localDate,JString(2017-03-21)), (accuracy,JString(Exact)), (status,JString(Available)), (availabilityType,JString(freesell))))))))) (SharedHttpTests.scala:182)
+    Response Body Tests
+    - Json Mapping Failure *** FAILED ***
+      Response Body tests were skipped due to a Json mapping exception. No usable value for responseHeader
+      No usable value for errorType
+      Did not find value which can be converted into java.lang.String (SharedHttpTests.scala:89)
+  PartnerOfferIdUnrecognized
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[GET]URL:[http://localhost:81/Xpidia/supplierBranches/woi/activities/291957W3/offers/UnrecognizedPartnerOfferId/availability?localDateRangeStart=2017-03-21&localDateRangeEnd=2017-03-21&minimumAccuracy=Exact]
+	RequestHeaders:["x-request-identifier=0ac565d2-786f-4945-884b-5d0d6a31f348"; "x-request-authentication=gU9cIBqCvqlwE6kvB/SgnEL/k3F8pecgmB8o+30vHe4="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Date=Tue, 04 Sep 2018 00:25:44 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=331"; "Keep-Alive=timeout=5, max=94"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseContentType:[application/vnd.localexpert.v2.1+json]
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"0ac565d2-786f-4945-884b-5d0d6a31f348","processingMilliseconds":100},"partnerSupplierBranchId":"woi","partnerActivityId":"291957W3","partnerOfferId":"UnrecognizedPartnerOfferId","availability":[{"localDate":"2017-03-21","accuracy":"Exact","status":"Available","availabilityType":"freesell"}]}]] 
+  + Test Response Mapping 
+  - Http StatusCode should be 200
+  - Response time should be within the maximum allowed response time. Availability calls are required to be within 500 milliseconds
+  - Response Body should map to an Error Type Response Model *** FAILED ***
+    Response Body could not be mapped to a valid Error Response Type. Keys may be incorrect. No constructor for type Manifest[AvailabilityResponseBasic], JObject(List((responseHeader,JObject(List((requestIdentifier,JString(0ac565d2-786f-4945-884b-5d0d6a31f348)), (processingMilliseconds,JInt(100))))), (partnerSupplierBranchId,JString(woi)), (partnerActivityId,JString(291957W3)), (partnerOfferId,JString(UnrecognizedPartnerOfferId)), (availability,JArray(List(JObject(List((localDate,JString(2017-03-21)), (accuracy,JString(Exact)), (status,JString(Available)), (availabilityType,JString(freesell))))))))) (SharedHttpTests.scala:182)
+    Response Body Tests
+    - Json Mapping Failure *** FAILED ***
+      Response Body tests were skipped due to a Json mapping exception. No usable value for responseHeader
+      No usable value for errorType
+      Did not find value which can be converted into java.lang.String (SharedHttpTests.scala:89)
+  Freesell
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[GET]URL:[http://localhost:81/Xpidia/supplierBranches/woi/activities/291957W3/offers/391472W3025/availability?localDateRangeStart=2017-03-21&localDateRangeEnd=2017-03-21&minimumAccuracy=Exact]
+	RequestHeaders:["x-request-identifier=3758d897-15ca-4ee1-b12e-cc27ab136067"; "x-request-authentication=gpO5DeokOg+O8WdtYygrnEjysDhoNy1chCgaVbXrFwE="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Date=Tue, 04 Sep 2018 00:25:44 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=316"; "Keep-Alive=timeout=5, max=93"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseContentType:[application/vnd.localexpert.v2.1+json]
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"3758d897-15ca-4ee1-b12e-cc27ab136067","processingMilliseconds":100},"partnerSupplierBranchId":"woi","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","availability":[{"localDate":"2017-03-21","accuracy":"Exact","status":"Available","availabilityType":"freesell"}]}]] 
+  + Test Response Mapping 
+  - Http StatusCode should be 200
+  - Response time should be within the maximum allowed response time. Availability calls are required to be within 500 milliseconds
+  - Response Body should map to the valid Json Model of type: Availability'
+    + Response Body Json keys match. 
+    + Response Body completely maps to the correct JsonBody of: Availability 
+    Response Body Tests
+    + Test Request Identifier 
+    - RequestIdentifier in ResponseBody should match RequestIdentifier from Request
+    + Test Availability 
+    - Should match the request partnerIds
+    - Dates in the response should be within the date range of the request
+    - Availability response 'availability' set should match the number of dates requested
+    - should have an availabilityType of 'freesell'
+    - should not have defined availableCapacity for any dates
+    - should not have defined maximumCapacity for any dates
+  Authentication Tests
+    Test for invalid authentication
+    + Test Request 
+    + Sending Request: 
+	RequestDetails[Method:[GET]URL:[http://localhost:81/Xpidia/supplierBranches/woi/activities/291957W3/offers/391472W3025/availability?localDateRangeStart=2017-03-21&localDateRangeEnd=2017-03-21&minimumAccuracy=Exact]
+	RequestHeaders:["x-request-identifier=75e02a0b-5194-4714-9046-f1cf87a6a350"; "x-request-authentication=BadAuthentication"; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[]] 
+    + Received Response: 
+	ResponseDetails[ResponseHeaders:["Date=Tue, 04 Sep 2018 00:25:44 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=316"; "Keep-Alive=timeout=5, max=92"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseContentType:[application/vnd.localexpert.v2.1+json]
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"75e02a0b-5194-4714-9046-f1cf87a6a350","processingMilliseconds":100},"partnerSupplierBranchId":"woi","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","availability":[{"localDate":"2017-03-21","accuracy":"Exact","status":"Available","availabilityType":"freesell"}]}]] 
+    - should have an Http Status Code of 403 *** FAILED ***
+      Response Status Code: 200 is not equal to 403 (AvailabilityTestSuite.scala:182)
+    Test for no authentication header
+    + Test Request 
+    + Sending Request: 
+	RequestDetails[Method:[GET]URL:[http://localhost:81/Xpidia/supplierBranches/woi/activities/291957W3/offers/391472W3025/availability?localDateRangeStart=2017-03-21&localDateRangeEnd=2017-03-21&minimumAccuracy=Exact]
+	RequestHeaders:["x-request-identifier=498326c7-9275-4a2b-973e-c1f22e806550"; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[]] 
+    + Received Response: 
+	ResponseDetails[ResponseHeaders:["Date=Tue, 04 Sep 2018 00:25:45 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=187"; "Keep-Alive=timeout=5, max=91"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseContentType:[application/vnd.localexpert.v2.1+json]
+	ResponseBody:[The x-request-authentication header was not found.<br />
+<b>Notice</b>:  Undefined index: HTTP_X_REQUEST_AUTHENTICATION in <b>C:\laragon\www\Xpidia\index.php</b> on line <b>190</b><br />
+]] 
+    - should have an Http Status Code of 401
+Run completed in 6 seconds, 75 milliseconds.
+Total number of tests run: 63
+Suites: completed 1, aborted 0
+Tests: succeeded 46, failed 17, canceled 4, ignored 0, pending 0
+*** 17 TESTS FAILED ***
