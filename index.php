@@ -97,8 +97,10 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
                 $voucherCount = $body['ticketTypes'][0]['voucherCount'];
                 $firstName = $body['guests'][0]['firstName'];
                 $lastName = $body['guests'][0]['lastName'];
-                $emailAddress = $body['guests'][0]['emailAddress'];
-                $phoneNumber = $body['guests'][0]['phoneNumber'];
+                // $emailAddress = $body['guests'][0]['emailAddress'];
+                // $phoneNumber = $body['guests'][0]['phoneNumber'];
+                $emailAddress = 'pablo@gmail.com';
+                $phoneNumber = '99887766';
                 $holdDurationSeconds = $body['holdDurationSeconds'];
 
                 $stmt->bindParam(':referenceId', $referenceId);
@@ -199,8 +201,10 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
 			$partnerActivityId = $request->getAttribute('partnerActivityId');
             $partnerOfferId = $request->getAttribute('partnerOfferId');
 
+
+
             
-            $error = 0;
+            $error = 200;
             $errorText ='';
             
             if (empty($requestIdentifier)) {
@@ -254,10 +258,39 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             {
                 $nuevafecha = strtotime ( '+'.$contador.' day' , strtotime ( $fechaInicio ) ) ;
                 $nuevafecha = date ( 'Y-m-j' , $nuevafecha );
+
                 // $elementos= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "Available",  "availableCapacity" => 0, "maximumCapacity" => 0, "availabilityType" => "limited");
-                $elementos= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "Available",  "availabilityType" => "freesell");
+                // SoldOut
+                // $elementos= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "SoldOut", "availableCapacity" => 0, "maximumCapacity" => 0,  "availabilityType" => "limited");
+                // freesell
+                $elementos= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "Available", "availabilityType" => "freesell");
                 array_push($data["availability"],$elementos);
                 $contador++;
+            }
+
+            // UnrecognizedPartnerActivityId
+            if($partnerActivityId=='UnrecognizedPartnerActivityId')
+            {
+                 $data = array(
+                                    "responseHeader"=> array(
+                                    "requestIdentifier" => (string) $requestIdentifier,
+                                    "processingMilliseconds"=> 100,
+                                    "errorType"=> "PartnerActivityIdUnrecognized",
+                                    "errorMessage"=> "The Activity ID specified could not be found in the system or belongs to an inactive Activity."
+                        )
+                );
+            }
+            // UnrecognizedPartnerOfferId
+            if($partnerOfferId=='UnrecognizedPartnerOfferId')
+            {
+                $data = array(
+                                    "responseHeader"=> array(
+                                    "requestIdentifier" => (string) $requestIdentifier,
+                                    "processingMilliseconds"=> 100,
+                                    "errorType"=> "PartnerOfferIdUnrecognized",
+                                    "errorMessage"=> "The Offer ID specified could not be found in the system or belongs to an inactive Offer"
+                        )
+                );
             }
            
             // $tours = array('','1','2','3','4','5','6','7');
@@ -318,7 +351,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
             
             
              
-            if (empty($error)) {
+            if ($error==200) {
                 return $response->withStatus(200)
                 ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
                 ->write(json_encode($data));
