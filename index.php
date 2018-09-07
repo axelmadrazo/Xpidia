@@ -63,17 +63,26 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
  * Output-Formats: [application/vnd.localexpert.v2.1+json]
  */
 $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($request, $response, $args) {
+
+
+            try {
+    
             $headers = $request->getHeaders();
             $requestIdentifier = $headers['HTTP_X_REQUEST_IDENTIFIER'][0];
             $xrequestauthentication = $headers['HTTP_X_REQUEST_AUTHENTICATION'][0];
+              
+
             $Accept = $headers['HTTP_ACCEPT'][0];
 
             $partnerSupplierBranchId = $request->getAttribute('partnerSupplierBranchId');
+            $partnerActivityId = $request->getAttribute('partnerActivityId');
+            $partnerOfferId = $request->getAttribute('partnerOfferId');
 
             $body = $request->getParsedBody();
+             // echo "*******************".$partnerSupplierBranchId."*********************/";
+            //  print_r($guests);
 
-
-        
+            
 
             $sql = "INSERT INTO Sales (referenceId, partnerActivityId, partnerOfferId, localDate, partnerTicketTypeId, travelerCount, voucherCount, firstName, lastName, emailAddress, phoneNumber, holdDurationSeconds) VALUES
             (:referenceId,:partnerActivityId,:partnerOfferId,:localDate,:partnerTicketTypeId,:travelerCount,:voucherCount, :firstName, :lastName, :emailAddress, :phoneNumber, :holdDurationSeconds)";
@@ -117,7 +126,9 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
                 $stmt->bindParam(':holdDurationSeconds', $holdDurationSeconds);
 
                 $stmt->execute();
+                // $partnerSaleId = $db->lastInsertId();
                 $partnerSaleId = $db->lastInsertId();
+
   
         
             } catch(PDOException $e){
@@ -128,18 +139,81 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
             $time_elapsed_secs = 100;
 
             $data = array(
-                'ResponseHeader' => array(
+                'responseHeader' => array(
                     'requestIdentifier' => $requestIdentifier,
                     'processingMilliseconds' => $time_elapsed_secs
                 ),
                 'partnerSupplierBranchId' => $partnerSupplierBranchId,
                 'referenceId' => $referenceId,
                 'partnerSaleId' => $partnerSaleId,
-                'utcHoldExpiration' => 1
+                'utcHoldExpiration' => 1,
+                $data["additionalCriteria"]= array()
                 
             );
 
-            $data["additionalCriteria"][]= array();
+            $error = 200;
+            $errorText ='';
+            
+            if (empty($requestIdentifier)) {
+               $error = 400;
+               $errorText ='The x-request-identifier header was not found.';
+            }
+            if (empty($xrequestauthentication)) {
+                $error = 401;
+                $errorText ='The x-request-authentication header was not found.';
+            }
+            if ($xrequestauthentication == 0) {
+                $error = 403;
+                $errorText ='The x-request-authentication header was determined to be invalid.';
+            }
+            if (empty($Accept)) {
+                $error = 406;
+                $errorText ='The Accept header is missing or does not list any API version that is supported.';
+            }
+
+            if($partnerSupplierBranchId=='UnrecognizedPartnerActivityId"')
+            {
+                $data = array(
+                                    "responseHeader"=> array(
+                                    "requestIdentifier" => (string) $requestIdentifier,
+                                    "processingMilliseconds"=> 100,
+                                    "errorType"=> "PartnerActivityIdUnrecognized",
+                                    "errorMessage"=> "The Activity ID specified could not be found in the system or belongs to an inactive Activity."
+                        )
+                );
+                $error==403;
+            }
+            else if($partnerOfferId=='UnrecognizedPartnerOfferId')
+            {
+                $data = array(
+                                    "responseHeader"=> array(
+                                    "requestIdentifier" => (string) $requestIdentifier,
+                                    "processingMilliseconds"=> 100,
+                                    "errorType"=> "PartnerOfferIdUnrecognized",
+                                    "errorMessage"=> "The Offer ID specified could not be found in the system or belongs to an inactive Offer."
+                        )
+                );
+                $error==403;
+            }
+
+            
+
+           if ($error==200) {
+                return $response->withStatus(200)
+                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+                ->write(json_encode($data));
+            }
+            else{
+                return $response->withStatus($error)
+                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+                ->write($errorText);
+            }
+        } catch (Exception $e) {
+            echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+        }
+
+
+            
 
            
             //$response = $response->withJson($data);
@@ -147,9 +221,9 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
             //$response = $response->withJson($data);
            //$response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPost as a POST method ?');
            // return $response;
-            return $response->withStatus(200)
-                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
-                ->write(json_encode($data));
+            // return $response->withStatus(200)
+            //     ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+            //     ->write(json_encode($data));
             });
 
 
@@ -187,6 +261,7 @@ $app->PUT('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}/can
  */
 $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivityId}/offers/{partnerOfferId}/availability', function($request, $response, $args) {
             //$start = microtime(true);
+            $requestIdentifier='';
             $headers = $request->getHeaders();
             $requestIdentifier = $headers['HTTP_X_REQUEST_IDENTIFIER'][0];
             $xrequestauthentication = $headers['HTTP_X_REQUEST_AUTHENTICATION'][0];
@@ -261,9 +336,9 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
 
                 // $elementos= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "Available",  "availableCapacity" => 0, "maximumCapacity" => 0, "availabilityType" => "limited");
                 // SoldOut
-                // $elementos= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "SoldOut", "availableCapacity" => 0, "maximumCapacity" => 0,  "availabilityType" => "limited");
+                $elementos= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "SoldOut", "availableCapacity" => 0, "maximumCapacity" => 0,  "availabilityType" => "limited");
                 // freesell
-                $elementos= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "Available", "availabilityType" => "freesell");
+                // $elementos= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "Available", "availabilityType" => "freesell");
                 array_push($data["availability"],$elementos);
                 $contador++;
             }
