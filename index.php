@@ -23,8 +23,14 @@ $app = new Slim\App();
  */
 $app->GET('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', function($request, $response, $args) {
             $headers = $request->getHeaders();
+            $requestIdentifier = $headers['HTTP_X_REQUEST_IDENTIFIER'][0];
+            $xrequestauthentication = $headers['HTTP_X_REQUEST_AUTHENTICATION'][0];
+            $Accept = $headers['HTTP_ACCEPT'][0];
+
+            $partnerSupplierBranchId = $request->getAttribute('partnerSupplierBranchId');
+			$partnerSaleId = $request->getAttribute('partnerSaleId');
             
-            $sql = "SELECT * FROM Sales";
+           /*  $sql = "SELECT * FROM Sales";
 //
             try{
                 // Get DB Object
@@ -37,21 +43,75 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
                 $db = null;
                 //echo json_encode($sales);
 
-                
-
-
             } catch(PDOException $e){
                 echo '{"error": {"text": '.$e->getMessage().'}';
-            }
+            } */
             
 
+            $error = 200;
+            $errorText ='';
+            
+            if (empty($requestIdentifier)) {
+               $error = 400;
+               $errorText ='The x-request-identifier header was not found.';
+            }
+            if (empty($xrequestauthentication)) {
+                $error = 401;
+                $errorText ='The x-request-authentication header was not found.';
+            }
+            if ($xrequestauthentication = 0) {
+                $error = 403;
+                $errorText ='The x-request-authentication header was determined to be invalid.';
+            }
+            if (empty($Accept)) {
+                $error = 406;
+                $errorText ='The Accept header is missing or does not list any API version that is supported.';
+            }
 
+            $time_elapsed_secs = 100;
+
+            $data = array(
+                'responseHeader' => array(
+                    'requestIdentifier' => $requestIdentifier,
+                    'processingMilliseconds' => $time_elapsed_secs
+                ),
+
+                'partnerSupplierBranchId' => $partnerSupplierBranchId,
+                'partnerSaleId' => "",
+                'partnerSaleStatus' => "OnHold",
+                'partnerBarcodeSymbology' => "QRCode",
+                'partnerSaleBarcode' => "",
+                'utcSaleRedemptionDateTime' => ""
+            );
+
+            $data['partnerTickets'][]= array(
+                    'ticketId' => "",
+                    'partnerTicketId' => "",
+                    'partnerTicketStatus' => "OnHold",
+                    'partnerTicketBarcode' => "",
+                    'utcTicketRedemptionDateTime' => ""
+            );
+
+
+
+
+
+            if ($error==200) {
+                return $response->withStatus(200)
+                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+                ->write(json_encode($data));
+            }
+            else{
+                return $response->withStatus($error)
+                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+                ->write($errorText);
+            }
             
             // $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdGet as a GET method ?');
             // return $response;
-            return $response->withStatus(200)
+            /* return $response->withStatus(200)
             ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
-            ->write(json_encode($sales));
+            ->write(json_encode($sales)); */
              });
 
 
@@ -128,7 +188,7 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
             $time_elapsed_secs = 100;
 
             $data = array(
-                'ResponseHeader' => array(
+                'responseHeader' => array(
                     'requestIdentifier' => $requestIdentifier,
                     'processingMilliseconds' => $time_elapsed_secs
                 ),
