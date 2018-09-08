@@ -70,26 +70,63 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
 
             $time_elapsed_secs = 100;
 
+            // $data = array(
+            //     'responseHeader' => array(
+            //         'requestIdentifier' => $requestIdentifier,
+            //         'processingMilliseconds' => $time_elapsed_secs
+            //     ),
+
+            //     'partnerSupplierBranchId' => $partnerSupplierBranchId,
+            //     'partnerSaleId' => "",
+            //     'partnerSaleStatus' => "OnHold",
+            //     'partnerBarcodeSymbology' => "QRCode",
+            //     'partnerSaleBarcode' => "",
+            //     'utcSaleRedemptionDateTime' => ""
+            // );
+
+            // $data['partnerTickets'][]= array(
+            //         'ticketId' => "",
+            //         'partnerTicketId' => "",
+            //         'partnerTicketStatus' => "OnHold",
+            //         'partnerTicketBarcode' => "",
+            //         'utcTicketRedemptionDateTime' => ""
+            // );
+
+
+  // "partnerSupplierBranchId": "",
+  // "partnerSaleId": "",
+  // "partnerSaleStatus": "OnHold",
+  // "partnerBarcodeSymbology": "QRCode",
+  // "partnerSaleBarcode": "",
+  // "utcSaleRedemptionDateTime": "",
+  // "partnerTickets": [
+  //   {
+  //     "ticketId": "",
+  //     "partnerTicketId": "",
+  //     "partnerTicketStatus": "OnHold",
+  //     "partnerTicketBarcode": "",
+  //     "utcTicketRedemptionDateTime": ""
+  //   }
+  // ]
+
             $data = array(
                 'responseHeader' => array(
                     'requestIdentifier' => $requestIdentifier,
                     'processingMilliseconds' => $time_elapsed_secs
                 ),
-
                 'partnerSupplierBranchId' => $partnerSupplierBranchId,
-                'partnerSaleId' => "",
-                'partnerSaleStatus' => "OnHold",
-                'partnerBarcodeSymbology' => "QRCode",
-                'partnerSaleBarcode' => "",
-                'utcSaleRedemptionDateTime' => ""
-            );
-
-            $data['partnerTickets'][]= array(
-                    'ticketId' => "",
-                    'partnerTicketId' => "",
-                    'partnerTicketStatus' => "OnHold",
-                    'partnerTicketBarcode' => "",
-                    'utcTicketRedemptionDateTime' => ""
+                'partnerSaleId' => $partnerSaleId,
+                'partnerSaleStatus' => 'OnHold',
+                'partnerBarcodeSymbology' => 'QRCode',
+                'partnerSaleBarcode' => '',
+                'utcSaleRedemptionDateTime' => $time_elapsed_secs,
+                'partnerTickets' => array(
+                    'ticketId'=> '',
+                    'partnerTicketId'=> '',
+                    'partnerTicketStatus'=> 'OnHold',
+                    'partnerTicketBarcode'=> '',
+                    'utcTicketRedemptionDateTime'=> $time_elapsed_secs
+                )
             );
 
 
@@ -214,22 +251,22 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
             $error = 200;
             $errorText ='';
             
-            if (empty($requestIdentifier)) {
-               $error = 400;
-               $errorText ='The x-request-identifier header was not found.';
-            }
-            if (empty($xrequestauthentication)) {
-                $error = 401;
-                $errorText ='The x-request-authentication header was not found.';
-            }
-            if ($xrequestauthentication == 0) {
-                $error = 403;
-                $errorText ='The x-request-authentication header was determined to be invalid.';
-            }
-            if (empty($Accept)) {
-                $error = 406;
-                $errorText ='The Accept header is missing or does not list any API version that is supported.';
-            }
+            // if (empty($requestIdentifier)) {
+            //    $error = 400;
+            //    $errorText ='The x-request-identifier header was not found.';
+            // }
+            // if (empty($xrequestauthentication)) {
+            //     $error = 401;
+            //     $errorText ='The x-request-authentication header was not found.';
+            // }
+            // if ($xrequestauthentication == 0) {
+            //     $error = 403;
+            //     $errorText ='The x-request-authentication header was determined to be invalid.';
+            // }
+            // if (empty($Accept)) {
+            //     $error = 406;
+            //     $errorText ='The Accept header is missing or does not list any API version that is supported.';
+            // }
 
             if($partnerSupplierBranchId=='UnrecognizedPartnerActivityId"')
             {
@@ -547,10 +584,66 @@ $app->get('/hello/{name}', function (Request $request, Response $response) {
  * Output-Formats: [application/vnd.localexpert.v2.1+json]
  */
 $app->DELETE('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', function($request, $response, $args) {
+    // echo "*********************************************";
+    // print_r($request);
+    $requestIdentifier='';
     $headers = $request->getHeaders();
+    $requestIdentifier = $headers['HTTP_X_REQUEST_IDENTIFIER'][0];
+    $xrequestauthentication = $headers['HTTP_X_REQUEST_AUTHENTICATION'][0];
+    $Accept = $headers['HTTP_ACCEPT'][0];
+
+    // echo "*********************************************";
+    // print_r($request->getQueryParams());
+
+    $data = array(
+                'responseHeader' => array(
+                    'requestIdentifier' => $requestIdentifier,
+                    'processingMilliseconds' => $time_elapsed_secs
+                ),
+                'partnerSupplierBranchId' => $partnerSupplierBranchId,
+                'partnerSaleId' => '',
+                'partnerSaleStatus' => '',
+                'partnerBarcodeSymbology' => '',
+                'partnerSaleBarcode' => '',
+                'utcSaleRedemptionDateTime' => '',
+                'partnerTickets' => array(
+                    'ticketId'=> '',
+                    'partnerTicketId'=> '',
+                    'partnerTicketStatus'=> 'OnHold',
+                    'partnerTicketBarcode'=> '',
+                    'utcTicketRedemptionDateTime'=> ''
+                )
+            );
+
+    $error = 200;
+    if (empty($requestIdentifier)) {
+               $error = 400;
+               $errorText ='The x-request-identifier header was not found.';
+            }
+            if (empty($xrequestauthentication)) {
+                $error = 401;
+                $errorText ='The x-request-authentication header was not found.';
+            }
+            if ($xrequestauthentication = 0) {
+                $error = 403;
+                $errorText ='The x-request-authentication header was determined to be invalid.';
+            }
+            if (empty($Accept)) {
+                $error = 406;
+                $errorText ='The Accept header is missing or does not list any API version that is supported.';
+            }
+
     
-    $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdDelete as a DELETE method ?');
-    return $response;
+    if ($error==200) {
+                return $response->withStatus(200)
+                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+                ->write(json_encode($data));
+            }
+            else{
+                return $response->withStatus($error)
+                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+                ->write($errorText);
+            }
     });
 
 
@@ -563,6 +656,7 @@ $app->DELETE('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}'
  */
 $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}/cancellation', function($request, $response, $args) {
     $headers = $request->getHeaders();
+    // print_r($headers);
     $body = $request->getParsedBody();
     $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdCancellationPost as a POST method ?');
     return $response;
@@ -589,10 +683,65 @@ $app->DELETE('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}/
  * Output-Formats: [application/vnd.localexpert.v2.1+json]
  */
 $app->PUT('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', function($request, $response, $args) {
+    // echo "*********************************************";
+    // print_r($request);
+    $requestIdentifier='';
     $headers = $request->getHeaders();
-    $body = $request->getParsedBody();
-    $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdPut as a PUT method ?');
-    return $response;
+    $requestIdentifier = $headers['HTTP_X_REQUEST_IDENTIFIER'][0];
+    $xrequestauthentication = $headers['HTTP_X_REQUEST_AUTHENTICATION'][0];
+    $Accept = $headers['HTTP_ACCEPT'][0];
+
+    
+
+    $data = array(
+                'responseHeader' => array(
+                    'requestIdentifier' => $requestIdentifier,
+                    'processingMilliseconds' => $time_elapsed_secs
+                ),
+                'partnerSupplierBranchId' => $partnerSupplierBranchId,
+                'partnerSaleId' => '',
+                'partnerSaleStatus' => '',
+                'partnerBarcodeSymbology' => '',
+                'partnerSaleBarcode' => '',
+                'utcSaleRedemptionDateTime' => '',
+                'partnerTickets' => array(
+                    'ticketId'=> '',
+                    'partnerTicketId'=> '',
+                    'partnerTicketStatus'=> 'OnHold',
+                    'partnerTicketBarcode'=> '',
+                    'utcTicketRedemptionDateTime'=> ''
+                )
+            );
+
+    $error = 200;
+    if (empty($requestIdentifier)) {
+               $error = 400;
+               $errorText ='The x-request-identifier header was not found.';
+            }
+            if (empty($xrequestauthentication)) {
+                $error = 401;
+                $errorText ='The x-request-authentication header was not found.';
+            }
+            if ($xrequestauthentication = 0) {
+                $error = 403;
+                $errorText ='The x-request-authentication header was determined to be invalid.';
+            }
+            if (empty($Accept)) {
+                $error = 406;
+                $errorText ='The Accept header is missing or does not list any API version that is supported.';
+            }
+
+    
+    if ($error==200) {
+                return $response->withStatus(200)
+                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+                ->write(json_encode($data));
+            }
+            else{
+                return $response->withStatus($error)
+                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+                ->write($errorText);
+            }
     });
 
 
