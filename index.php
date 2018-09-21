@@ -595,9 +595,9 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/activities/{partnerActivi
 
                 // $elementos= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "Available",  "availableCapacity" => 0, "maximumCapacity" => 0, "availabilityType" => "limited");
                 // SoldOut
-                $elementos= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "SoldOut", "availableCapacity" => 0, "maximumCapacity" => 0,  "availabilityType" => "limited");
+                //$elementos= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "SoldOut", "availableCapacity" => 0, "maximumCapacity" => 0,  "availabilityType" => "limited");
                 // freesell
-                // $elementos= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "Available", "availabilityType" => "freesell");
+                 $elementos= array("localDate" => $nuevafecha, "accuracy" => "Exact", "status" => "Available", "availabilityType" => "freesell");
                 array_push($data["availability"],$elementos);
                 $contador++;
             }
