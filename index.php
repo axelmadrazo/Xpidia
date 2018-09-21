@@ -109,28 +109,68 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
   //   }
   // ]
 
-            $data = array(
+            //      $stmt = $db->prepare($sql);
+            $bandera = true;
+            $pdo = new db();
+            //     // Connect
+                 $pdo = $pdo->connect();
+        
+                 // $stmt = $db->prepare($sql);
+
+            $sql= "SELECT * FROM Sales where referenceId = '".$partnerSaleId."'";
+            $stmt = $pdo->query($sql); 
+            $row =$stmt->fetchObject();
+
+
+            // echo "**************************|||".count($row->referenceId)."|||***********".$partnerSaleId;
+
+            if(count($row) == 0)
+            {
+                $bandera = false;
+                $data = array(
+                                    "responseHeader"=> array(
+                                    "requestIdentifier" => (string) $requestIdentifier,
+                                    "processingMilliseconds"=> 100,
+                                    "errorType"=> "SaleNotFound",
+                                    "errorMessage"=> "The specified sale could not be found."
+                        )
+                );
+            }
+            else
+            {
+                $bandera=false;
+                $data = array(
                 'responseHeader' => array(
                     'requestIdentifier' => $requestIdentifier,
                     'processingMilliseconds' => $time_elapsed_secs
-                ),
-                'partnerSupplierBranchId' => $partnerSupplierBranchId,
-                'partnerSaleId' => $partnerSaleId,
-                'partnerSaleStatus' => 'OnHold',
-                'partnerBarcodeSymbology' => 'QRCode',
-                'partnerSaleBarcode' => '',
-                'utcSaleRedemptionDateTime' => $time_elapsed_secs,
-                'partnerTickets' => array(
-                    'ticketId'=> '',
-                    'partnerTicketId'=> '',
-                    'partnerTicketStatus'=> 'OnHold',
-                    'partnerTicketBarcode'=> '',
-                    'utcTicketRedemptionDateTime'=> $time_elapsed_secs
-                )
-            );
+                    ),
+                    'partnerSupplierBranchId' => $partnerSupplierBranchId,
+                    'partnerSaleId' => $partnerSaleId,
+                    'partnerSaleStatus' => 'OnHold',
+                    'partnerBarcodeSymbology' => 'QRCode',
+                    'partnerSaleBarcode' => '',
+                    'utcSaleRedemptionDateTime' => $time_elapsed_secs,
+                    'partnerTickets' => array(
+                        'ticketId'=> '',
+                        'partnerTicketId'=> '',
+                        'partnerTicketStatus'=> 'OnHold',
+                        'partnerTicketBarcode'=> '',
+                        'utcTicketRedemptionDateTime'=> $time_elapsed_secs
+                    )
+                );
+            }
 
-
-
+            if($bandera==true)
+            {
+                $data = array(
+                                    "responseHeader"=> array(
+                                    "requestIdentifier" => (string) $requestIdentifier,
+                                    "processingMilliseconds"=> 100,
+                                    "errorType"=> "SaleNotFound",
+                                    "errorMessage"=> "The specified sale could not be found."
+                        )
+                );
+            }
 
 
             if ($error==200) {
@@ -178,10 +218,38 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
             $body = $request->getParsedBody();
              // echo "*******************".$partnerSupplierBranchId."*********************/";
             //  print_r($guests);
+            $error = 200;
+            $errorText ='';
+            if($partnerActivityId != '291957W3' || $partnerSupplierBranchId=='UnrecognizedPartnerActivityId')
+            {
+                $data = array(
+                                    "responseHeader"=> array(
+                                    "requestIdentifier" => (string) $requestIdentifier,
+                                    "processingMilliseconds"=> 100,
+                                    "errorType"=> "PartnerActivityIdUnrecognized",
+                                    "errorMessage"=> "The Activity ID specified could not be found in the system or belongs to an inactive Activity."
+                        )
+                );
+                $error==403;
+            }
 
+            elseif($partnerOfferId != '391472W3025' || $partnerOfferId=='UnrecognizedPartnerOfferId')
+            {
+                 $data = array(
+                                    "responseHeader"=> array(
+                                    "requestIdentifier" => (string) $requestIdentifier,
+                                    "processingMilliseconds"=> 100,
+                                    "errorType"=> "PartnerOfferIdUnrecognized",
+                                    "errorMessage"=> "The Offer ID specified could not be found in the system or belongs to an inactive Offer."
+                        )
+                );
+                $error==403;
+            }
             
 
-            $sql = "INSERT INTO Sales (referenceId, partnerActivityId, partnerOfferId, localDate, partnerTicketTypeId, travelerCount, voucherCount, firstName, lastName, emailAddress, phoneNumber, holdDurationSeconds) VALUES
+            else
+            {
+                $sql = "INSERT INTO Sales (referenceId, partnerActivityId, partnerOfferId, localDate, partnerTicketTypeId, travelerCount, voucherCount, firstName, lastName, emailAddress, phoneNumber, holdDurationSeconds) VALUES
             (:referenceId,:partnerActivityId,:partnerOfferId,:localDate,:partnerTicketTypeId,:travelerCount,:voucherCount, :firstName, :lastName, :emailAddress, :phoneNumber, :holdDurationSeconds)";
     
         
@@ -226,14 +294,7 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
                 // $partnerSaleId = $db->lastInsertId();
                 $partnerSaleId = $db->lastInsertId();
 
-  
-        
-            } catch(PDOException $e){
-                 echo '{"error": {"text": '.$e->getMessage().'}';
-            }
-
-
-            $time_elapsed_secs = 100;
+                $time_elapsed_secs = 100;
 
             $data = array(
                 'responseHeader' => array(
@@ -248,8 +309,17 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
                 
             );
 
-            $error = 200;
-            $errorText ='';
+  
+        
+            } catch(PDOException $e){
+                 echo '{"error": {"text": '.$e->getMessage().'}';
+            }
+            }
+
+
+            
+
+            
             
             // if (empty($requestIdentifier)) {
             //    $error = 400;
@@ -268,30 +338,30 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
             //     $errorText ='The Accept header is missing or does not list any API version that is supported.';
             // }
 
-            if($partnerSupplierBranchId=='UnrecognizedPartnerActivityId"')
-            {
-                $data = array(
-                                    "responseHeader"=> array(
-                                    "requestIdentifier" => (string) $requestIdentifier,
-                                    "processingMilliseconds"=> 100,
-                                    "errorType"=> "PartnerActivityIdUnrecognized",
-                                    "errorMessage"=> "The Activity ID specified could not be found in the system or belongs to an inactive Activity."
-                        )
-                );
-                $error==403;
-            }
-            else if($partnerOfferId=='UnrecognizedPartnerOfferId')
-            {
-                $data = array(
-                                    "responseHeader"=> array(
-                                    "requestIdentifier" => (string) $requestIdentifier,
-                                    "processingMilliseconds"=> 100,
-                                    "errorType"=> "PartnerOfferIdUnrecognized",
-                                    "errorMessage"=> "The Offer ID specified could not be found in the system or belongs to an inactive Offer."
-                        )
-                );
-                $error==403;
-            }
+            // if($partnerSupplierBranchId=='UnrecognizedPartnerActivityId"')
+            // {
+            //     $data = array(
+            //                         "responseHeader"=> array(
+            //                         "requestIdentifier" => (string) $requestIdentifier,
+            //                         "processingMilliseconds"=> 100,
+            //                         "errorType"=> "PartnerActivityIdUnrecognized",
+            //                         "errorMessage"=> "The Activity ID specified could not be found in the system or belongs to an inactive Activity."
+            //             )
+            //     );
+            //     $error==403;
+            // }
+            // else if($partnerOfferId=='UnrecognizedPartnerOfferId')
+            // {
+            //     $data = array(
+            //                         "responseHeader"=> array(
+            //                         "requestIdentifier" => (string) $requestIdentifier,
+            //                         "processingMilliseconds"=> 100,
+            //                         "errorType"=> "PartnerOfferIdUnrecognized",
+            //                         "errorMessage"=> "The Offer ID specified could not be found in the system or belongs to an inactive Offer."
+            //             )
+            //     );
+            //     $error==403;
+            // }
 
             
 
@@ -333,17 +403,109 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
  */
 $app->PUT('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}/cancellation/{cancellationCode}', function($request, $response, $args) {
             $headers = $request->getHeaders();
+            $requestIdentifier = $headers['HTTP_X_REQUEST_IDENTIFIER'][0];
+            $xrequestauthentication = $headers['HTTP_X_REQUEST_AUTHENTICATION'][0];
+            $Accept = $headers['HTTP_ACCEPT'][0];
+
+            $partnerSupplierBranchId = $request->getAttribute('partnerSupplierBranchId');
+            $partnerSaleId = $request->getAttribute('partnerSaleId');
             
+
+            $error = 200;
+            $errorText ='';
+            
+            if (empty($requestIdentifier)) {
+               $error = 400;
+               $errorText ='The x-request-identifier header was not found.';
+            }
+            if (empty($xrequestauthentication)) {
+                $error = 401;
+                $errorText ='The x-request-authentication header was not found.';
+            }
+            if ($xrequestauthentication = 0) {
+                $error = 403;
+                $errorText ='The x-request-authentication header was determined to be invalid.';
+            }
+            if (empty($Accept)) {
+                $error = 406;
+                $errorText ='The Accept header is missing or does not list any API version that is supported.';
+            }
+
+            $time_elapsed_secs = 100;
+
+
+  //           {
+  // "responseHeader": {
+  //   "requestIdentifier": "",
+  //   "processingMilliseconds": 0
+  // },
+  // "partnerSupplierBranchId": "",
+  // "partnerSaleId": ""
+            // Get DB Object
+            // $db = new db();
+            // //     // Connect
+            //      $db = $db->connect();
+        
+            //      $stmt = $db->prepare($sql);
+            $pdo = new db();
+            //     // Connect
+                 $pdo = $pdo->connect();
+        
+                 // $stmt = $db->prepare($sql);
+
+            $sql= "SELECT * FROM Sales where referenceId ='".$partnerSaleId."'";
+            $stmt = $pdo->query($sql); 
+            $row =$stmt->fetchObject();
+
+            if($row->referenceId != $partnerSaleId)
+            {
+                $data = array(
+                                    "responseHeader"=> array(
+                                    "requestIdentifier" => (string) $requestIdentifier,
+                                    "processingMilliseconds"=> 100,
+                                    "errorType"=> "SaleNotFound",
+                                    "errorMessage"=> "The specified sale could not be found."
+                        )
+                );
+            }
+            else
+            {
+                 $data = array(
+                    'responseHeader' => array(
+                        'requestIdentifier' => $requestIdentifier,
+                        'processingMilliseconds' => $time_elapsed_secs
+                    ),
+                    'partnerSupplierBranchId' => $partnerSupplierBranchId,
+                    'partnerSaleId' => $partnerSaleId
+                );
+            }
             
 
+            // $sql = "=:id";
+            // $db = new db();
+            // //     // Connect
+            // $db = $db->connect();
+        
+            // $stmt = $db->prepare($sql);
+            // $stmt = $pdo->prepare();
+            // $user = $stmt->fetch();
+
+           
 
 
 
 
 
-            
-            $response->write('How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdCancellationCancellationCodePut as a PUT method ?');
-            return $response;
+            if ($error==200) {
+                return $response->withStatus(200)
+                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+                ->write(json_encode($data));
+            }
+            else{
+                return $response->withStatus($error)
+                ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
+                ->write($errorText);
+            }
             });
 
 
