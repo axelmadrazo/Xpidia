@@ -1,156 +1,52 @@
-Run starting. Expected test count is: 33
-CreateSaleTestSuite:
-CreateSale
+Run starting. Expected test count is: 6
+GetSaleTestSuite:
+GetSale
   BaseTest
-  + Test Request 
-  + Sending Request: 
+    validation at different sale stages
+    + Sending Create Sale POST Request and validating Create Sale Response 
+    + Test Request 
+    + Sending Request: 
 	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales]
-	RequestHeaders:["x-request-identifier=180efd06-b7d2-4b85-be47-b7da25a3aeeb"; "x-request-authentication=Av2Rsm0+Y2fuxwS4OdW9195csGey+6hiN7ZLDUqNc4Q="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"referenceId":"7be8655a-3984-47bd-9472-34d37de8f760","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst-Jar-1","lastName":"NameLast-Jar-1"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
-  + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Fri, 21 Sep 2018 04:44:40 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=264"; "Keep-Alive=timeout=5, max=100"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
-	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"180efd06-b7d2-4b85-be47-b7da25a3aeeb","processingMilliseconds":100,"errorType":"PartnerActivityIdUnrecognized","errorMessage":"The Activity ID specified could not be found in the system or belongs to an inactive Activity."}}]] 
-  + Test Response Mapping 
-  - Http StatusCode should be 200
-  - Response time should be within the maximum allowed response time. CreateSale calls are required to be within 2400 milliseconds
-  - Response Body should map to the valid Json Model of type: CreateSale' *** FAILED ***
-    Response was an ErrorResponseType when a valid Response was expected. ErrorResponse was PartnerActivityIdUnrecognized type with message: Some(The Activity ID specified could not be found in the system or belongs to an inactive Activity.) (SharedHttpTests.scala:143)
-    Response Body Tests
-    - Json Mapping Failure *** FAILED ***
-      Response Body tests were skipped due to a Json mapping exception. No usable value for partnerSupplierBranchId
-      Did not find value which can be converted into java.lang.String (CreateSaleTests.scala:225)
+	RequestHeaders:["x-request-identifier=69ec98a5-72d8-4301-9211-0d50e081a44e"; "x-request-authentication=xIoLt8rNatrP0IbNaZl+JOkLK6r78Eq5ESPe6lU5yEc="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"referenceId":"a3c50b95-e751-4f18-b881-dccde6a6b1de","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
+    - Create Sale Failure *** FAILED ***
+      Create Sale failed therefore a Get Sale cannot be tested. Exception message: Create Sale failed due to: Exception thrown during POST request. Exception message: HTTP Request timed out after 5 seconds. (GetSaleTestSuite.scala:66)
   PerGroupVBP
+  + Sending Create Sale POST Request and validating Create Sale Response 
+  + Sending Create Sale POST Request and validating Create Sale Response 
   + Test Request 
   + Sending Request: 
 	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/4246/sales]
-	RequestHeaders:["x-request-identifier=8c6a2911-419b-4482-a7cc-b8917feeb57e"; "x-request-authentication=io95Wbh8WF3K/oLcOS7fyu36NMnMvh9Z88aJM1KHsV0="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"referenceId":"9e2d10e8-2059-4719-8574-53b72a15e15e","partnerActivityId":"83","partnerOfferId":"t540-60","localDate":"2020-01-01","ticketTypes":[{"partnerTicketTypeId":"qty","count":1,"travelerCount":5,"voucherCount":1}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
+	RequestHeaders:["x-request-identifier=d11181d5-e7f3-4d2f-bae6-4158852d0021"; "x-request-authentication=qS/dPC36zl02alYwToznO2C/C8cOl45T60VwWarOqvQ="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"referenceId":"681da8f5-5d96-42cf-9e3d-9d12c6660f50","partnerActivityId":"83","partnerOfferId":"t540-60","localDate":"2020-01-01","ticketTypes":[{"partnerTicketTypeId":"qty","count":1,"travelerCount":5,"voucherCount":1}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
   + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Fri, 21 Sep 2018 04:44:41 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=264"; "Keep-Alive=timeout=5, max=99"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseDetails[ResponseHeaders:["Date=Wed, 26 Sep 2018 03:36:02 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=264"; "Keep-Alive=timeout=5, max=100"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
 	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"8c6a2911-419b-4482-a7cc-b8917feeb57e","processingMilliseconds":100,"errorType":"PartnerActivityIdUnrecognized","errorMessage":"The Activity ID specified could not be found in the system or belongs to an inactive Activity."}}]] 
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"d11181d5-e7f3-4d2f-bae6-4158852d0021","processingMilliseconds":100,"errorType":"PartnerActivityIdUnrecognized","errorMessage":"The Activity ID specified could not be found in the system or belongs to an inactive Activity."}}]] 
+  - Commit Sale Failure *** FAILED ***
+    Commit Sale failed therefore a Get Sale cannot be tested. Exception message: Commit Sale failed due to: Exception was thrown during createSale. Exception message: Create Sale failed due to: Response Body from Create Sale was converted into an Error Response when a valid response was expected. errorType: PartnerActivityIdUnrecognized errorMessage: The Activity ID specified could not be found in the system or belongs to an inactive Activity. (GetSaleTestSuite.scala:107)
+  SaleNotFound
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[GET]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/6a846113-680a-4c78-bc98-ab0abc7eff93]
+	RequestHeaders:["x-request-identifier=1a2afb53-914d-476e-8485-0c3613db70dc"; "x-request-authentication=BA7jQSa08eH4U7F7zOYPu2Hpgwif6vQdc0o8iyTvHMg="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Date=Wed, 26 Sep 2018 03:36:04 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=460"; "Keep-Alive=timeout=5, max=99"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseContentType:[application/vnd.localexpert.v2.1+json]
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"1a2afb53-914d-476e-8485-0c3613db70dc","processingMilliseconds":100},"partnerSupplierBranchId":"woi","partnerSaleId":"6a846113-680a-4c78-bc98-ab0abc7eff93","partnerSaleStatus":"OnHold","partnerBarcodeSymbology":"QRCode","partnerSaleBarcode":"","utcSaleRedemptionDateTime":100,"partnerTickets":{"ticketId":"","partnerTicketId":"","partnerTicketStatus":"OnHold","partnerTicketBarcode":"","utcTicketRedemptionDateTime":100}}]] 
   + Test Response Mapping 
   - Http StatusCode should be 200
-  - Response time should be within the maximum allowed response time. CreateSale calls are required to be within 2400 milliseconds
-  - Response Body should map to the valid Json Model of type: CreateSale' *** FAILED ***
-    Response was an ErrorResponseType when a valid Response was expected. ErrorResponse was PartnerActivityIdUnrecognized type with message: Some(The Activity ID specified could not be found in the system or belongs to an inactive Activity.) (SharedHttpTests.scala:143)
+  - Response time should be within the maximum allowed response time. GetSale calls are required to be within 1000 milliseconds
+  - Response Body should map to an Error Type Response Model *** FAILED ***
+    Response Body could not be mapped to a valid Error Response Type. Keys may be incorrect. No constructor for type Manifest[GetSaleResponseBasic], JObject(List((responseHeader,JObject(List((requestIdentifier,JString(1a2afb53-914d-476e-8485-0c3613db70dc)), (processingMilliseconds,JInt(100))))), (partnerSupplierBranchId,JString(woi)), (partnerSaleId,JString(6a846113-680a-4c78-bc98-ab0abc7eff93)), (partnerSaleStatus,JString(OnHold)), (partnerBarcodeSymbology,JString(QRCode)), (partnerSaleBarcode,JString()), (utcSaleRedemptionDateTime,JInt(100)), (partnerTickets,JObject(List((ticketId,JString()), (partnerTicketId,JString()), (partnerTicketStatus,JString(OnHold)), (partnerTicketBarcode,JString()), (utcTicketRedemptionDateTime,JInt(100))))))) (SharedHttpTests.scala:182)
     Response Body Tests
     - Json Mapping Failure *** FAILED ***
-      Response Body tests were skipped due to a Json mapping exception. No usable value for partnerSupplierBranchId
-      Did not find value which can be converted into java.lang.String (CreateSaleTests.scala:225)
-  PartnerSupplierBranchIdUnrecognized
-  + Test Request 
-  + Sending Request: 
-	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/UnrecognizedPartnerSupplierBranchId/sales]
-	RequestHeaders:["x-request-identifier=a4da14de-97d8-4cff-943d-f182870e7800"; "x-request-authentication=ygFHQsOXZ3QfE+DpD9DKT21zQWtslfTomAtyP0B1XcI="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"referenceId":"e934f751-1349-4941-8027-2b51b0e3fc44","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst-Jar-1","lastName":"NameLast-Jar-1"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
-  + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Fri, 21 Sep 2018 04:44:41 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=264"; "Keep-Alive=timeout=5, max=98"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
-	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"a4da14de-97d8-4cff-943d-f182870e7800","processingMilliseconds":100,"errorType":"PartnerActivityIdUnrecognized","errorMessage":"The Activity ID specified could not be found in the system or belongs to an inactive Activity."}}]] 
-  + Test Response Mapping 
-  - Http StatusCode should be 200
-  - Response time should be within the maximum allowed response time. CreateSale calls are required to be within 2400 milliseconds
-  - Response Body should map to an Error Type Response Model
-    + Error Response Body Json keys match. 
-    Response Body Tests
-    + Test Request Identifier 
-    + Test Request Identifier 
-    - RequestIdentifier in ResponseBody should match RequestIdentifier from Request
-    + Test Error Type 
-    - Response Error Type should match the Error Type for the Test *** FAILED ***
-      "Partner[SupplierBranch]IdUnrecognized" did not equal "Partner[Activity]IdUnrecognized" (SharedHttpTests.scala:65)
-  PartnerActivityIdUnrecognized
-  + Test Request 
-  + Sending Request: 
-	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales]
-	RequestHeaders:["x-request-identifier=b1b11c03-31ea-4105-b8a5-96c0e5d55885"; "x-request-authentication=DMESQGADh3McTLKETh1nv3hsD76UIczaR7I/M9olSYU="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"referenceId":"7d75bbd0-b606-4c9a-9983-86be62be8c9d","partnerActivityId":"UnrecognizedPartnerActivityId","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst-Jar-1","lastName":"NameLast-Jar-1"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
-  + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Fri, 21 Sep 2018 04:44:41 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=264"; "Keep-Alive=timeout=5, max=97"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
-	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"b1b11c03-31ea-4105-b8a5-96c0e5d55885","processingMilliseconds":100,"errorType":"PartnerActivityIdUnrecognized","errorMessage":"The Activity ID specified could not be found in the system or belongs to an inactive Activity."}}]] 
-  + Test Response Mapping 
-  - Http StatusCode should be 200
-  - Response time should be within the maximum allowed response time. CreateSale calls are required to be within 2400 milliseconds
-  - Response Body should map to an Error Type Response Model
-    + Error Response Body Json keys match. 
-    Response Body Tests
-    + Test Request Identifier 
-    + Test Request Identifier 
-    - RequestIdentifier in ResponseBody should match RequestIdentifier from Request
-    + Test Error Type 
-    - Response Error Type should match the Error Type for the Test
-  PartnerOfferIdUnrecognized
-  + Test Request 
-  + Sending Request: 
-	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales]
-	RequestHeaders:["x-request-identifier=7d242c1e-b177-4ada-be3d-2f8547810660"; "x-request-authentication=EuZzU1I8HxT01PPmVZrviaBvVyjkD5XHFrIG6x9CnLo="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"referenceId":"176c674c-9dfa-4509-bb1c-f3b595d32725","partnerActivityId":"291957W3","partnerOfferId":"UnrecognizedPartnerOfferId","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst-Jar-1","lastName":"NameLast-Jar-1"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
-  + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Fri, 21 Sep 2018 04:44:41 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=264"; "Keep-Alive=timeout=5, max=96"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
-	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"7d242c1e-b177-4ada-be3d-2f8547810660","processingMilliseconds":100,"errorType":"PartnerActivityIdUnrecognized","errorMessage":"The Activity ID specified could not be found in the system or belongs to an inactive Activity."}}]] 
-  + Test Response Mapping 
-  - Http StatusCode should be 200
-  - Response time should be within the maximum allowed response time. CreateSale calls are required to be within 2400 milliseconds
-  - Response Body should map to an Error Type Response Model
-    + Error Response Body Json keys match. 
-    Response Body Tests
-    + Test Request Identifier 
-    + Test Request Identifier 
-    - RequestIdentifier in ResponseBody should match RequestIdentifier from Request
-    + Test Error Type 
-    - Response Error Type should match the Error Type for the Test *** FAILED ***
-      "Partner[Offer]IdUnrecognized" did not equal "Partner[Activity]IdUnrecognized" (SharedHttpTests.scala:65)
-  PartnerTicketTypeIdUnrecognized
-  + Test Request 
-  + Sending Request: 
-	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales]
-	RequestHeaders:["x-request-identifier=c48be391-72b4-4423-b21c-515c29497956"; "x-request-authentication=FAlry8cg+QvkOIFiTZMsVBd6y5+AnvlGCbcDxtLrDYE="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"referenceId":"f3001344-9953-47eb-9f81-982336aafe9c","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"UnrecognizedPartnerTicketTypeId","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst-Jar-1","lastName":"NameLast-Jar-1"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
-  + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Fri, 21 Sep 2018 04:44:41 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=264"; "Keep-Alive=timeout=5, max=95"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
-	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"c48be391-72b4-4423-b21c-515c29497956","processingMilliseconds":100,"errorType":"PartnerActivityIdUnrecognized","errorMessage":"The Activity ID specified could not be found in the system or belongs to an inactive Activity."}}]] 
-  + Test Response Mapping 
-  - Http StatusCode should be 200
-  - Response time should be within the maximum allowed response time. CreateSale calls are required to be within 2400 milliseconds
-  - Response Body should map to an Error Type Response Model
-    + Error Response Body Json keys match. 
-    Response Body Tests
-    + Test Request Identifier 
-    + Test Request Identifier 
-    - RequestIdentifier in ResponseBody should match RequestIdentifier from Request
-    + Test Error Type 
-    - Response Error Type should match the Error Type for the Test *** FAILED ***
-      "Partner[TicketType]IdUnrecognized" did not equal "Partner[Activity]IdUnrecognized" (SharedHttpTests.scala:65)
-  ThisConfigurationNotAvailable
-  + Test Request 
-  + Sending Request: 
-	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales]
-	RequestHeaders:["x-request-identifier=cab6d6d1-cdb4-4702-8687-553064a79147"; "x-request-authentication=Gpz5WO7SVNkz0lQL9w50qqPytDc/qdrtrTc4MogIfCs="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"referenceId":"127f2be5-d206-4f41-bad2-fa489283671d","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-01","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
-  + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Fri, 21 Sep 2018 04:44:41 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=264"; "Keep-Alive=timeout=5, max=94"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
-	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"cab6d6d1-cdb4-4702-8687-553064a79147","processingMilliseconds":100,"errorType":"PartnerActivityIdUnrecognized","errorMessage":"The Activity ID specified could not be found in the system or belongs to an inactive Activity."}}]] 
-  + Test Response Mapping 
-  - Http StatusCode should be 200
-  - Response time should be within the maximum allowed response time. CreateSale calls are required to be within 2400 milliseconds
-  - Response Body should map to an Error Type Response Model
-    + Error Response Body Json keys match. 
-    Response Body Tests
-    + Test Request Identifier 
-    + Test Request Identifier 
-    - RequestIdentifier in ResponseBody should match RequestIdentifier from Request
-    + Test Error Type 
-    - Response Error Type should match the Error Type for the Test !!! CANCELED !!!
-      Test is Optional and failed. Please consult with Expedia Local Expert to see if you can ignore this test result.
-      Failure result: Failed(org.scalatest.exceptions.TestFailedException: "[ThisConfigurationNotAvailable]" did not equal "[PartnerActivityIdUnrecognized]") (CreateSaleTestSuite.scala:17)
-Run completed in 6 seconds, 567 milliseconds.
-Total number of tests run: 32
+      Response Body tests were skipped due to a Json mapping exception. No usable value for responseHeader
+      No usable value for errorType
+      Did not find value which can be converted into java.lang.String (SharedHttpTests.scala:89)
+Run completed in 12 seconds, 823 milliseconds.
+Total number of tests run: 6
 Suites: completed 1, aborted 0
-Tests: succeeded 25, failed 7, canceled 1, ignored 0, pending 0
-*** 7 TESTS FAILED ***
+Tests: succeeded 2, failed 4, canceled 0, ignored 0, pending 0
+*** 4 TESTS FAILED ***

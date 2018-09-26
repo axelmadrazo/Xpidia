@@ -773,7 +773,7 @@ $app->DELETE('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}'
                     'partnerTicketId'=> '',
                     'partnerTicketStatus'=> 'OnHold',
                     'partnerTicketBarcode'=> '',
-                    'utcTicketRedemptionDateTime'=> ''
+                    'utcTicketRedemptionDateTime'=> '100'
                 )
             );
 
@@ -871,7 +871,7 @@ $app->PUT('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
                     'partnerTicketId'=> '',
                     'partnerTicketStatus'=> 'OnHold',
                     'partnerTicketBarcode'=> '',
-                    'utcTicketRedemptionDateTime'=> ''
+                    'utcTicketRedemptionDateTime'=> '100'
                 )
             );
 
