@@ -29,24 +29,9 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
 
             $partnerSupplierBranchId = $request->getAttribute('partnerSupplierBranchId');
 			$partnerSaleId = $request->getAttribute('partnerSaleId');
-            
-           /*  $sql = "SELECT * FROM Sales";
-//
-            try{
-                // Get DB Object
-                $db = new db();
-                // Connect
-                $db = $db->connect();
+            $body = $request->getParsedBody();
+            print_r($body);
 
-                $stmt = $db->query($sql);
-                $sales = $stmt->fetchAll(PDO::FETCH_OBJ);
-                $db = null;
-                //echo json_encode($sales);
-
-            } catch(PDOException $e){
-                echo '{"error": {"text": '.$e->getMessage().'}';
-            } */
-            
 
             $error = 200;
             $errorText ='';
@@ -70,46 +55,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
 
             $time_elapsed_secs = 100;
 
-            // $data = array(
-            //     'responseHeader' => array(
-            //         'requestIdentifier' => $requestIdentifier,
-            //         'processingMilliseconds' => $time_elapsed_secs
-            //     ),
 
-            //     'partnerSupplierBranchId' => $partnerSupplierBranchId,
-            //     'partnerSaleId' => "",
-            //     'partnerSaleStatus' => "OnHold",
-            //     'partnerBarcodeSymbology' => "QRCode",
-            //     'partnerSaleBarcode' => "",
-            //     'utcSaleRedemptionDateTime' => ""
-            // );
-
-            // $data['partnerTickets'][]= array(
-            //         'ticketId' => "",
-            //         'partnerTicketId' => "",
-            //         'partnerTicketStatus' => "OnHold",
-            //         'partnerTicketBarcode' => "",
-            //         'utcTicketRedemptionDateTime' => ""
-            // );
-
-
-  // "partnerSupplierBranchId": "",
-  // "partnerSaleId": "",
-  // "partnerSaleStatus": "OnHold",
-  // "partnerBarcodeSymbology": "QRCode",
-  // "partnerSaleBarcode": "",
-  // "utcSaleRedemptionDateTime": "",
-  // "partnerTickets": [
-  //   {
-  //     "ticketId": "",
-  //     "partnerTicketId": "",
-  //     "partnerTicketStatus": "OnHold",
-  //     "partnerTicketBarcode": "",
-  //     "utcTicketRedemptionDateTime": ""
-  //   }
-  // ]
-
-            //      $stmt = $db->prepare($sql);
             $bandera = true;
             $pdo = new db();
             //     // Connect
@@ -146,19 +92,30 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
                     ),
                     'partnerSupplierBranchId' => $partnerSupplierBranchId,
                     'partnerSaleId' => $partnerSaleId,
-                    'partnerSaleStatus' => 'OnHold',
+                    'partnerSaleStatus' => 'Created',
                     'partnerBarcodeSymbology' => 'QRCode',
                     'partnerSaleBarcode' => '',
                     'utcSaleRedemptionDateTime' => $time_elapsed_secs,
-                    'partnerTickets' => array(
-                        'ticketId'=> '',
-                        'partnerTicketId'=> '',
-                        'partnerTicketStatus'=> 'OnHold',
-                        'partnerTicketBarcode'=> '',
-                        'utcTicketRedemptionDateTime'=> $time_elapsed_secs
-                    )
+                    'partnerTickets' => array()
                 );
+                echo "HOLAAAAAAAAAAAAAAAAAAa";
+                print_r($stmt);
+                foreach ($body['tickets'] as $valores) {
+                $elementos= array(
+                                'ticketId'=> $valores['ticketId'],
+                                'partnerTicketId'=> $valores['ticketId'],
+                                'partnerTicketStatus'=> 'Created',
+                                'partnerTicketBarcode'=> '',
+                                'utcTicketRedemptionDateTime'=> $time_elapsed_secs
+                            );
+                            array_push($data["partnerTickets"],$elementos);
+                }
             }
+
+
+
+
+   
 
             if($bandera==true)
             {
@@ -220,8 +177,9 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
             //  print_r($guests);
             $error = 200;
             $errorText ='';
-            if($partnerActivityId != '291957W3' || $partnerSupplierBranchId=='UnrecognizedPartnerActivityId')
+            if($partnerActivityId != '291957W3' && $partnerActivityId != '' || $partnerSupplierBranchId=='UnrecognizedPartnerActivityId')
             {
+                
                 $data = array(
                                     "responseHeader"=> array(
                                     "requestIdentifier" => (string) $requestIdentifier,
@@ -233,8 +191,9 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
                 $error==403;
             }
 
-            elseif($partnerOfferId != '391472W3025' || $partnerOfferId=='UnrecognizedPartnerOfferId')
+            elseif($partnerOfferId != '391472W3025' && $partnerOfferId != '' || $partnerOfferId=='UnrecognizedPartnerOfferId')
             {
+                // echo "ESTAMOS EN EL SEGUNDO ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR-|-|-".$partnerOfferId."-----";
                  $data = array(
                                     "responseHeader"=> array(
                                     "requestIdentifier" => (string) $requestIdentifier,
@@ -304,7 +263,7 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
                 'partnerSupplierBranchId' => $partnerSupplierBranchId,
                 'referenceId' => $referenceId,
                 'partnerSaleId' => $partnerSaleId,
-                'utcHoldExpiration' => 1,
+                'utcHoldExpiration' => '2019-10-06T17:13:21.207Z',
                 $data["additionalCriteria"]= array()
                 
             );
@@ -366,11 +325,15 @@ $app->POST('/supplierBranches/{partnerSupplierBranchId}/sales', function($reques
             
 
            if ($error==200) {
+
+            // echo "TODOOOOOOOOOOOO BIEEEEEEEEEEEEEEEEN";
+            // print_r($data);
                 return $response->withStatus(200)
                 ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
                 ->write(json_encode($data));
             }
             else{
+
                 return $response->withStatus($error)
                 ->withHeader('Content-Type', 'application/vnd.localexpert.v2.1+json')
                 ->write($errorText);
@@ -771,7 +734,7 @@ $app->DELETE('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}'
                 'partnerTickets' => array(
                     'ticketId'=> '',
                     'partnerTicketId'=> '',
-                    'partnerTicketStatus'=> 'OnHold',
+                    'partnerTicketStatus'=> 'Created',
                     'partnerTicketBarcode'=> '',
                     'utcTicketRedemptionDateTime'=> '100'
                 )
@@ -852,28 +815,59 @@ $app->PUT('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
     $requestIdentifier = $headers['HTTP_X_REQUEST_IDENTIFIER'][0];
     $xrequestauthentication = $headers['HTTP_X_REQUEST_AUTHENTICATION'][0];
     $Accept = $headers['HTTP_ACCEPT'][0];
-
+    $partnerSupplierBranchId = $request->getAttribute('partnerSupplierBranchId');
+    $partnerSaleId = $request->getAttribute('partnerSaleId');
+    $body = $request->getParsedBody();
+    
+     //print_r($body);
     
 
     $data = array(
                 'responseHeader' => array(
                     'requestIdentifier' => $requestIdentifier,
-                    'processingMilliseconds' => $time_elapsed_secs
+                    'processingMilliseconds' => 500
                 ),
                 'partnerSupplierBranchId' => $partnerSupplierBranchId,
-                'partnerSaleId' => '',
-                'partnerSaleStatus' => '',
-                'partnerBarcodeSymbology' => '',
+                'partnerSaleId' =>  $partnerSaleId,
+                'partnerSaleStatus' => 'Created',
+                'partnerBarcodeSymbology' => 'QRCode',
                 'partnerSaleBarcode' => '',
                 'utcSaleRedemptionDateTime' => '',
-                'partnerTickets' => array(
-                    'ticketId'=> '',
-                    'partnerTicketId'=> '',
-                    'partnerTicketStatus'=> 'OnHold',
-                    'partnerTicketBarcode'=> '',
-                    'utcTicketRedemptionDateTime'=> '100'
-                )
+                'partnerTickets' => array()
             );
+
+
+    foreach ($body['tickets'] as $valores) {
+        try{
+            $sql = "INSERT INTO tickets (ticket_id, partnerTicketId, partnerTicketStatus, id_sales) VALUES
+            (:ticket_id,:partnerTicketId,:partnerTicketStatus,:id_sales)";
+                 // Get DB Object
+                 $db = new db();
+            //     // Connect
+                 $db = $db->connect();
+        
+                 $stmt = $db->prepare($sql);
+                $created = "Created";
+                $stmt->bindParam(':ticket_id', $valores['ticketId']);
+                $stmt->bindParam(':partnerTicketId', $valores['ticketId']);
+                $stmt->bindParam(':partnerTicketStatus',  $created);
+                $stmt->bindParam(':id_sales', $partnerSaleId);
+
+                $stmt->execute();
+        } catch(PDOException $e){
+                 echo '{"error": {"text": '.$e->getMessage().'}';
+            }
+        $elementos= array(
+                    'ticketId'=> $valores['ticketId'],
+                    'partnerTicketId'=> $valores['ticketId'],
+                    'partnerTicketStatus'=> 'Created',
+                    'partnerTicketBarcode'=> '',
+                    'utcTicketRedemptionDateTime'=> '200'
+                );
+                array_push($data["partnerTickets"],$elementos);
+    }
+
+    
 
     $error = 200;
     if (empty($requestIdentifier)) {
