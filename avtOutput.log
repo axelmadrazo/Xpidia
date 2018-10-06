@@ -1,4 +1,190 @@
-Run starting. Expected test count is: 6
+Run starting. Expected test count is: 35
+AvailabilityTestSuite:
+CheckAvailability
+  BaseTest
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[GET]URL:[http://phpstack-193487-574768.cloudwaysapps.com/supplierBranches/woi/activities/291957W3/offers/391472W3025/availability?localDateRangeStart=2017-03-21&localDateRangeEnd=2017-03-21&minimumAccuracy=Exact]
+	RequestHeaders:["x-request-identifier=329e18f8-79b2-48ad-a3ad-35c4f2857472"; "x-request-authentication=AIH1XwU847mUIvSFxEFjrABRby4ryiNgfweGpAOOsgw="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Server=nginx"; "Date=Sat, 06 Oct 2018 16:46:07 GMT"; "Content-Type=application/vnd.localexpert.v2.1+json"; "Content-Length=316"; "Connection=keep-alive"; "Age=0"; "X-Cache=MISS"; "Accept-Ranges=bytes"; "X-Robots-Tag=noindex, nofollow"] 
+	ResponseContentType:[application/vnd.localexpert.v2.1+json]
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"329e18f8-79b2-48ad-a3ad-35c4f2857472","processingMilliseconds":100},"partnerSupplierBranchId":"woi","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","availability":[{"localDate":"2017-03-21","accuracy":"Exact","status":"Available","availabilityType":"freesell"}]}]] 
+  + Test Response Mapping 
+  - Http StatusCode should be 200
+  - Response time should be within the maximum allowed response time. Availability calls are required to be within 500 milliseconds *** FAILED ***
+    Actual response time for Availability test was: 2510, which is not within 500 milliseconds (SharedHttpTests.scala:207)
+  - Response Body should map to the valid Json Model of type: Availability'
+    + Response Body Json keys match. 
+    + Response Body completely maps to the correct JsonBody of: Availability 
+    Response Body Tests
+    + Test Request Identifier 
+    - RequestIdentifier in ResponseBody should match RequestIdentifier from Request
+    + Test Availability 
+    - Should match the request partnerIds
+    - Should match the correct 'status': Available
+    - Dates in the response should be within the date range of the request
+    - Availability response 'availability' set should match the number of dates requested
+    - Should have an availabilityType of 'limited' *** FAILED ***
+      availabilityType was not 'limited' for dates: Set(2017-03-21) (AvailabilityTests.scala:120)
+    - Should have the correct 'availableCapacity' *** FAILED ***
+      availableCapacity was missing for some dates: Set(2017-03-21) (AvailabilityTests.scala:140)
+    - Should have a maximumCapacity greater than or equal to the availableCapacity *** FAILED ***
+      maximumCapacity was missing for dates: Set(2017-03-21) (AvailabilityTests.scala:182)
+  SoldOut
+  - Skipping the required AVT Availability Test [SoldOut]. !!! IGNORED !!!
+  NotAvailable
+  - Skipping the required AVT Availability Test [Unavailable]. !!! IGNORED !!!
+  DateSpan
+  - Skipping the required AVT Availability Test [DateSpan]. !!! IGNORED !!!
+  PartnerSupplierBranchIdUnrecognized
+  - Skipping the required AVT Availability Test [PartnerSupplierBranchIdUnrecognized]. !!! IGNORED !!!
+  PartnerActivityIdUnrecognized
+  - Skipping the required AVT Availability Test [PartnerActivityIdUnrecognized]. !!! IGNORED !!!
+  PartnerOfferIdUnrecognized
+  - Skipping the required AVT Availability Test [PartnerOfferIdUnrecognized]. !!! IGNORED !!!
+  Freesell
+  - Skipping the optional AVT Availability Test [Freesell]. !!! IGNORED !!!
+  Authentication Tests
+  - Skipping the required AVT Authentication Tests. !!! IGNORED !!!
+CreateSaleTestSuite:
+CreateSale
+  BaseTest
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[POST]URL:[http://phpstack-193487-574768.cloudwaysapps.com/supplierBranches/woi/sales]
+	RequestHeaders:["x-request-identifier=df99dc33-ae88-4938-9ebe-f29df5053f21"; "x-request-authentication=QV0L7i7FtC15YOuaOIkq/S0IgxAi8ih0kRtfLTjRBfw="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"referenceId":"7002052c-403a-4ffd-a256-0d1048c89ca4","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst-Jar-1","lastName":"NameLast-Jar-1"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Server=nginx"; "Date=Sat, 06 Oct 2018 16:46:08 GMT"; "Content-Type=application/vnd.localexpert.v2.1+json"; "Content-Length=263"; "Connection=keep-alive"; "Age=0"; "X-Cache=MISS"; "Accept-Ranges=bytes"; "X-Robots-Tag=noindex, nofollow"] 
+	ResponseContentType:[application/vnd.localexpert.v2.1+json]
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"df99dc33-ae88-4938-9ebe-f29df5053f21","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"7002052c-403a-4ffd-a256-0d1048c89ca4","partnerSaleId":"936","utcHoldExpiration":1,"additionalCriteria":[[]]}]] 
+  + Test Response Mapping 
+  - Http StatusCode should be 200
+  - Response time should be within the maximum allowed response time. CreateSale calls are required to be within 2400 milliseconds
+  - Response Body should map to the valid Json Model of type: CreateSale'
+    + Response Body Json keys match. 
+    + Response Body completely maps to the correct JsonBody of: CreateSale 
+    Response Body Tests
+    + Test Request Identifier 
+    - RequestIdentifier in ResponseBody should match RequestIdentifier from Request
+    + Test Create Sale 
+    - Should match the Request partnerSupplierBranchId
+    - Should match the Request referenceId
+    - Should have a partnerSaleId
+    - Should have a valid utcHoldExpiration *** FAILED ***
+      Response utcHoldExpiration: 0001-01-01T00:00:00.000-06:36:36 was before the Request hold duration of 5. For this request, utcHoldExpiration should be after 2018-10-06T16:45:59.474Z (CreateSaleTests.scala:168)
+  PerGroupVBP
+  - Skipping the required AVT Create Sale Test - [PerGroupVBP]. !!! IGNORED !!!
+  PartnerSupplierBranchIdUnrecognized
+  - Skipping the required AVT Create Sale Test - [PartnerSupplierBranchIdUnrecognized]. !!! IGNORED !!!
+  PartnerActivityIdUnrecognized
+  - Skipping the required AVT Create Sale Test - [PartnerActivityIdUnrecognized]. !!! IGNORED !!!
+  PartnerOfferIdUnrecognized
+  - Skipping the required AVT Create Sale Test - [PartnerOfferIdUnrecognized]. !!! IGNORED !!!
+  PartnerTicketTypeIdUnrecognized
+  - Skipping the required AVT Create Sale Test - [PartnerTicketTypeIdUnrecognized]. !!! IGNORED !!!
+  ThisConfigurationNotAvailable
+  - Skipping the optional AVT Create Sale Test - [ThisConfigurationNotAvailable]. !!! IGNORED !!!
+CommitSaleTestSuite:
+CommitSale
+  BaseTest
+  + Sending Create Sale POST Request and validating Create Sale Response 
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[POST]URL:[http://phpstack-193487-574768.cloudwaysapps.com/supplierBranches/woi/sales]
+	RequestHeaders:["x-request-identifier=2aaab67a-8049-4e1f-afb2-688276ffdba3"; "x-request-authentication=G6wl+7M7IA8Stli1ZV7yZ3Axbd6/25jionGDXwbTogI="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"referenceId":"68c8dbf2-af7e-41dc-b91c-46fc93c8e700","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":0,"additionalCriteria":[]}]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Server=nginx"; "Date=Sat, 06 Oct 2018 16:46:09 GMT"; "Content-Type=application/vnd.localexpert.v2.1+json"; "Content-Length=263"; "Connection=keep-alive"; "Age=0"; "X-Cache=MISS"; "Accept-Ranges=bytes"; "X-Robots-Tag=noindex, nofollow"] 
+	ResponseContentType:[application/vnd.localexpert.v2.1+json]
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"2aaab67a-8049-4e1f-afb2-688276ffdba3","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"68c8dbf2-af7e-41dc-b91c-46fc93c8e700","partnerSaleId":"937","utcHoldExpiration":1,"additionalCriteria":[[]]}]] 
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[PUT]URL:[http://phpstack-193487-574768.cloudwaysapps.com/supplierBranches/woi/sales/937]
+	RequestHeaders:["x-request-identifier=154ec500-3db7-4be5-af74-d34ff72a9873"; "x-request-authentication=4hgJHhwI7p5rnKkOXpKFNAe+CqJ0WqESYvY5nzK0eis="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"saleId":"68c8dbf2-af7e-41dc-b91c-46fc93c8e700","ticketIds":["68739610","68739611"],"tickets":[{"ticketId":"68739610","partnerTicketTypeId":"adult"},{"ticketId":"68739611","partnerTicketTypeId":"adult"}]}]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Server=nginx"; "Date=Sat, 06 Oct 2018 16:46:09 GMT"; "Content-Type=text/html; charset=UTF-8"; "Content-Length=101"; "Connection=keep-alive"; "Vary=Accept-Encoding, Accept-Encoding"; "Age=0"; "X-Cache=MISS"; "Accept-Ranges=bytes"; "X-Robots-Tag=noindex, nofollow"] 
+	ResponseContentType:[text/html; charset=UTF-8]
+	ResponseBody:[How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdPut as a PUT method ?]] 
+  + Test Response Mapping 
+  - Http StatusCode should be 200
+  - Response time should be within the maximum allowed response time. CommitSale calls are required to be within 2400 milliseconds
+  - Response Body should map to the valid Json Model of type: CommitSale' *** FAILED ***
+    com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'How': was expecting ('true', 'false' or 'null')
+ at [Source: java.io.StringReader@6b739528; line: 1, column: 4]
+    at com.fasterxml.jackson.core.JsonParser._constructError(JsonParser.java:1524)
+    at com.fasterxml.jackson.core.base.ParserMinimalBase._reportError(ParserMinimalBase.java:557)
+    at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._reportInvalidToken(ReaderBasedJsonParser.java:2042)
+    at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._handleOddValue(ReaderBasedJsonParser.java:1412)
+    at com.fasterxml.jackson.core.json.ReaderBasedJsonParser.nextToken(ReaderBasedJsonParser.java:679)
+    at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:3031)
+    at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:2978)
+    at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2098)
+    at org.json4s.jackson.JsonMethods$class.parse(JsonMethods.scala:20)
+    at org.json4s.jackson.JsonMethods$.parse(JsonMethods.scala:50)
+    ...
+    Response Body Tests
+    - Bad Response *** FAILED ***
+      Response Body is not in the Correct format. ContentType: text/html; charset=UTF-8 
+       Exception: Unrecognized token 'How': was expecting ('true', 'false' or 'null')
+       at [Source: java.io.StringReader@622ef26a; line: 1, column: 4] 
+       Response Body: How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdPut as a PUT method ? (CommitSaleTests.scala:268)
+  PerGroupVBP
+  - Skipping the required AVT Commit Sale Test [PerGroupVBP]. !!! IGNORED !!!
+  SaleNotFound
+  - Skipping the required AVT Commit Sale Test [SaleNotFound]. !!! IGNORED !!!
+  SaleExpired
+  - Skipping the required AVT Commit Sale Test [SaleExpired]. !!! IGNORED !!!
+ReleaseSaleTestSuite:
+ReleaseSale
+  BaseTest
+  + Sending Create Sale POST Request and validating Create Sale Response 
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[POST]URL:[http://phpstack-193487-574768.cloudwaysapps.com/supplierBranches/woi/sales]
+	RequestHeaders:["x-request-identifier=fc3cfc51-b204-452f-9f02-37edce654b68"; "x-request-authentication=V9XQ4G0G7yrBHKj40MCChSqdSfXLQtgRmMs/2ZvE5Dg="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"referenceId":"ff9bc90a-738c-4bd4-806f-3b89fecde875","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Server=nginx"; "Date=Sat, 06 Oct 2018 16:46:10 GMT"; "Content-Type=application/vnd.localexpert.v2.1+json"; "Content-Length=263"; "Connection=keep-alive"; "Age=0"; "X-Cache=MISS"; "Accept-Ranges=bytes"; "X-Robots-Tag=noindex, nofollow"] 
+	ResponseContentType:[application/vnd.localexpert.v2.1+json]
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"fc3cfc51-b204-452f-9f02-37edce654b68","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"ff9bc90a-738c-4bd4-806f-3b89fecde875","partnerSaleId":"938","utcHoldExpiration":1,"additionalCriteria":[[]]}]] 
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[DELETE]URL:[http://phpstack-193487-574768.cloudwaysapps.com/supplierBranches/woi/sales/938]
+	RequestHeaders:["x-request-identifier=6a9e8751-31fd-490d-bb84-d57715838a2d"; "x-request-authentication=yJNFU6In4zxGayrvqMnIv1drmPy9Bec68tXNwkmsrWQ="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Server=nginx"; "Date=Sat, 06 Oct 2018 16:46:10 GMT"; "Content-Type=text/html; charset=UTF-8"; "Content-Length=107"; "Connection=keep-alive"; "Vary=Accept-Encoding, Accept-Encoding"; "Age=0"; "X-Cache=MISS"; "Accept-Ranges=bytes"; "X-Robots-Tag=noindex, nofollow"] 
+	ResponseContentType:[text/html; charset=UTF-8]
+	ResponseBody:[How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdDelete as a DELETE method ?]] 
+  + Test Response Mapping 
+  - Http StatusCode should be 200
+  - Response time should be within the maximum allowed response time. ReleaseSale calls are required to be within 500 milliseconds
+  - Response Body should map to the valid Json Model of type: ReleaseSale' *** FAILED ***
+    com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'How': was expecting ('true', 'false' or 'null')
+ at [Source: java.io.StringReader@41de5768; line: 1, column: 4]
+    at com.fasterxml.jackson.core.JsonParser._constructError(JsonParser.java:1524)
+    at com.fasterxml.jackson.core.base.ParserMinimalBase._reportError(ParserMinimalBase.java:557)
+    at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._reportInvalidToken(ReaderBasedJsonParser.java:2042)
+    at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._handleOddValue(ReaderBasedJsonParser.java:1412)
+    at com.fasterxml.jackson.core.json.ReaderBasedJsonParser.nextToken(ReaderBasedJsonParser.java:679)
+    at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:3031)
+    at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:2978)
+    at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2098)
+    at org.json4s.jackson.JsonMethods$class.parse(JsonMethods.scala:20)
+    at org.json4s.jackson.JsonMethods$.parse(JsonMethods.scala:50)
+    ...
+    Response Body Tests
+    - Bad Response *** FAILED ***
+      Response Body is not in the Correct format. ContentType: text/html; charset=UTF-8 
+       Exception: Unrecognized token 'How': was expecting ('true', 'false' or 'null')
+       at [Source: java.io.StringReader@5f577419; line: 1, column: 4] 
+       Response Body: How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdDelete as a DELETE method ? (ReleaseSaleTests.scala:114)
+  SaleNotFound
+  - Skipping the required AVT Release Sale Test [SaleNotFound]. !!! IGNORED !!!
 GetSaleTestSuite:
 GetSale
   BaseTest
@@ -6,47 +192,153 @@ GetSale
     + Sending Create Sale POST Request and validating Create Sale Response 
     + Test Request 
     + Sending Request: 
-	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales]
-	RequestHeaders:["x-request-identifier=69ec98a5-72d8-4301-9211-0d50e081a44e"; "x-request-authentication=xIoLt8rNatrP0IbNaZl+JOkLK6r78Eq5ESPe6lU5yEc="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"referenceId":"a3c50b95-e751-4f18-b881-dccde6a6b1de","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
-    - Create Sale Failure *** FAILED ***
-      Create Sale failed therefore a Get Sale cannot be tested. Exception message: Create Sale failed due to: Exception thrown during POST request. Exception message: HTTP Request timed out after 5 seconds. (GetSaleTestSuite.scala:66)
-  PerGroupVBP
-  + Sending Create Sale POST Request and validating Create Sale Response 
-  + Sending Create Sale POST Request and validating Create Sale Response 
-  + Test Request 
-  + Sending Request: 
-	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/4246/sales]
-	RequestHeaders:["x-request-identifier=d11181d5-e7f3-4d2f-bae6-4158852d0021"; "x-request-authentication=qS/dPC36zl02alYwToznO2C/C8cOl45T60VwWarOqvQ="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"referenceId":"681da8f5-5d96-42cf-9e3d-9d12c6660f50","partnerActivityId":"83","partnerOfferId":"t540-60","localDate":"2020-01-01","ticketTypes":[{"partnerTicketTypeId":"qty","count":1,"travelerCount":5,"voucherCount":1}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
-  + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Wed, 26 Sep 2018 03:36:02 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=264"; "Keep-Alive=timeout=5, max=100"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	RequestDetails[Method:[POST]URL:[http://phpstack-193487-574768.cloudwaysapps.com/supplierBranches/woi/sales]
+	RequestHeaders:["x-request-identifier=9ac04b40-68d3-4993-800b-d45746c0c04c"; "x-request-authentication=Ee6ly60qzDkhql7wHkf1wdMNDBN847JBSGFH817iaWo="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"referenceId":"3fe3886c-c4d2-4733-aea3-0c211af7288e","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
+    + Received Response: 
+	ResponseDetails[ResponseHeaders:["Server=nginx"; "Date=Sat, 06 Oct 2018 16:46:12 GMT"; "Content-Type=application/vnd.localexpert.v2.1+json"; "Content-Length=263"; "Connection=keep-alive"; "Age=0"; "X-Cache=MISS"; "Accept-Ranges=bytes"; "X-Robots-Tag=noindex, nofollow"] 
 	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"d11181d5-e7f3-4d2f-bae6-4158852d0021","processingMilliseconds":100,"errorType":"PartnerActivityIdUnrecognized","errorMessage":"The Activity ID specified could not be found in the system or belongs to an inactive Activity."}}]] 
-  - Commit Sale Failure *** FAILED ***
-    Commit Sale failed therefore a Get Sale cannot be tested. Exception message: Commit Sale failed due to: Exception was thrown during createSale. Exception message: Create Sale failed due to: Response Body from Create Sale was converted into an Error Response when a valid response was expected. errorType: PartnerActivityIdUnrecognized errorMessage: The Activity ID specified could not be found in the system or belongs to an inactive Activity. (GetSaleTestSuite.scala:107)
-  SaleNotFound
-  + Test Request 
-  + Sending Request: 
-	RequestDetails[Method:[GET]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/6a846113-680a-4c78-bc98-ab0abc7eff93]
-	RequestHeaders:["x-request-identifier=1a2afb53-914d-476e-8485-0c3613db70dc"; "x-request-authentication=BA7jQSa08eH4U7F7zOYPu2Hpgwif6vQdc0o8iyTvHMg="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"9ac04b40-68d3-4993-800b-d45746c0c04c","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"3fe3886c-c4d2-4733-aea3-0c211af7288e","partnerSaleId":"939","utcHoldExpiration":1,"additionalCriteria":[[]]}]] 
+      Sending GetSale request post CreateSale
+      + Test Request 
+      + Sending Request: 
+	RequestDetails[Method:[GET]URL:[http://phpstack-193487-574768.cloudwaysapps.com/supplierBranches/woi/sales/939]
+	RequestHeaders:["x-request-identifier=04315a0e-5484-4b0c-8a39-905da056ed12"; "x-request-authentication=Ml/SObNe/KzgvjLZ9GekTH+kfCXcAYpoOgihDNitX8k="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
 	RequestBody:[]] 
-  + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Wed, 26 Sep 2018 03:36:04 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=460"; "Keep-Alive=timeout=5, max=99"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+      + Received Response: 
+	ResponseDetails[ResponseHeaders:["Server=nginx"; "Date=Sat, 06 Oct 2018 16:46:12 GMT"; "Content-Type=application/vnd.localexpert.v2.1+json"; "Content-Length=424"; "Connection=keep-alive"; "Age=0"; "X-Cache=MISS"; "Accept-Ranges=bytes"; "X-Robots-Tag=noindex, nofollow"] 
 	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"1a2afb53-914d-476e-8485-0c3613db70dc","processingMilliseconds":100},"partnerSupplierBranchId":"woi","partnerSaleId":"6a846113-680a-4c78-bc98-ab0abc7eff93","partnerSaleStatus":"OnHold","partnerBarcodeSymbology":"QRCode","partnerSaleBarcode":"","utcSaleRedemptionDateTime":100,"partnerTickets":{"ticketId":"","partnerTicketId":"","partnerTicketStatus":"OnHold","partnerTicketBarcode":"","utcTicketRedemptionDateTime":100}}]] 
-  + Test Response Mapping 
-  - Http StatusCode should be 200
-  - Response time should be within the maximum allowed response time. GetSale calls are required to be within 1000 milliseconds
-  - Response Body should map to an Error Type Response Model *** FAILED ***
-    Response Body could not be mapped to a valid Error Response Type. Keys may be incorrect. No constructor for type Manifest[GetSaleResponseBasic], JObject(List((responseHeader,JObject(List((requestIdentifier,JString(1a2afb53-914d-476e-8485-0c3613db70dc)), (processingMilliseconds,JInt(100))))), (partnerSupplierBranchId,JString(woi)), (partnerSaleId,JString(6a846113-680a-4c78-bc98-ab0abc7eff93)), (partnerSaleStatus,JString(OnHold)), (partnerBarcodeSymbology,JString(QRCode)), (partnerSaleBarcode,JString()), (utcSaleRedemptionDateTime,JInt(100)), (partnerTickets,JObject(List((ticketId,JString()), (partnerTicketId,JString()), (partnerTicketStatus,JString(OnHold)), (partnerTicketBarcode,JString()), (utcTicketRedemptionDateTime,JInt(100))))))) (SharedHttpTests.scala:182)
-    Response Body Tests
-    - Json Mapping Failure *** FAILED ***
-      Response Body tests were skipped due to a Json mapping exception. No usable value for responseHeader
-      No usable value for errorType
-      Did not find value which can be converted into java.lang.String (SharedHttpTests.scala:89)
-Run completed in 12 seconds, 823 milliseconds.
-Total number of tests run: 6
-Suites: completed 1, aborted 0
-Tests: succeeded 2, failed 4, canceled 0, ignored 0, pending 0
-*** 4 TESTS FAILED ***
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"04315a0e-5484-4b0c-8a39-905da056ed12","processingMilliseconds":100},"partnerSupplierBranchId":"woi","partnerSaleId":"","partnerSaleStatus":"OnHold","partnerBarcodeSymbology":"QRCode","partnerSaleBarcode":"","utcSaleRedemptionDateTime":"","partnerTickets":[{"ticketId":"","partnerTicketId":"","partnerTicketStatus":"OnHold","partnerTicketBarcode":"","utcTicketRedemptionDateTime":""}]}]] 
+      + Test Response Mapping 
+      - Http StatusCode should be 200
+      - Response time should be within the maximum allowed response time. GetSale calls are required to be within 1000 milliseconds
+      - Response Body should map to the valid Json Model of type: GetSale' *** FAILED ***
+        Failed to map response. A value may be of an incorrect type. Exception: dateTime field could not be parsed to a dateTime from utcTicketRedemptionDateTime value: , 
+        dateTime field could not be parsed to a dateTime from utcSaleRedemptionDateTime value: . 
+         ResponseBody: {"responseHeader":{"requestIdentifier":"04315a0e-5484-4b0c-8a39-905da056ed12","processingMilliseconds":100},"partnerSupplierBranchId":"woi","partnerSaleId":"","partnerSaleStatus":"OnHold","partnerBarcodeSymbology":"QRCode","partnerSaleBarcode":"","utcSaleRedemptionDateTime":"","partnerTickets":[{"ticketId":"","partnerTicketId":"","partnerTicketStatus":"OnHold","partnerTicketBarcode":"","utcTicketRedemptionDateTime":""}]} (SharedHttpTests.scala:159)
+        + Response Body Json keys match. 
+      + Response Body Tests 
+      - Json Mapping Failure *** FAILED ***
+        Response Body tests were skipped due to a Json mapping exception. dateTime field could not be parsed to a dateTime from utcTicketRedemptionDateTime value: , 
+        dateTime field could not be parsed to a dateTime from utcSaleRedemptionDateTime value: (GetSaleTests.scala:100)
+    + Sending Commit Sale PUT Request and validating Commit Sale Response 
+    + Test Request 
+    + Sending Request: 
+	RequestDetails[Method:[PUT]URL:[http://phpstack-193487-574768.cloudwaysapps.com/supplierBranches/woi/sales/939]
+	RequestHeaders:["x-request-identifier=b4acad24-eaf6-42d5-9560-e720ea4be243"; "x-request-authentication=zGDsyROI4KWWb2YBr299oQ4Yby+8hxcQABCJA+C3aE8="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"saleId":"3fe3886c-c4d2-4733-aea3-0c211af7288e","ticketIds":["9925743","9925744"],"tickets":[{"ticketId":"9925743","partnerTicketTypeId":"adult"},{"ticketId":"9925744","partnerTicketTypeId":"adult"}]}]] 
+    + Received Response: 
+	ResponseDetails[ResponseHeaders:["Server=nginx"; "Date=Sat, 06 Oct 2018 16:46:12 GMT"; "Content-Type=text/html; charset=UTF-8"; "Content-Length=101"; "Connection=keep-alive"; "Vary=Accept-Encoding, Accept-Encoding"; "Age=0"; "X-Cache=MISS"; "Accept-Ranges=bytes"; "X-Robots-Tag=noindex, nofollow"] 
+	ResponseContentType:[text/html; charset=UTF-8]
+	ResponseBody:[How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdPut as a PUT method ?]] 
+    - Commit Sale Failure *** FAILED ***
+      Commit Sale failed therefore a Get Sale cannot be tested. Exception message: Commit Sale failed due to: Exception was thrown during mapping the response model. This is most likely caused by invalid content-type or an empty response body. Exception message: Unrecognized token 'How': was expecting ('true', 'false' or 'null')
+       at [Source: java.io.StringReader@67427b69; line: 1, column: 4] (GetSaleTestSuite.scala:70)
+  PerGroupVBP
+  - Skipping the optional AVT Get Sale Test [PerGroupVBP]. !!! IGNORED !!!
+  SaleNotFound
+  - Skipping the required AVT Get Sale Test [SaleNotFound]. !!! IGNORED !!!
+CreateCancellationTestSuite:
+CreateSaleCancellation
+  BaseTest
+  + Sending Create Sale POST Request and validating Create Sale Response 
+  + Sending Create Sale POST Request and validating Create Sale Response 
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[POST]URL:[http://phpstack-193487-574768.cloudwaysapps.com/supplierBranches/woi/sales]
+	RequestHeaders:["x-request-identifier=c84999a1-6c1e-4749-b835-ca4e6c4c2baa"; "x-request-authentication=DRQkv4YMhbA6EL9y07hPVojdynYY06C995N8U4OHIJc="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"referenceId":"0f62026f-6e7f-4dbf-b523-d944d472c5da","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":5,"travelerCount":5,"voucherCount":5}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Server=nginx"; "Date=Sat, 06 Oct 2018 16:46:12 GMT"; "Content-Type=application/vnd.localexpert.v2.1+json"; "Content-Length=263"; "Connection=keep-alive"; "Age=0"; "X-Cache=MISS"; "Accept-Ranges=bytes"; "X-Robots-Tag=noindex, nofollow"] 
+	ResponseContentType:[application/vnd.localexpert.v2.1+json]
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"c84999a1-6c1e-4749-b835-ca4e6c4c2baa","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"0f62026f-6e7f-4dbf-b523-d944d472c5da","partnerSaleId":"940","utcHoldExpiration":1,"additionalCriteria":[[]]}]] 
+  + Sending Commit Sale PUT Request and validating Commit Sale Response 
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[PUT]URL:[http://phpstack-193487-574768.cloudwaysapps.com/supplierBranches/woi/sales/940]
+	RequestHeaders:["x-request-identifier=cf07d7f7-d0e8-4943-b971-21af1dbe03d8"; "x-request-authentication=xBTWqwMU10epWc6DBbN+LDz01jtbw0eP5/lsc8wxYZE="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"saleId":"0f62026f-6e7f-4dbf-b523-d944d472c5da","ticketIds":["81209540","81209542","81209538","81209539","81209541"],"tickets":[{"ticketId":"81209540","partnerTicketTypeId":"adult"},{"ticketId":"81209539","partnerTicketTypeId":"adult"},{"ticketId":"81209542","partnerTicketTypeId":"adult"},{"ticketId":"81209541","partnerTicketTypeId":"adult"},{"ticketId":"81209538","partnerTicketTypeId":"adult"}]}]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Server=nginx"; "Date=Sat, 06 Oct 2018 16:46:12 GMT"; "Content-Type=text/html; charset=UTF-8"; "Content-Length=101"; "Connection=keep-alive"; "Vary=Accept-Encoding, Accept-Encoding"; "Age=0"; "X-Cache=MISS"; "Accept-Ranges=bytes"; "X-Robots-Tag=noindex, nofollow"] 
+	ResponseContentType:[text/html; charset=UTF-8]
+	ResponseBody:[How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdPut as a PUT method ?]] 
+  - Commit Sale Failure during CreateSaleCancellation BaseTest *** FAILED ***
+    Commit Sale failed therefore a Create Cancellation cannot be tested. Exception message: Commit Sale failed due to: Exception was thrown during mapping the response model. This is most likely caused by invalid content-type or an empty response body. Exception message: Unrecognized token 'How': was expecting ('true', 'false' or 'null')
+     at [Source: java.io.StringReader@1cf2fed4; line: 1, column: 4] (CreateCancellationTestSuite.scala:75)
+  SaleNotFound
+  - Skipping the required AVT Create Sale Cancellation Test [SaleNotFound]. !!! IGNORED !!!
+  SaleNotCommitted
+  - Skipping the required AVT Create Sale Cancellation Test [SaleNotCommitted]. !!! IGNORED !!!
+  SaleNotCancellable
+  - Skipping the required AVT Create Sale Cancellation Test [SaleNotCancellable]. !!! IGNORED !!!
+CommitCancellationTestSuite:
+CommitSaleCancellation
+  BaseTest
+  + Sending Create Sale POST Request first and then Commit Sale PUT Request 
+  + Sending Create Sale POST Request and validating Create Sale Response 
+  + Sending Create Sale POST Request and validating Create Sale Response 
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[POST]URL:[http://phpstack-193487-574768.cloudwaysapps.com/supplierBranches/woi/sales]
+	RequestHeaders:["x-request-identifier=b077a857-0ab0-4da6-8bf7-a8e09338dc68"; "x-request-authentication=1h1azahAm8D2IUPDL5KpkUTIUluUw2OzAN0cybBmdFc="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"referenceId":"30fcde74-5321-44b7-95dc-a40bc96ece8d","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":50,"additionalCriteria":[]}]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Server=nginx"; "Date=Sat, 06 Oct 2018 16:46:13 GMT"; "Content-Type=application/vnd.localexpert.v2.1+json"; "Content-Length=263"; "Connection=keep-alive"; "Age=0"; "X-Cache=MISS"; "Accept-Ranges=bytes"; "X-Robots-Tag=noindex, nofollow"] 
+	ResponseContentType:[application/vnd.localexpert.v2.1+json]
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"b077a857-0ab0-4da6-8bf7-a8e09338dc68","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"30fcde74-5321-44b7-95dc-a40bc96ece8d","partnerSaleId":"941","utcHoldExpiration":1,"additionalCriteria":[[]]}]] 
+  + Sending Commit Sale PUT Request and validating Commit Sale Response 
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[PUT]URL:[http://phpstack-193487-574768.cloudwaysapps.com/supplierBranches/woi/sales/941]
+	RequestHeaders:["x-request-identifier=a0ed63ee-7b6e-4ced-936d-2b43e21824c8"; "x-request-authentication=PDuck01emVCRCzl0w4I58w9q4FxACJxnMx9apmjsSpI="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"saleId":"30fcde74-5321-44b7-95dc-a40bc96ece8d","ticketIds":["18592391","18592392"],"tickets":[{"ticketId":"18592391","partnerTicketTypeId":"adult"},{"ticketId":"18592392","partnerTicketTypeId":"adult"}]}]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Server=nginx"; "Date=Sat, 06 Oct 2018 16:46:13 GMT"; "Content-Type=text/html; charset=UTF-8"; "Content-Length=101"; "Connection=keep-alive"; "Vary=Accept-Encoding, Accept-Encoding"; "Age=0"; "X-Cache=MISS"; "Accept-Ranges=bytes"; "X-Robots-Tag=noindex, nofollow"] 
+	ResponseContentType:[text/html; charset=UTF-8]
+	ResponseBody:[How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdPut as a PUT method ?]] 
+  - Create Cancellation Failure during CommitSaleCancellation BaseTest *** FAILED ***
+    Create Cancellation failed therefore a Commit Cancellation cannot be tested. Exception message: Create Cancellation failed due to: Exception was thrown during commitSale. Exception message: Commit Sale failed due to: Exception was thrown during mapping the response model. This is most likely caused by invalid content-type or an empty response body. Exception message: Unrecognized token 'How': was expecting ('true', 'false' or 'null')
+     at [Source: java.io.StringReader@579d011c; line: 1, column: 4] (CommitCancellationTestSuite.scala:53)
+  SaleNotFound
+  - Skipping the required AVT Commit Sale Cancellation Test [SaleNotFound]. !!! IGNORED !!!
+  CancellationNotCreated
+  - Skipping the required AVT Commit Sale Cancellation Test [CancellationNotCreated]. !!! IGNORED !!!
+  SaleAlreadyCancelled
+  - Skipping the required AVT Commit Sale Cancellation Test [SaleAlreadyCancelled]. !!! IGNORED !!!
+ReleaseCancellationTestSuite:
+ReleaseSaleCancellation
+  BaseTest
+  + Sending Create Sale POST Request first and then Commit Sale PUT Request 
+  + Sending Create Sale POST Request and validating Create Sale Response 
+  + Sending Create Sale POST Request and validating Create Sale Response 
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[POST]URL:[http://phpstack-193487-574768.cloudwaysapps.com/supplierBranches/woi/sales]
+	RequestHeaders:["x-request-identifier=74fabf17-9c3e-4dde-b429-dd42072c838b"; "x-request-authentication=TaQ5YkhWswhpI7cdizAjPhtfchRqqIZfA9jXCcAILms="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"referenceId":"6de1d92a-106e-476e-93f1-e963893f4d9f","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Server=nginx"; "Date=Sat, 06 Oct 2018 16:46:13 GMT"; "Content-Type=application/vnd.localexpert.v2.1+json"; "Content-Length=263"; "Connection=keep-alive"; "Age=0"; "X-Cache=MISS"; "Accept-Ranges=bytes"; "X-Robots-Tag=noindex, nofollow"] 
+	ResponseContentType:[application/vnd.localexpert.v2.1+json]
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"74fabf17-9c3e-4dde-b429-dd42072c838b","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"6de1d92a-106e-476e-93f1-e963893f4d9f","partnerSaleId":"942","utcHoldExpiration":1,"additionalCriteria":[[]]}]] 
+  + Sending Commit Sale PUT Request and validating Commit Sale Response 
+  + Test Request 
+  + Sending Request: 
+	RequestDetails[Method:[PUT]URL:[http://phpstack-193487-574768.cloudwaysapps.com/supplierBranches/woi/sales/942]
+	RequestHeaders:["x-request-identifier=17e66b03-5160-4b1a-9606-8b3d1b08c947"; "x-request-authentication=dN/l1kHAl0TGV61DjNCxK308TUu+Rb/UaSWdpOxbBHg="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"saleId":"6de1d92a-106e-476e-93f1-e963893f4d9f","ticketIds":["58426825","58426826"],"tickets":[{"ticketId":"58426825","partnerTicketTypeId":"adult"},{"ticketId":"58426826","partnerTicketTypeId":"adult"}]}]] 
+  + Received Response: 
+	ResponseDetails[ResponseHeaders:["Server=nginx"; "Date=Sat, 06 Oct 2018 16:46:13 GMT"; "Content-Type=text/html; charset=UTF-8"; "Content-Length=101"; "Connection=keep-alive"; "Vary=Accept-Encoding, Accept-Encoding"; "Age=0"; "X-Cache=MISS"; "Accept-Ranges=bytes"; "X-Robots-Tag=noindex, nofollow"] 
+	ResponseContentType:[text/html; charset=UTF-8]
+	ResponseBody:[How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdPut as a PUT method ?]] 
+  - Create Cancellation Failure during ReleaseSaleCancellation BaseTest *** FAILED ***
+    Create Cancellation failed therefore a Release Cancellation cannot be tested. Exception message: Create Cancellation failed due to: Exception was thrown during commitSale. Exception message: Commit Sale failed due to: Exception was thrown during mapping the response model. This is most likely caused by invalid content-type or an empty response body. Exception message: Unrecognized token 'How': was expecting ('true', 'false' or 'null')
+     at [Source: java.io.StringReader@27cf3151; line: 1, column: 4] (ReleaseCancellationTestSuite.scala:43)
+  SaleNotFound
+  - Skipping the required AVT Release Sale Cancellation Test [SaleNotFound]. !!! IGNORED !!!
+  CancellationNotCreated
+  - Skipping the required AVT Release Sale Cancellation Test [CancellationNotCreated]. !!! IGNORED !!!
+Run completed in 10 seconds, 747 milliseconds.
+Total number of tests run: 35
+Suites: completed 8, aborted 0
+Tests: succeeded 20, failed 15, canceled 0, ignored 28, pending 0
+*** 15 TESTS FAILED ***
