@@ -63,7 +63,7 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
         
                  // $stmt = $db->prepare($sql);
 
-            $sql= "SELECT * FROM Sales where referenceId = '".$partnerSaleId."'";
+            $sql= "SELECT * FROM tickets where id_sales = '".$partnerSaleId."'";
             $stmt = $pdo->query($sql); 
             $row =$stmt->fetchObject();
 
@@ -100,16 +100,30 @@ $app->GET('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
                 );
                 echo "HOLAAAAAAAAAAAAAAAAAAa";
                 print_r($stmt);
-                foreach ($body['tickets'] as $valores) {
-                $elementos= array(
-                                'ticketId'=> $valores['ticketId'],
-                                'partnerTicketId'=> $valores['ticketId'],
+
+                while ($row = $stmt->fetch()) {
+                    // echo $row['ticket_id']."<br />\n";
+
+                    $elementos= array(
+                                'ticketId'=> $row['ticket_id'],
+                                'partnerTicketId'=> $row['ticket_id'],
                                 'partnerTicketStatus'=> 'Created',
                                 'partnerTicketBarcode'=> '',
                                 'utcTicketRedemptionDateTime'=> $time_elapsed_secs
                             );
                             array_push($data["partnerTickets"],$elementos);
                 }
+
+                // foreach ($body['tickets'] as $valores) {
+                // $elementos= array(
+                //                 'ticketId'=> $valores['ticketId'],
+                //                 'partnerTicketId'=> $valores['ticketId'],
+                //                 'partnerTicketStatus'=> 'Created',
+                //                 'partnerTicketBarcode'=> '',
+                //                 'utcTicketRedemptionDateTime'=> $time_elapsed_secs
+                //             );
+                //             array_push($data["partnerTickets"],$elementos);
+                // }
             }
 
 
@@ -818,7 +832,7 @@ $app->PUT('/supplierBranches/{partnerSupplierBranchId}/sales/{partnerSaleId}', f
     $partnerSupplierBranchId = $request->getAttribute('partnerSupplierBranchId');
     $partnerSaleId = $request->getAttribute('partnerSaleId');
     $body = $request->getParsedBody();
-    
+    print_r($request->getParsedBody());
      //print_r($body);
     
 

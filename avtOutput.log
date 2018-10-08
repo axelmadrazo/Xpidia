@@ -1,16 +1,16 @@
-Run starting. Expected test count is: 59
+Run starting. Expected test count is: 56
 AvailabilityTestSuite:
 CheckAvailability
   BaseTest
   + Test Request 
   + Sending Request: 
 	RequestDetails[Method:[GET]URL:[http://localhost:81/Xpidia/supplierBranches/woi/activities/291957W3/offers/391472W3025/availability?localDateRangeStart=2017-03-21&localDateRangeEnd=2017-03-21&minimumAccuracy=Exact]
-	RequestHeaders:["x-request-identifier=98e4a941-2ce5-4b80-864f-527ea3a920ae"; "x-request-authentication=LIcReG+n/F8ZEGuCWk3TtF2+GmtILL5QxJS9mdl9jxI="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestHeaders:["x-request-identifier=37f09d00-8ed3-4315-a5e4-8d798f4926d6"; "x-request-authentication=mOTCz1byfWtGm8v2b8y2zpLd20VlcavTL2w51A+UcW8="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
 	RequestBody:[]] 
   + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:33:58 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=316"; "Keep-Alive=timeout=5, max=100"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseDetails[ResponseHeaders:["Date=Mon, 08 Oct 2018 01:09:45 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=316"; "Keep-Alive=timeout=5, max=100"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
 	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"98e4a941-2ce5-4b80-864f-527ea3a920ae","processingMilliseconds":100},"partnerSupplierBranchId":"woi","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","availability":[{"localDate":"2017-03-21","accuracy":"Exact","status":"Available","availabilityType":"freesell"}]}]] 
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"37f09d00-8ed3-4315-a5e4-8d798f4926d6","processingMilliseconds":100},"partnerSupplierBranchId":"woi","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","availability":[{"localDate":"2017-03-21","accuracy":"Exact","status":"Available","availabilityType":"freesell"}]}]] 
   + Test Response Mapping 
   - Http StatusCode should be 200
   - Response time should be within the maximum allowed response time. Availability calls are required to be within 500 milliseconds
@@ -53,15 +53,16 @@ CreateSale
   + Test Request 
   + Sending Request: 
 	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales]
-	RequestHeaders:["x-request-identifier=f8809d11-e19c-498c-9a09-623096c1cf75"; "x-request-authentication=24HWfErpjxoQ2hbmJ8g0utzpdaRxCbeDdP3GfBFy8TE="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"referenceId":"3a9af6fa-9c0b-4424-9d27-14e9a3dfe5e9","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst-Jar-1","lastName":"NameLast-Jar-1"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
+	RequestHeaders:["x-request-identifier=28333473-9f55-4880-a333-abe3a9e215df"; "x-request-authentication=J//wYdNuZZo0il/wHE2oJiIpzIM8W3/GICoaR468q9U="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"referenceId":"72796b03-47b6-447d-8acb-ff748ff20e3f","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst-Jar-1","lastName":"NameLast-Jar-1"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
   + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:34:00 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=270"; "Keep-Alive=timeout=5, max=99"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseDetails[ResponseHeaders:["Date=Mon, 08 Oct 2018 01:09:47 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=270"; "Keep-Alive=timeout=5, max=99"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
 	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"f8809d11-e19c-498c-9a09-623096c1cf75","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"3a9af6fa-9c0b-4424-9d27-14e9a3dfe5e9","partnerSaleId":"1227","utcHoldExpiration":"2019-10-06T17:13:21.207Z","0":[]}]] 
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"28333473-9f55-4880-a333-abe3a9e215df","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"72796b03-47b6-447d-8acb-ff748ff20e3f","partnerSaleId":"1276","utcHoldExpiration":"2019-10-06T17:13:21.207Z","0":[]}]] 
   + Test Response Mapping 
   - Http StatusCode should be 200
-  - Response time should be within the maximum allowed response time. CreateSale calls are required to be within 2400 milliseconds
+  - Response time should be within the maximum allowed response time. CreateSale calls are required to be within 2400 milliseconds *** FAILED ***
+    Actual response time for CreateSale test was: 2453, which is not within 2400 milliseconds (SharedHttpTests.scala:207)
   - Response Body should map to the valid Json Model of type: CreateSale'
     + Response Body Json keys match. 
     + Response Body completely maps to the correct JsonBody of: CreateSale 
@@ -92,24 +93,51 @@ CommitSale
   + Test Request 
   + Sending Request: 
 	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales]
-	RequestHeaders:["x-request-identifier=d5046c25-4fb5-4e0c-a53c-05f72cef8b89"; "x-request-authentication=Dcor8SuDf2VDfh8vzOXXC2Nh4pM8jd3x1Pn3mKYVh+4="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"referenceId":"26f1837d-c1ea-44f4-a36a-5d7416faeb05","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":0,"additionalCriteria":[]}]] 
+	RequestHeaders:["x-request-identifier=09a72ed0-c212-4b43-9cce-8a19d09a0fc0"; "x-request-authentication=i4IUzAZE/oNBJLqa/lcpdX7bueAGblNG2px3rKMRiT8="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"referenceId":"df7c50c2-0c2e-41cb-8d14-dd58639af9e3","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":0,"additionalCriteria":[]}]] 
   + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:34:01 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=270"; "Keep-Alive=timeout=5, max=98"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseDetails[ResponseHeaders:["Date=Mon, 08 Oct 2018 01:09:50 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=270"; "Keep-Alive=timeout=5, max=98"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
 	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"d5046c25-4fb5-4e0c-a53c-05f72cef8b89","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"26f1837d-c1ea-44f4-a36a-5d7416faeb05","partnerSaleId":"1228","utcHoldExpiration":"2019-10-06T17:13:21.207Z","0":[]}]] 
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"09a72ed0-c212-4b43-9cce-8a19d09a0fc0","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"df7c50c2-0c2e-41cb-8d14-dd58639af9e3","partnerSaleId":"1277","utcHoldExpiration":"2019-10-06T17:13:21.207Z","0":[]}]] 
   + Test Request 
   + Sending Request: 
-	RequestDetails[Method:[PUT]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1228]
-	RequestHeaders:["x-request-identifier=17371d7a-eb3e-4c75-b2db-a47dbb594b51"; "x-request-authentication=fBa/2KMaS7R3pvbcqWikUEJsp1Ps4CAmgG8z1Vfb18w="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"saleId":"26f1837d-c1ea-44f4-a36a-5d7416faeb05","ticketIds":["84162312","84162313"],"tickets":[{"ticketId":"84162312","partnerTicketTypeId":"adult"},{"ticketId":"84162313","partnerTicketTypeId":"adult"}]}]] 
+	RequestDetails[Method:[PUT]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1277]
+	RequestHeaders:["x-request-identifier=813766a2-9e20-425e-88be-0009b8af2c16"; "x-request-authentication=zAynDJcJvGbeQHBjWllAXPeBmozcCbfTchoRPSaLKcw="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"saleId":"df7c50c2-0c2e-41cb-8d14-dd58639af9e3","ticketIds":["40775358","40775359"],"tickets":[{"ticketId":"40775358","partnerTicketTypeId":"adult"},{"ticketId":"40775359","partnerTicketTypeId":"adult"}]}]] 
   + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:34:01 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=596"; "Keep-Alive=timeout=5, max=97"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseDetails[ResponseHeaders:["Date=Mon, 08 Oct 2018 01:09:51 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=1117"; "Keep-Alive=timeout=5, max=97"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
 	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"17371d7a-eb3e-4c75-b2db-a47dbb594b51","processingMilliseconds":500},"partnerSupplierBranchId":"woi","partnerSaleId":"1228","partnerSaleStatus":"Created","partnerBarcodeSymbology":"QRCode","partnerSaleBarcode":"","utcSaleRedemptionDateTime":"","partnerTickets":[{"ticketId":"84162312","partnerTicketId":"84162312","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"},{"ticketId":"84162313","partnerTicketId":"84162313","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"}]}]] 
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"813766a2-9e20-425e-88be-0009b8af2c16","processingMilliseconds":500},"partnerSupplierBranchId":"woi","partnerSaleId":"1277","partnerSaleStatus":"Created","partnerBarcodeSymbology":"QRCode","partnerSaleBarcode":"","utcSaleRedemptionDateTime":"","partnerTickets":[{"ticketId":"40775358","partnerTicketId":"40775358","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"},{"ticketId":"40775359","partnerTicketId":"40775359","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"}]}Array
+(
+    [saleId] => df7c50c2-0c2e-41cb-8d14-dd58639af9e3
+    [ticketIds] => Array
+        (
+            [0] => 40775358
+            [1] => 40775359
+        )
+
+    [tickets] => Array
+        (
+            [0] => Array
+                (
+                    [ticketId] => 40775358
+                    [partnerTicketTypeId] => adult
+                )
+
+            [1] => Array
+                (
+                    [ticketId] => 40775359
+                    [partnerTicketTypeId] => adult
+                )
+
+        )
+
+)
+]] 
   + Test Response Mapping 
   - Http StatusCode should be 200
-  - Response time should be within the maximum allowed response time. CommitSale calls are required to be within 2400 milliseconds
+  - Response time should be within the maximum allowed response time. CommitSale calls are required to be within 2400 milliseconds *** FAILED ***
+    Actual response time for CommitSale test was: 3370, which is not within 2400 milliseconds (SharedHttpTests.scala:207)
   - Response Body should map to the valid Json Model of type: CommitSale'
     + Response Body Json keys match. 
     + Response Body completely maps to the correct JsonBody of: CommitSale 
@@ -137,34 +165,34 @@ ReleaseSale
   + Test Request 
   + Sending Request: 
 	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales]
-	RequestHeaders:["x-request-identifier=639d9a69-703f-4d1f-a504-c5a57826424c"; "x-request-authentication=jWCuKZfBHKK9O+moxEmwomhuFQz14nIULnBFcJy6XMg="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"referenceId":"d919191d-b2cb-462e-acc1-df7c3c732027","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
+	RequestHeaders:["x-request-identifier=f5e610f3-013d-4bee-8e0c-a2d2e5564747"; "x-request-authentication=Oxys9+c1vxVDHpvnsvjWtd7qKxFfW0paFL2Dg8815lA="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"referenceId":"615f8239-3f77-4a02-bba2-6ea14c81be4b","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
   + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:34:02 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=270"; "Keep-Alive=timeout=5, max=96"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseDetails[ResponseHeaders:["Date=Mon, 08 Oct 2018 01:09:54 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=270"; "Keep-Alive=timeout=5, max=96"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
 	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"639d9a69-703f-4d1f-a504-c5a57826424c","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"d919191d-b2cb-462e-acc1-df7c3c732027","partnerSaleId":"1229","utcHoldExpiration":"2019-10-06T17:13:21.207Z","0":[]}]] 
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"f5e610f3-013d-4bee-8e0c-a2d2e5564747","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"615f8239-3f77-4a02-bba2-6ea14c81be4b","partnerSaleId":"1278","utcHoldExpiration":"2019-10-06T17:13:21.207Z","0":[]}]] 
   + Test Request 
   + Sending Request: 
-	RequestDetails[Method:[DELETE]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1229]
-	RequestHeaders:["x-request-identifier=7a4e0ce5-4f0f-40fa-8e93-e45d9ad6aac8"; "x-request-authentication=KCyD9MY4H2+qTuk+XV6F/Iq24bSNBLPWeWJkYHmYC90="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestDetails[Method:[DELETE]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1278]
+	RequestHeaders:["x-request-identifier=f4d4df4c-59bc-4b55-b5d0-79802ff7590b"; "x-request-authentication=N3w8HexceAs5r6/fqMyAjDqNmqmhjHb2g6BZSUZvtmE="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
 	RequestBody:[]] 
   + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:34:03 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=676"; "Keep-Alive=timeout=5, max=95"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseDetails[ResponseHeaders:["Date=Mon, 08 Oct 2018 01:09:56 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=676"; "Keep-Alive=timeout=5, max=95"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
 	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"7a4e0ce5-4f0f-40fa-8e93-e45d9ad6aac8","processingMilliseconds":null},"partnerSupplierBranchId":null,"partnerSaleId":"","partnerSaleStatus":"","partnerBarcodeSymbology":"","partnerSaleBarcode":"","utcSaleRedemptionDateTime":"","partnerTickets":{"ticketId":"","partnerTicketId":"","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"100"}}<br />
-<b>Notice</b>:  Undefined variable: time_elapsed_secs in <b>C:\laragon\www\Xpidia\index.php</b> on line <b>726</b><br />
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"f4d4df4c-59bc-4b55-b5d0-79802ff7590b","processingMilliseconds":null},"partnerSupplierBranchId":null,"partnerSaleId":"","partnerSaleStatus":"","partnerBarcodeSymbology":"","partnerSaleBarcode":"","utcSaleRedemptionDateTime":"","partnerTickets":{"ticketId":"","partnerTicketId":"","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"100"}}<br />
+<b>Notice</b>:  Undefined variable: time_elapsed_secs in <b>C:\laragon\www\Xpidia\index.php</b> on line <b>740</b><br />
 <br />
-<b>Notice</b>:  Undefined variable: partnerSupplierBranchId in <b>C:\laragon\www\Xpidia\index.php</b> on line <b>728</b><br />
+<b>Notice</b>:  Undefined variable: partnerSupplierBranchId in <b>C:\laragon\www\Xpidia\index.php</b> on line <b>742</b><br />
 ]] 
   + Test Response Mapping 
   - Http StatusCode should be 200
   - Response time should be within the maximum allowed response time. ReleaseSale calls are required to be within 500 milliseconds
   - Response Body should map to the valid Json Model of type: ReleaseSale' *** FAILED ***
     Failed to map response. A value may be of an incorrect type. Exception: Response Header could not be mapped correctly. 'processingMilliseconds' value could not be converted to a long from processingMilliseconds could not be converted to a long. Response processingMilliseconds: null. 
-     ResponseBody: {"responseHeader":{"requestIdentifier":"7a4e0ce5-4f0f-40fa-8e93-e45d9ad6aac8","processingMilliseconds":null},"partnerSupplierBranchId":null,"partnerSaleId":"","partnerSaleStatus":"","partnerBarcodeSymbology":"","partnerSaleBarcode":"","utcSaleRedemptionDateTime":"","partnerTickets":{"ticketId":"","partnerTicketId":"","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"100"}}<br />
-    <b>Notice</b>:  Undefined variable: time_elapsed_secs in <b>C:\laragon\www\Xpidia\index.php</b> on line <b>726</b><br />
+     ResponseBody: {"responseHeader":{"requestIdentifier":"f4d4df4c-59bc-4b55-b5d0-79802ff7590b","processingMilliseconds":null},"partnerSupplierBranchId":null,"partnerSaleId":"","partnerSaleStatus":"","partnerBarcodeSymbology":"","partnerSaleBarcode":"","utcSaleRedemptionDateTime":"","partnerTickets":{"ticketId":"","partnerTicketId":"","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"100"}}<br />
+    <b>Notice</b>:  Undefined variable: time_elapsed_secs in <b>C:\laragon\www\Xpidia\index.php</b> on line <b>740</b><br />
     <br />
-    <b>Notice</b>:  Undefined variable: partnerSupplierBranchId in <b>C:\laragon\www\Xpidia\index.php</b> on line <b>728</b><br /> (SharedHttpTests.scala:159)
+    <b>Notice</b>:  Undefined variable: partnerSupplierBranchId in <b>C:\laragon\www\Xpidia\index.php</b> on line <b>742</b><br /> (SharedHttpTests.scala:159)
     + Response Body Json keys match. 
     Response Body Tests
     - Json Mapping Failure *** FAILED ***
@@ -179,31 +207,30 @@ GetSale
     + Test Request 
     + Sending Request: 
 	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales]
-	RequestHeaders:["x-request-identifier=0edeb7c1-4133-4a98-8247-5ee6e249eea5"; "x-request-authentication=GMOTRefwVD7aDoOn2T2izMuP/8qDlLgTlD3xcj3teoM="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"referenceId":"0999be6a-4fb6-4a1d-9c56-24bc22943477","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
+	RequestHeaders:["x-request-identifier=c4f8fc78-f75e-48b9-b252-8e65c4c36887"; "x-request-authentication=o1FhIb/KEK4FFHRBxYVCyJu3HdzTDbJlhj409RAXsnI="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"referenceId":"6c0e8c10-49fc-439e-ab6c-255c7fdbaa95","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
     + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:34:03 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=270"; "Keep-Alive=timeout=5, max=94"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseDetails[ResponseHeaders:["Date=Mon, 08 Oct 2018 01:09:56 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=270"; "Keep-Alive=timeout=5, max=94"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
 	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"0edeb7c1-4133-4a98-8247-5ee6e249eea5","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"0999be6a-4fb6-4a1d-9c56-24bc22943477","partnerSaleId":"1230","utcHoldExpiration":"2019-10-06T17:13:21.207Z","0":[]}]] 
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"c4f8fc78-f75e-48b9-b252-8e65c4c36887","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"6c0e8c10-49fc-439e-ab6c-255c7fdbaa95","partnerSaleId":"1279","utcHoldExpiration":"2019-10-06T17:13:21.207Z","0":[]}]] 
       Sending GetSale request post CreateSale
       + Test Request 
       + Sending Request: 
-	RequestDetails[Method:[GET]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1230]
-	RequestHeaders:["x-request-identifier=515136b1-72b3-486a-878b-2322f663c189"; "x-request-authentication=n/indHipu51lxlrc+LDfRiimk43z/NJIGJkrpZ9X1Zw="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestDetails[Method:[GET]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1279]
+	RequestHeaders:["x-request-identifier=ac52ed54-6cc6-41db-8ad5-2341b835b407"; "x-request-authentication=6q5gzyIWvYKJ27qn8DRvJWOZOMIwWCdvCpft8pvGSRY="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
 	RequestBody:[]] 
       + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:34:04 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=549"; "Keep-Alive=timeout=5, max=93"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseDetails[ResponseHeaders:["Date=Mon, 08 Oct 2018 01:09:59 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=417"; "Keep-Alive=timeout=5, max=93"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
 	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"515136b1-72b3-486a-878b-2322f663c189","processingMilliseconds":100},"partnerSupplierBranchId":"woi","partnerSaleId":"1230","partnerSaleStatus":"Created","partnerBarcodeSymbology":"QRCode","partnerSaleBarcode":"","utcSaleRedemptionDateTime":100,"partnerTickets":[]}HOLAAAAAAAAAAAAAAAAAAaPDOStatement Object
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"ac52ed54-6cc6-41db-8ad5-2341b835b407","processingMilliseconds":100},"partnerSupplierBranchId":"woi","partnerSaleId":"1279","partnerSaleStatus":"Created","partnerBarcodeSymbology":"QRCode","partnerSaleBarcode":"","utcSaleRedemptionDateTime":100,"partnerTickets":[]}HOLAAAAAAAAAAAAAAAAAAaPDOStatement Object
 (
-    [queryString] => SELECT * FROM Sales where referenceId = '1230'
+    [queryString] => SELECT * FROM tickets where id_sales = '1279'
 )
-<br />
-<b>Warning</b>:  Invalid argument supplied for foreach() in <b>C:\laragon\www\Xpidia\index.php</b> on line <b>103</b><br />
 ]] 
       + Test Response Mapping 
       - Http StatusCode should be 200
-      - Response time should be within the maximum allowed response time. GetSale calls are required to be within 1000 milliseconds
+      - Response time should be within the maximum allowed response time. GetSale calls are required to be within 1000 milliseconds *** FAILED ***
+        Actual response time for GetSale test was: 1554, which is not within 1000 milliseconds (SharedHttpTests.scala:207)
       - Response Body should map to the valid Json Model of type: GetSale'
         + Response Body Json keys match. 
         + Response Body completely maps to the correct JsonBody of: GetSale 
@@ -219,28 +246,52 @@ GetSale
     + Sending Commit Sale PUT Request and validating Commit Sale Response 
     + Test Request 
     + Sending Request: 
-	RequestDetails[Method:[PUT]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1230]
-	RequestHeaders:["x-request-identifier=ed556302-f040-4f29-8f6d-2ee1b0b64e2b"; "x-request-authentication=Jb5Y1U2l34c2qVnNARPyU6/N39jqgU3CQCdyRawJG+A="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"saleId":"0999be6a-4fb6-4a1d-9c56-24bc22943477","ticketIds":["35858947","35858948"],"tickets":[{"ticketId":"35858947","partnerTicketTypeId":"adult"},{"ticketId":"35858948","partnerTicketTypeId":"adult"}]}]] 
+	RequestDetails[Method:[PUT]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1279]
+	RequestHeaders:["x-request-identifier=3aeccb6a-22d5-48cd-b330-8c66af6ade93"; "x-request-authentication=DPYQDN31r8DVD4vbaEBzSed+4vPxO8y4wKGrGZrqteY="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"saleId":"6c0e8c10-49fc-439e-ab6c-255c7fdbaa95","ticketIds":["49563836","49563837"],"tickets":[{"ticketId":"49563836","partnerTicketTypeId":"adult"},{"ticketId":"49563837","partnerTicketTypeId":"adult"}]}]] 
     + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:34:04 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=596"; "Keep-Alive=timeout=5, max=92"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseDetails[ResponseHeaders:["Date=Mon, 08 Oct 2018 01:10:00 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=1117"; "Keep-Alive=timeout=5, max=92"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
 	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"ed556302-f040-4f29-8f6d-2ee1b0b64e2b","processingMilliseconds":500},"partnerSupplierBranchId":"woi","partnerSaleId":"1230","partnerSaleStatus":"Created","partnerBarcodeSymbology":"QRCode","partnerSaleBarcode":"","utcSaleRedemptionDateTime":"","partnerTickets":[{"ticketId":"35858947","partnerTicketId":"35858947","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"},{"ticketId":"35858948","partnerTicketId":"35858948","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"}]}]] 
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"3aeccb6a-22d5-48cd-b330-8c66af6ade93","processingMilliseconds":500},"partnerSupplierBranchId":"woi","partnerSaleId":"1279","partnerSaleStatus":"Created","partnerBarcodeSymbology":"QRCode","partnerSaleBarcode":"","utcSaleRedemptionDateTime":"","partnerTickets":[{"ticketId":"49563836","partnerTicketId":"49563836","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"},{"ticketId":"49563837","partnerTicketId":"49563837","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"}]}Array
+(
+    [saleId] => 6c0e8c10-49fc-439e-ab6c-255c7fdbaa95
+    [ticketIds] => Array
+        (
+            [0] => 49563836
+            [1] => 49563837
+        )
+
+    [tickets] => Array
+        (
+            [0] => Array
+                (
+                    [ticketId] => 49563836
+                    [partnerTicketTypeId] => adult
+                )
+
+            [1] => Array
+                (
+                    [ticketId] => 49563837
+                    [partnerTicketTypeId] => adult
+                )
+
+        )
+
+)
+]] 
       Sending GetSale request post CommitSale
       + Test Request 
       + Sending Request: 
-	RequestDetails[Method:[GET]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1230]
-	RequestHeaders:["x-request-identifier=da8b90ea-de55-435d-bf44-64ca2ce059d1"; "x-request-authentication=k4n8FlA74fJQxSmv6gVqlOasBNNFdPMZ9OSLlSps2tM="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestDetails[Method:[GET]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1279]
+	RequestHeaders:["x-request-identifier=1fbfd64e-c71e-4dc0-8fbf-a0a214f37cba"; "x-request-authentication=/6mIy7SP8byWYktkzTk5dr2XHQUNQ4hp85QEp7TfwhM="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
 	RequestBody:[]] 
       + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:34:05 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=549"; "Keep-Alive=timeout=5, max=91"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseDetails[ResponseHeaders:["Date=Mon, 08 Oct 2018 01:10:04 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=561"; "Keep-Alive=timeout=5, max=91"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
 	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"da8b90ea-de55-435d-bf44-64ca2ce059d1","processingMilliseconds":100},"partnerSupplierBranchId":"woi","partnerSaleId":"1230","partnerSaleStatus":"Created","partnerBarcodeSymbology":"QRCode","partnerSaleBarcode":"","utcSaleRedemptionDateTime":100,"partnerTickets":[]}HOLAAAAAAAAAAAAAAAAAAaPDOStatement Object
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"1fbfd64e-c71e-4dc0-8fbf-a0a214f37cba","processingMilliseconds":100},"partnerSupplierBranchId":"woi","partnerSaleId":"1279","partnerSaleStatus":"Created","partnerBarcodeSymbology":"QRCode","partnerSaleBarcode":"","utcSaleRedemptionDateTime":100,"partnerTickets":[{"ticketId":"49563837","partnerTicketId":"49563837","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":100}]}HOLAAAAAAAAAAAAAAAAAAaPDOStatement Object
 (
-    [queryString] => SELECT * FROM Sales where referenceId = '1230'
+    [queryString] => SELECT * FROM tickets where id_sales = '1279'
 )
-<br />
-<b>Warning</b>:  Invalid argument supplied for foreach() in <b>C:\laragon\www\Xpidia\index.php</b> on line <b>103</b><br />
 ]] 
       + Test Response Mapping 
       - Http StatusCode should be 200
@@ -258,20 +309,20 @@ GetSale
       - GetSale Response should have same PartnerBarcodeSymbology as the CommitSale Response
       - GetSale Response should have same PartnerBarcode as the CommitSale Response
       - Should have same PartnerTickets in both CommitSale and GetSale response *** FAILED ***
-        GetSale response PartnerTickets is empty while CommitSale response has 2 PartnerTickets (GetSaleTests.scala:202)
+        GetSale response PartnerTickets size : 1 is not same as CommitSale response PartnerTickets: 2 (GetSaleTests.scala:209)
     + Sending Create Cancellation POST Request and validating response 
     + Test Request 
     + Sending Request: 
-	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1230/cancellation]
-	RequestHeaders:["x-request-identifier=4f93200e-f5ef-4048-bef2-d2c05d9ae29d"; "x-request-authentication=yoww7dG8JaFKDTm2UXTaGjxdzpSHaS33mOS6pRSX5G0="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1279/cancellation]
+	RequestHeaders:["x-request-identifier=bb8c9e3d-8570-49b0-8a48-59044e23392e"; "x-request-authentication=p5rEYoj8pTGdwLzc2Zty9vaYsSof3C4oFjZymIR2wRc="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
 	RequestBody:[{"holdDurationSeconds":300}]] 
     + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:34:06 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=115"; "Keep-Alive=timeout=5, max=90"; "Connection=Keep-Alive"; "Content-Type=text/html; charset=UTF-8"] 
+	ResponseDetails[ResponseHeaders:["Date=Mon, 08 Oct 2018 01:10:05 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=115"; "Keep-Alive=timeout=5, max=90"; "Connection=Keep-Alive"; "Content-Type=text/html; charset=UTF-8"] 
 	ResponseContentType:[text/html; charset=UTF-8]
 	ResponseBody:[How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdCancellationPost as a POST method ?]] 
     - Create Cancellation Failure *** FAILED ***
       CreateCancellation failed therefore a Get Sale cannot be tested. Exception message: Create Cancellation failed due to: Exception was thrown during mapping the response model. This is most likely caused by invalid content-type or an empty response body. Exception message: Unrecognized token 'How': was expecting ('true', 'false' or 'null')
-       at [Source: java.io.StringReader@7e0aadd0; line: 1, column: 4] (GetSaleTestSuite.scala:74)
+       at [Source: java.io.StringReader@77cf3f8b; line: 1, column: 4] (GetSaleTestSuite.scala:74)
   PerGroupVBP
   - Skipping the optional AVT Get Sale Test [PerGroupVBP]. !!! IGNORED !!!
   SaleNotFound
@@ -284,54 +335,20 @@ CreateSaleCancellation
   + Test Request 
   + Sending Request: 
 	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales]
-	RequestHeaders:["x-request-identifier=fdac6c9d-9236-4857-8d97-18e4f1f60abe"; "x-request-authentication=TBTeKOwUmUC5pm0wiqiIQIab/20T9Pu9ZTxsjHJCSg8="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"referenceId":"d898f692-f18d-4b1a-bce2-40a355d07100","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":5,"travelerCount":5,"voucherCount":5}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
+	RequestHeaders:["x-request-identifier=36384d43-b675-420f-b66b-89f59521ec33"; "x-request-authentication=eZJlMxbmxBQPIwsMREP6EEyfh2eGcnwMAsT+EEnnXi0="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"referenceId":"5e3af4b2-b605-4406-b64e-c342c5fe3e14","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":5,"travelerCount":5,"voucherCount":5}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
   + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:34:06 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=270"; "Keep-Alive=timeout=5, max=89"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseDetails[ResponseHeaders:["Date=Mon, 08 Oct 2018 01:10:05 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=270"; "Keep-Alive=timeout=5, max=89"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
 	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"fdac6c9d-9236-4857-8d97-18e4f1f60abe","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"d898f692-f18d-4b1a-bce2-40a355d07100","partnerSaleId":"1231","utcHoldExpiration":"2019-10-06T17:13:21.207Z","0":[]}]] 
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"36384d43-b675-420f-b66b-89f59521ec33","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"5e3af4b2-b605-4406-b64e-c342c5fe3e14","partnerSaleId":"1280","utcHoldExpiration":"2019-10-06T17:13:21.207Z","0":[]}]] 
   + Sending Commit Sale PUT Request and validating Commit Sale Response 
   + Test Request 
   + Sending Request: 
-	RequestDetails[Method:[PUT]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1231]
-	RequestHeaders:["x-request-identifier=bcf74760-1675-4c3a-9999-acb6446d9382"; "x-request-authentication=pBFO52gnb6LaNuKw2CwFkYICD08TdIZZvs9wTrfH6Ks="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"saleId":"d898f692-f18d-4b1a-bce2-40a355d07100","ticketIds":["63599869","63599868","63599865","63599867","63599866"],"tickets":[{"ticketId":"63599865","partnerTicketTypeId":"adult"},{"ticketId":"63599869","partnerTicketTypeId":"adult"},{"ticketId":"63599866","partnerTicketTypeId":"adult"},{"ticketId":"63599868","partnerTicketTypeId":"adult"},{"ticketId":"63599867","partnerTicketTypeId":"adult"}]}]] 
-  + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:34:07 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=1037"; "Keep-Alive=timeout=5, max=88"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
-	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"bcf74760-1675-4c3a-9999-acb6446d9382","processingMilliseconds":500},"partnerSupplierBranchId":"woi","partnerSaleId":"1231","partnerSaleStatus":"Created","partnerBarcodeSymbology":"QRCode","partnerSaleBarcode":"","utcSaleRedemptionDateTime":"","partnerTickets":[{"ticketId":"63599865","partnerTicketId":"63599865","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"},{"ticketId":"63599869","partnerTicketId":"63599869","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"},{"ticketId":"63599866","partnerTicketId":"63599866","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"},{"ticketId":"63599868","partnerTicketId":"63599868","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"},{"ticketId":"63599867","partnerTicketId":"63599867","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"}]}]] 
-  + Test Request 
-  + Sending Request: 
-	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1231/cancellation]
-	RequestHeaders:["x-request-identifier=3b04b70e-e73a-453a-91f8-3ee02962addb"; "x-request-authentication=YDDsirj9v1EJCqsuF2nNViQCXKQd/V/sEfLcv4Yg834="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"holdDurationSeconds":300}]] 
-  + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:34:09 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=115"; "Keep-Alive=timeout=5, max=87"; "Connection=Keep-Alive"; "Content-Type=text/html; charset=UTF-8"] 
-	ResponseContentType:[text/html; charset=UTF-8]
-	ResponseBody:[How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdCancellationPost as a POST method ?]] 
-  + Test Response Mapping 
-  - Http StatusCode should be 200
-  - Response time should be within the maximum allowed response time. CreateCancellation calls are required to be within 2400 milliseconds
-  - Response Body should map to the valid Json Model of type: CreateCancellation' *** FAILED ***
-    com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'How': was expecting ('true', 'false' or 'null')
- at [Source: java.io.StringReader@6ac4944a; line: 1, column: 4]
-    at com.fasterxml.jackson.core.JsonParser._constructError(JsonParser.java:1524)
-    at com.fasterxml.jackson.core.base.ParserMinimalBase._reportError(ParserMinimalBase.java:557)
-    at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._reportInvalidToken(ReaderBasedJsonParser.java:2042)
-    at com.fasterxml.jackson.core.json.ReaderBasedJsonParser._handleOddValue(ReaderBasedJsonParser.java:1412)
-    at com.fasterxml.jackson.core.json.ReaderBasedJsonParser.nextToken(ReaderBasedJsonParser.java:679)
-    at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:3031)
-    at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:2978)
-    at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:2098)
-    at org.json4s.jackson.JsonMethods$class.parse(JsonMethods.scala:20)
-    at org.json4s.jackson.JsonMethods$.parse(JsonMethods.scala:50)
-    ...
-    Response Body Tests
-    - Bad Response *** FAILED ***
-      Response Body is not in the Correct format. ContentType: text/html; charset=UTF-8 
-       Exception: Unrecognized token 'How': was expecting ('true', 'false' or 'null')
-       at [Source: java.io.StringReader@5a772895; line: 1, column: 4] 
-       Response Body: How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdCancellationPost as a POST method ? (CreateCancellationTests.scala:222)
+	RequestDetails[Method:[PUT]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1280]
+	RequestHeaders:["x-request-identifier=06b3c4af-53e1-4d48-a288-e59845075973"; "x-request-authentication=n9AHMFRiLDs8OFbKPsHW887xrLImmGF1vEOjy48oDUk="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"saleId":"5e3af4b2-b605-4406-b64e-c342c5fe3e14","ticketIds":["53690978","53690977","53690980","53690979","53690976"],"tickets":[{"ticketId":"53690978","partnerTicketTypeId":"adult"},{"ticketId":"53690980","partnerTicketTypeId":"adult"},{"ticketId":"53690979","partnerTicketTypeId":"adult"},{"ticketId":"53690976","partnerTicketTypeId":"adult"},{"ticketId":"53690977","partnerTicketTypeId":"adult"}]}]] 
+  - Commit Sale Failure during CreateSaleCancellation BaseTest *** FAILED ***
+    Commit Sale failed therefore a Create Cancellation cannot be tested. Exception message: Commit Sale failed due to: Exception thrown during PUT request. Exception message: HTTP Request timed out after 5 seconds. (CreateCancellationTestSuite.scala:75)
   SaleNotFound
   - Skipping the required AVT Create Sale Cancellation Test [SaleNotFound]. !!! IGNORED !!!
   SaleNotCommitted
@@ -347,35 +364,61 @@ CommitSaleCancellation
   + Test Request 
   + Sending Request: 
 	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales]
-	RequestHeaders:["x-request-identifier=9eff2dc0-3954-40fd-a951-4f0f76e9df03"; "x-request-authentication=ZIWZVib4QZ9eIFk8/xm1yF7R1RJHwfUD/S1OjMq953I="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"referenceId":"74ab5093-edcf-4fef-af64-314d6c02869a","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":50,"additionalCriteria":[]}]] 
+	RequestHeaders:["x-request-identifier=812173fb-b7c8-4168-8a38-26a4537b4a06"; "x-request-authentication=idmYpcfpAVy/awKcTuhoE8tP7UrwutkXADaou5ms0uI="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"referenceId":"21ca8ac3-e98e-46b1-b54a-17d0d6ac4a33","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":50,"additionalCriteria":[]}]] 
   + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:34:09 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=270"; "Keep-Alive=timeout=5, max=86"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseDetails[ResponseHeaders:["Date=Mon, 08 Oct 2018 01:10:12 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=270"; "Keep-Alive=timeout=5, max=100"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
 	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"9eff2dc0-3954-40fd-a951-4f0f76e9df03","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"74ab5093-edcf-4fef-af64-314d6c02869a","partnerSaleId":"1232","utcHoldExpiration":"2019-10-06T17:13:21.207Z","0":[]}]] 
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"812173fb-b7c8-4168-8a38-26a4537b4a06","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"21ca8ac3-e98e-46b1-b54a-17d0d6ac4a33","partnerSaleId":"1281","utcHoldExpiration":"2019-10-06T17:13:21.207Z","0":[]}]] 
   + Sending Commit Sale PUT Request and validating Commit Sale Response 
   + Test Request 
   + Sending Request: 
-	RequestDetails[Method:[PUT]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1232]
-	RequestHeaders:["x-request-identifier=c17a50b9-a7ce-4066-abca-1e89009e64cc"; "x-request-authentication=MZnxalsV0CnCWLCQiT6iSU3xHyzoI0sUE0/Si/4/kHc="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"saleId":"74ab5093-edcf-4fef-af64-314d6c02869a","ticketIds":["71621418","71621419"],"tickets":[{"ticketId":"71621418","partnerTicketTypeId":"adult"},{"ticketId":"71621419","partnerTicketTypeId":"adult"}]}]] 
+	RequestDetails[Method:[PUT]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1281]
+	RequestHeaders:["x-request-identifier=43833bd5-943e-494c-bbe4-aa1293d21330"; "x-request-authentication=hgqhTj2U04z8bcGkeFUQ6KsIQcJSBiipN3JRYzZJwdI="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"saleId":"21ca8ac3-e98e-46b1-b54a-17d0d6ac4a33","ticketIds":["4588422","4588423"],"tickets":[{"ticketId":"4588422","partnerTicketTypeId":"adult"},{"ticketId":"4588423","partnerTicketTypeId":"adult"}]}]] 
   + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:34:10 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=596"; "Keep-Alive=timeout=5, max=85"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseDetails[ResponseHeaders:["Date=Mon, 08 Oct 2018 01:10:13 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=1109"; "Keep-Alive=timeout=5, max=99"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
 	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"c17a50b9-a7ce-4066-abca-1e89009e64cc","processingMilliseconds":500},"partnerSupplierBranchId":"woi","partnerSaleId":"1232","partnerSaleStatus":"Created","partnerBarcodeSymbology":"QRCode","partnerSaleBarcode":"","utcSaleRedemptionDateTime":"","partnerTickets":[{"ticketId":"71621418","partnerTicketId":"71621418","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"},{"ticketId":"71621419","partnerTicketId":"71621419","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"}]}]] 
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"43833bd5-943e-494c-bbe4-aa1293d21330","processingMilliseconds":500},"partnerSupplierBranchId":"woi","partnerSaleId":"1281","partnerSaleStatus":"Created","partnerBarcodeSymbology":"QRCode","partnerSaleBarcode":"","utcSaleRedemptionDateTime":"","partnerTickets":[{"ticketId":"4588422","partnerTicketId":"4588422","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"},{"ticketId":"4588423","partnerTicketId":"4588423","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"}]}Array
+(
+    [saleId] => 21ca8ac3-e98e-46b1-b54a-17d0d6ac4a33
+    [ticketIds] => Array
+        (
+            [0] => 4588422
+            [1] => 4588423
+        )
+
+    [tickets] => Array
+        (
+            [0] => Array
+                (
+                    [ticketId] => 4588422
+                    [partnerTicketTypeId] => adult
+                )
+
+            [1] => Array
+                (
+                    [ticketId] => 4588423
+                    [partnerTicketTypeId] => adult
+                )
+
+        )
+
+)
+]] 
   + Sending Create Cancellation POST Request and validating response 
   + Test Request 
   + Sending Request: 
-	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1232/cancellation]
-	RequestHeaders:["x-request-identifier=9a4aaebe-2969-4782-b40c-db70b163d822"; "x-request-authentication=eC5TeGGEWpsHXeVJW918qi/+gSFUvS9F0oqvlixfCWM="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1281/cancellation]
+	RequestHeaders:["x-request-identifier=bc214ac6-326c-4c95-829c-efc617e14899"; "x-request-authentication=4oS5BidgTZvpa29JpBDb6yyrT9qSLGiEx+sDRPhFBNQ="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
 	RequestBody:[{"holdDurationSeconds":300}]] 
   + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:34:11 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=115"; "Keep-Alive=timeout=5, max=84"; "Connection=Keep-Alive"; "Content-Type=text/html; charset=UTF-8"] 
+	ResponseDetails[ResponseHeaders:["Date=Mon, 08 Oct 2018 01:10:17 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=115"; "Keep-Alive=timeout=5, max=98"; "Connection=Keep-Alive"; "Content-Type=text/html; charset=UTF-8"] 
 	ResponseContentType:[text/html; charset=UTF-8]
 	ResponseBody:[How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdCancellationPost as a POST method ?]] 
   - Create Cancellation Failure during CommitSaleCancellation BaseTest *** FAILED ***
     Create Cancellation failed therefore a Commit Cancellation cannot be tested. Exception message: Create Cancellation failed due to: Exception was thrown during mapping the response model. This is most likely caused by invalid content-type or an empty response body. Exception message: Unrecognized token 'How': was expecting ('true', 'false' or 'null')
-     at [Source: java.io.StringReader@23c388c2; line: 1, column: 4] (CommitCancellationTestSuite.scala:53)
+     at [Source: java.io.StringReader@620aa4ea; line: 1, column: 4] (CommitCancellationTestSuite.scala:53)
   SaleNotFound
   - Skipping the required AVT Commit Sale Cancellation Test [SaleNotFound]. !!! IGNORED !!!
   CancellationNotCreated
@@ -391,41 +434,67 @@ ReleaseSaleCancellation
   + Test Request 
   + Sending Request: 
 	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales]
-	RequestHeaders:["x-request-identifier=d6991dc2-e17f-4793-99d3-de415638736a"; "x-request-authentication=6uplwiLSAX6ffjRlk8i/xbv7t7PXEhv+OYAz+A9pCQ4="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"referenceId":"a1f75bcc-bbc2-4a20-adc9-99009dbb1b39","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
+	RequestHeaders:["x-request-identifier=ca417a6e-f056-4aec-a02b-157ab7548725"; "x-request-authentication=yA7sOl9QrVmNDIpjw8D9dmMoPrWzhWm8sIrSHkhEWUE="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"referenceId":"050975f2-8fb6-4b44-b191-cd6296625287","partnerActivityId":"291957W3","partnerOfferId":"391472W3025","localDate":"2017-03-21","ticketTypes":[{"partnerTicketTypeId":"adult","count":2,"travelerCount":2,"voucherCount":2}],"guests":[{"firstName":"NameFirst","lastName":"NameLast"}],"holdDurationSeconds":5,"additionalCriteria":[]}]] 
   + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:34:11 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=270"; "Keep-Alive=timeout=5, max=83"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseDetails[ResponseHeaders:["Date=Mon, 08 Oct 2018 01:10:17 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=270"; "Keep-Alive=timeout=5, max=97"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
 	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"d6991dc2-e17f-4793-99d3-de415638736a","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"a1f75bcc-bbc2-4a20-adc9-99009dbb1b39","partnerSaleId":"1233","utcHoldExpiration":"2019-10-06T17:13:21.207Z","0":[]}]] 
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"ca417a6e-f056-4aec-a02b-157ab7548725","processingMilliseconds":100},"partnerSupplierBranchId":"woi","referenceId":"050975f2-8fb6-4b44-b191-cd6296625287","partnerSaleId":"1282","utcHoldExpiration":"2019-10-06T17:13:21.207Z","0":[]}]] 
   + Sending Commit Sale PUT Request and validating Commit Sale Response 
   + Test Request 
   + Sending Request: 
-	RequestDetails[Method:[PUT]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1233]
-	RequestHeaders:["x-request-identifier=78366cc7-471a-4549-8cbf-27a31b0d9176"; "x-request-authentication=vLq8JxColruocP9oNBbWKZ0HmGO9exCNlAsWBPDP/5o="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
-	RequestBody:[{"saleId":"a1f75bcc-bbc2-4a20-adc9-99009dbb1b39","ticketIds":["91301858","91301859"],"tickets":[{"ticketId":"91301858","partnerTicketTypeId":"adult"},{"ticketId":"91301859","partnerTicketTypeId":"adult"}]}]] 
+	RequestDetails[Method:[PUT]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1282]
+	RequestHeaders:["x-request-identifier=4177dea7-9e68-4cf2-b129-1e897b26c8cf"; "x-request-authentication=IBD+I8z9jj2MAhfNwW7/d8JVva5Mmbz/FBjvMZKJAZc="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestBody:[{"saleId":"050975f2-8fb6-4b44-b191-cd6296625287","ticketIds":["54257917","54257918"],"tickets":[{"ticketId":"54257917","partnerTicketTypeId":"adult"},{"ticketId":"54257918","partnerTicketTypeId":"adult"}]}]] 
   + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:34:11 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=596"; "Keep-Alive=timeout=5, max=82"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
+	ResponseDetails[ResponseHeaders:["Date=Mon, 08 Oct 2018 01:10:18 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=1117"; "Keep-Alive=timeout=5, max=87"; "Connection=Keep-Alive"; "Content-Type=application/vnd.localexpert.v2.1+json"] 
 	ResponseContentType:[application/vnd.localexpert.v2.1+json]
-	ResponseBody:[{"responseHeader":{"requestIdentifier":"78366cc7-471a-4549-8cbf-27a31b0d9176","processingMilliseconds":500},"partnerSupplierBranchId":"woi","partnerSaleId":"1233","partnerSaleStatus":"Created","partnerBarcodeSymbology":"QRCode","partnerSaleBarcode":"","utcSaleRedemptionDateTime":"","partnerTickets":[{"ticketId":"91301858","partnerTicketId":"91301858","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"},{"ticketId":"91301859","partnerTicketId":"91301859","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"}]}]] 
+	ResponseBody:[{"responseHeader":{"requestIdentifier":"4177dea7-9e68-4cf2-b129-1e897b26c8cf","processingMilliseconds":500},"partnerSupplierBranchId":"woi","partnerSaleId":"1282","partnerSaleStatus":"Created","partnerBarcodeSymbology":"QRCode","partnerSaleBarcode":"","utcSaleRedemptionDateTime":"","partnerTickets":[{"ticketId":"54257917","partnerTicketId":"54257917","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"},{"ticketId":"54257918","partnerTicketId":"54257918","partnerTicketStatus":"Created","partnerTicketBarcode":"","utcTicketRedemptionDateTime":"200"}]}Array
+(
+    [saleId] => 050975f2-8fb6-4b44-b191-cd6296625287
+    [ticketIds] => Array
+        (
+            [0] => 54257917
+            [1] => 54257918
+        )
+
+    [tickets] => Array
+        (
+            [0] => Array
+                (
+                    [ticketId] => 54257917
+                    [partnerTicketTypeId] => adult
+                )
+
+            [1] => Array
+                (
+                    [ticketId] => 54257918
+                    [partnerTicketTypeId] => adult
+                )
+
+        )
+
+)
+]] 
   + Sending Create Cancellation POST Request and validating response 
   + Test Request 
   + Sending Request: 
-	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1233/cancellation]
-	RequestHeaders:["x-request-identifier=7ab05728-f9ad-47c6-8ace-c3fc8a52df26"; "x-request-authentication=+SVNIDlElQeDeUnFRhGncp+DAjPWU6qmDNh2N/w0RdA="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
+	RequestDetails[Method:[POST]URL:[http://localhost:81/Xpidia/supplierBranches/woi/sales/1282/cancellation]
+	RequestHeaders:["x-request-identifier=e23c662b-874c-4155-9ae0-43f4ecf48ff1"; "x-request-authentication=c57iDPGNjSZHEbswKGJmP+w83xqeldMqzC2/Ott1CoA="; "Accept=application/vnd.localexpert.v2.1+json,application/vnd.localexpert.v2.0+json;q=0.9,application/vnd.localexpert.v1.1+json;q=0.8,application/json;q=0.7"; "Content-Type=application/vnd.localexpert.v2.1+json; charset=UTF-8"]
 	RequestBody:[{"holdDurationSeconds":300}]] 
   + Received Response: 
-	ResponseDetails[ResponseHeaders:["Date=Sat, 06 Oct 2018 20:34:12 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=115"; "Keep-Alive=timeout=5, max=81"; "Connection=Keep-Alive"; "Content-Type=text/html; charset=UTF-8"] 
+	ResponseDetails[ResponseHeaders:["Date=Mon, 08 Oct 2018 01:10:21 GMT"; "Server=Apache/2.4.27 (Win64) OpenSSL/1.0.2l PHP/7.1.12"; "X-Powered-By=PHP/7.1.12"; "Content-Length=115"; "Keep-Alive=timeout=5, max=96"; "Connection=Keep-Alive"; "Content-Type=text/html; charset=UTF-8"] 
 	ResponseContentType:[text/html; charset=UTF-8]
 	ResponseBody:[How about implementing supplierBranchesPartnerSupplierBranchIdSalesPartnerSaleIdCancellationPost as a POST method ?]] 
   - Create Cancellation Failure during ReleaseSaleCancellation BaseTest *** FAILED ***
     Create Cancellation failed therefore a Release Cancellation cannot be tested. Exception message: Create Cancellation failed due to: Exception was thrown during mapping the response model. This is most likely caused by invalid content-type or an empty response body. Exception message: Unrecognized token 'How': was expecting ('true', 'false' or 'null')
-     at [Source: java.io.StringReader@c00fff0; line: 1, column: 4] (ReleaseCancellationTestSuite.scala:43)
+     at [Source: java.io.StringReader@2f3c6ac4; line: 1, column: 4] (ReleaseCancellationTestSuite.scala:43)
   SaleNotFound
   - Skipping the required AVT Release Sale Cancellation Test [SaleNotFound]. !!! IGNORED !!!
   CancellationNotCreated
   - Skipping the required AVT Release Sale Cancellation Test [CancellationNotCreated]. !!! IGNORED !!!
-Run completed in 16 seconds, 508 milliseconds.
-Total number of tests run: 59
+Run completed in 39 seconds, 948 milliseconds.
+Total number of tests run: 56
 Suites: completed 8, aborted 0
-Tests: succeeded 47, failed 12, canceled 0, ignored 28, pending 0
-*** 12 TESTS FAILED ***
+Tests: succeeded 42, failed 14, canceled 0, ignored 28, pending 0
+*** 14 TESTS FAILED ***
